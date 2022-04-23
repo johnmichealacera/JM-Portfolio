@@ -4,9 +4,9 @@
       <h3 class="text-2xl font-medium">Do you like my work? Please contact me and let us discuss your project.</h3>
     </div>
     <div>
-      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="https://formsubmit.co/el/funiga" method="POST">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="/">
+      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="https://formsubmit.io/send/df9dc1cd-cced-4e64-9987-1729012c47b4" method="POST">
+      <input name="_redirect" type="hidden" id="name" value="https://jm-personal-portfolio.herokuapp.com/">
+      <input name="_formsubmit_id" type="text" style="display:none">
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
             Your name
