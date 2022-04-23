@@ -11,13 +11,13 @@
           <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
             Your name
           </label>
-          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="John Doe">
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" name="name" type="text" placeholder="John Doe">
         </div>
         <div class="mb-6">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
             Your email
           </label>
-          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="johndoe@mail">
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="email" id="email" type="email" placeholder="johndoe@mail">
         </div>
         <div class="mb-6">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="message">
