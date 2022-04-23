@@ -1,8 +1,8 @@
 <template>
-  <div class="border-2 p-10 bg-yellow-50 bg-opacity-50">
-    <h1 class="text-center text-2xl font-medium">My Skills</h1>
-    <hr class="m-6">
-    <div class="flex justify-evenly">
+  <div class="border-2 p-2 sm:p-10 bg-yellow-50 bg-opacity-50">
+    <h1 class="text-center text-xl sm:text-2xl font-medium">My Skills</h1>
+    <hr class="m-2 sm:m-6">
+    <div class="flex justify-evenly text-xs sm:text-base">
       <div class="w-2/12">
         <h1 class="m-2 font-semibold">Programming Languages</h1>
         <ul class="font-black text-right">

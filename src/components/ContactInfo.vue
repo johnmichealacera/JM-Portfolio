@@ -6,8 +6,8 @@
         <h1>JM ACERA</h1>
       </div>
       <h3 class="font-semibold">jmmonacera@gmail.com</h3>
+      <h3 class="font-semibold">+639-059-666-509</h3>
       <h3 class="font-semibold">+639-999-898-403</h3>
-      <h3 class="font-semibold">+639-977-898-403</h3>
     </div>
   </div>
 </template>
