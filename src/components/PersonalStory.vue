@@ -5,6 +5,7 @@
       <hr class="m-6">
       <p class="text-justify leading-loose py-5">I am a graduate of Bachelor of Science in Information Technology way back 2015. After graduating, i worked on two jobs unrelated to my course. First is working at the Accounting Department in the government and then recently was as a Customer Service Representative.</p>
       <p class="text-justify leading-loose ">I decided to quit my job as a CSR last April 2020 to pursue my passion and profession as a Web Developer. I then started relearning stuffs and is very motivated to work hard on improving my skills as well as to be able to land a job as a programmer.</p>
+      <p class="text-justify leading-loose ">After sometime of grinding, hardwork and dedication, I am currently working right now as a Full Stack Web Developer with some knowledge of DevOps on a company based in Sweden.</p>
     </div>
   </div>
 </template>
