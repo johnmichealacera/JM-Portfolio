@@ -41,12 +41,6 @@ export default {
 
 <style scoped>
   .bg-project {
-    background-image: url('../../public/todo.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;;
-  }
-  .bg-shooting-bird {
-    background-image: url('../../public/shoot-birds.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;;
   }
