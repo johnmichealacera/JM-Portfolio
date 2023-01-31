@@ -1,7 +1,7 @@
 <template>
 <div class="py-10 px-2">
   <h1 class="text-center text-2xl font-medium">Checkout my Personal Projects</h1>
-  <hr class="m-6">
+  <hr class="m-6" />
   <div class="flex space-x-4">
     <div class="bg-project w-1/2 h-96 group">
     <app-modal class="opacity-0 hover:opacity-100"></app-modal>
