@@ -13,7 +13,7 @@
 </div>
 </template>
 
-<script lang='ts'>
+<script>
 import AppModal from './AppModal.vue';
 import ShootingBirdProjectModal from './ShootingBirdProjectModal.vue';
 
