@@ -2,28 +2,39 @@
 <div class="py-10 px-2">
   <h1 class="text-center text-2xl font-medium">Checkout my Personal Projects</h1>
   <hr class="m-6" />
-  <div class="flex space-x-4">
-    <div class="bg-project w-1/2 h-96 group">
-    <app-modal class="opacity-0 hover:opacity-100"></app-modal>
+  <div class="grid grid-cols-2 gap-4">
+    <div class="" v-for="(item, index) in projectArr"
+    :key="index">
+    <div class="bg-project h-96 group" v-if="item?.imageLink" :style="{ backgroundImage: `url(${item?.imageLink})` }">
+      <app-modal class="opacity-0 hover:opacity-100" :title="item?.title" :description="item?.description" :url="item?.url" :index="index+1"></app-modal>
     </div>
-    <div class="bg-shooting-bird w-1/2 h-96 group">
-      <shooting-bird-project-modal class="opacity-0 hover:opacity-100"></shooting-bird-project-modal>
-    </div>
+  </div>
   </div>
 </div>
 </template>
 
 <script>
 import AppModal from './AppModal.vue';
-import ShootingBirdProjectModal from './ShootingBirdProjectModal.vue';
+import axios from 'axios';
+import { onMounted, ref } from '@vue/runtime-core';
 
 export default {
   name: "Project",
   components: {
     AppModal,
-    ShootingBirdProjectModal,
   },
   setup() {
+    const projectArr = ref([]);
+    const loadCount = async () => {      
+      let result= await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/projects`);
+      projectArr.value = result?.data;
+    };
+
+    onMounted(async () => await loadCount())
+
+    return {
+      projectArr,
+    };
   }
 }
 </script>
