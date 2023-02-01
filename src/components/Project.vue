@@ -3,7 +3,7 @@
   <h1 class="text-center text-2xl font-medium">Checkout my Personal Projects</h1>
   <hr class="m-6" />
   <div class="grid grid-cols-2 gap-4">
-    <div class="" v-for="(item, index) in projectArr"
+    <div v-for="(item, index) in projectArr"
     :key="index">
     <div class="bg-project h-96 group" v-if="item?.imageLink" :style="{ backgroundImage: `url(${item?.imageLink})` }">
       <app-modal class="opacity-0 hover:opacity-100" :title="item?.title" :description="item?.description" :url="item?.url" :index="index+1"></app-modal>
