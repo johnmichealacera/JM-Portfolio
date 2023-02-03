@@ -4,7 +4,8 @@
       <h1 class="text-5xl font-semibold">Hello, I'm JM Acera.</h1>
       <p>A Web Developer capable of creating websites that will suit your needs.</p>  
     </div>
-    <div class="pt-5 sm:pt-10 z-12 grid grid-cols-3 gap-4">
+    <loader :isLoading="isLoading"/>
+    <div v-if="!isLoading" class="pt-5 sm:pt-10 z-12 grid grid-cols-3 gap-4">
       <ul class="flex justify-evenly items-center h-48 text-lg font-medium" v-for="(item, index) in introArrData" :key="index">
         <li class="h-full text-xs sm:text-base">
           <svg-icon :icon="item?.icon"></svg-icon>  
@@ -17,24 +18,30 @@
 
 <script>
 import SvgIcon from './SvgIcon.vue';
+import Loader from './commons/Loader.vue';
 import axios from 'axios';
 import { onMounted, ref } from '@vue/runtime-core';
 export default {
   name: "Introduction",
   components: {
     SvgIcon,
+    Loader,
   },
   setup() {
     const introArrData = ref([]);
-    const loadIntroData = async () => {      
+    const isLoading = ref(false);
+    const loadIntroData = async () => {  
+      isLoading.value = true;    
       let result= await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/introduction`);
       introArrData.value = result?.data;
+      isLoading.value = false;
     };
 
     onMounted(async () => await loadIntroData())
 
     return {
       introArrData,
+      isLoading,
     }
   }
 }

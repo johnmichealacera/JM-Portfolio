@@ -7,7 +7,8 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M24 12l-9-8v6h-15v4h15v6z"/></svg>
       </button>
     </div>
-    <div class="flex justify-center">
+    <loader :isLoading="isLoading" :height="150"/>
+    <div v-if="!isLoading" class="flex justify-center">
       <div class="flex justify-center items-center" v-for="(item, index) in socialMediaArrData" :key="index">
         <a class="px-2" :href=item?.url target="_blank">
           <svg-icon :icon="item?.type" :width="40" :height="40"></svg-icon>  
@@ -21,22 +22,28 @@
 import axios from 'axios';
 import { onMounted, ref } from '@vue/runtime-core';
 import SvgIcon from './SvgIcon.vue';
+import Loader from './commons/Loader.vue';
 export default {
   name: "FooterBar",
   components: {
     SvgIcon,
+    Loader,
   },
   setup() {
     const socialMediaArrData = ref([]);
-    const loadSocialMedia = async () => {      
+    const isLoading = ref(false);
+    const loadSocialMedia = async () => {     
+      isLoading.value = true; 
       let result= await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/social-media`);
       socialMediaArrData.value = result?.data;
+      isLoading.value = false;
     };
 
     onMounted(async () => await loadSocialMedia())
 
     return {
       socialMediaArrData,
+      isLoading,
     }
   }
 }
