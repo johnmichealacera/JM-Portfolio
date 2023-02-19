@@ -1,8 +1,8 @@
 <template>
   <div class="bg-intro text-white p-10 sm:p-20 bg-jm">
     <div class="m-5 text-center">
-      <h1 class="text-5xl font-semibold">Hello, I'm JM Acera.</h1>
-      <p>A Web Developer capable of creating websites that will suit your needs.</p>  
+      <h1 class="text-5xl font-semibold">Hello, I'm {{ fullName }}.</h1>
+      <p>{{ jobDescription }}</p>  
     </div>
     <loader :isLoading="isLoading"/>
     <div v-if="!isLoading" class="pt-5 sm:pt-10 z-12 grid grid-cols-3 gap-4">
@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import SvgIcon from './SvgIcon.vue';
+import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
-import axios from 'axios';
 import { onMounted, ref } from '@vue/runtime-core';
+import { usePortfolioStore } from '@/store/pinia/portfolio';
 export default {
   name: "Introduction",
   components: {
@@ -28,20 +28,26 @@ export default {
     Loader,
   },
   setup() {
+    const portfolioStore = usePortfolioStore();
     const introArrData = ref([]);
+    const fullName = ref('');
+    const jobDescription = ref('');
     const isLoading = ref(false);
-    const loadIntroData = async () => {  
-      isLoading.value = true;    
-      let result= await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/introduction`);
-      introArrData.value = result?.data;
-      isLoading.value = false;
-    };
 
-    onMounted(async () => await loadIntroData())
+    onMounted(async () => {
+      isLoading.value = true;
+      await portfolioStore.fetchIntroductionsData(process.env.VUE_APP_USER_ID);
+      introArrData.value = portfolioStore.introductionData?.expertise;
+      fullName.value = portfolioStore.introductionData?.fullName;
+      jobDescription.value = portfolioStore.introductionData?.jobDescription;
+      isLoading.value = false;
+    })
 
     return {
       introArrData,
       isLoading,
+      fullName,
+      jobDescription,
     }
   }
 }

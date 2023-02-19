@@ -3,7 +3,8 @@
   <div class="max-w-5xl self-center sm:mx-4">
     <h1 class="text-3xl">Why am I doing this?</h1>
     <h6 class="pt-1 text-sm">Because I love challenges</h6>
-    <p class="pt-8 text-justify leading-loose">I always challenged myself to be a better version of myself every step of the way. I always see programming as a very steep mountain to climb. It is difficult but also very rewarding. I always feel satisfied once I complete projects and learn different things along the way. I see programming as a part of my life and not as something that I call as a job.</p>
+    <loader :isLoading="isLoading"/>
+    <p class="pt-8 text-justify leading-loose">{{ userWhy }}</p>
   </div>
   <div>
     <img src="../../public/jm-adventure.jpg" alt="Challenge photo" width="500" height="600" class="hidden sm:block">
@@ -12,9 +13,29 @@
 </template>
 
 <script>
+import { usePortfolioStore } from '@/store/pinia/portfolio';
+import { onMounted, ref } from '@vue/runtime-core';
+import Loader from './commons/Loader.vue';
 export default {
-  setup() {
+  name: 'AboutMe',
+  components: {
+    Loader
   },
+  setup() {
+    const portfolioStore = usePortfolioStore();
+    const isLoading = ref(false);
+    const userWhy = ref('');
+    onMounted(async () => {
+      isLoading.value = true;
+      await portfolioStore.fetchUserInfo(process.env.VUE_APP_USER_ID);
+      userWhy.value = portfolioStore.userInfoData?.userWhy;
+      isLoading.value = false;
+    })
+    return {
+      isLoading,
+      userWhy,
+    }
+  }
 }
 </script>
 

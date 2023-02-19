@@ -19,10 +19,10 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { onMounted, ref } from '@vue/runtime-core';
-import SvgIcon from './SvgIcon.vue';
+import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
+import { usePortfolioStore } from '@/store/pinia/portfolio';
 export default {
   name: "FooterBar",
   components: {
@@ -30,16 +30,16 @@ export default {
     Loader,
   },
   setup() {
+    const portfolioStore = usePortfolioStore();
     const socialMediaArrData = ref([]);
     const isLoading = ref(false);
-    const loadSocialMedia = async () => {     
-      isLoading.value = true; 
-      let result= await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/social-media`);
-      socialMediaArrData.value = result?.data;
-      isLoading.value = false;
-    };
 
-    onMounted(async () => await loadSocialMedia())
+    onMounted(async () => {
+      isLoading.value = true; 
+      await portfolioStore.fetchSocialMediaData(process.env.VUE_APP_USER_ID);
+      socialMediaArrData.value = portfolioStore.socialMediaData;
+      isLoading.value = false;
+    })
 
     return {
       socialMediaArrData,
