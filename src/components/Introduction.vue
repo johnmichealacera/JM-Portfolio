@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-intro text-white p-10 sm:p-20 bg-jm">
-    <div class="m-5 text-center">
+  <div class="bg-intro text-white p-10 sm:p-20 bg-jm" :style="{ backgroundImage: `url(${ bgImage })` }">
+    <div class="m-5 text-center" v-if="!isLoading">
       <h1 class="text-5xl font-semibold">Hello, I'm {{ fullName }}.</h1>
       <p>{{ jobDescription }}</p>  
     </div>
@@ -32,22 +32,26 @@ export default {
     const introArrData = ref([]);
     const fullName = ref('');
     const jobDescription = ref('');
+    const bgImage = ref('');
     const isLoading = ref(false);
 
     onMounted(async () => {
       isLoading.value = true;
       await portfolioStore.fetchIntroductionsData(process.env.VUE_APP_USER_ID);
+      await portfolioStore.fetchUserInfo(process.env.VUE_APP_USER_ID);
       introArrData.value = portfolioStore.introductionData?.expertise;
       fullName.value = portfolioStore.introductionData?.fullName;
       jobDescription.value = portfolioStore.introductionData?.jobDescription;
       isLoading.value = false;
-    })
+      bgImage.value = portfolioStore.userInfoData?.bgUrl;
+    });
 
     return {
       introArrData,
       isLoading,
       fullName,
       jobDescription,
+      bgImage,
     }
   }
 }

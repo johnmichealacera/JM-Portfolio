@@ -6,9 +6,9 @@
     <loader :isLoading="isLoading"/>
     <p class="pt-8 text-justify leading-loose">{{ userWhy }}</p>
   </div>
-  <div>
+  <!-- <div>
     <img src="../../public/jm-adventure.jpg" alt="Challenge photo" width="500" height="600" class="hidden sm:block">
-  </div>
+  </div> -->
 </div>
 </template>
 
