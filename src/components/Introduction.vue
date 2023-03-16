@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-intro text-white p-10 sm:p-20 bg-jm" :style="{ backgroundImage: `url(${ bgImage })` }">
+  <div class="bg-right bg-cover bg-intro text-white p-10 sm:p-20" :style="{ backgroundImage: `url(${ bgImage })` }">
     <div class="m-5" v-if="!isLoading">
       <h1 class="text-5xl font-semibold text-center">Hello, I'm {{ fullName }}.</h1>
       <p style="text-indent: 2em;" class="text-gray-200 leading-6 mt-3 text-lg">{{ jobDescription }}</p>  
@@ -60,12 +60,7 @@ export default {
 <style scoped>
   .bg-intro {
     background-color: #01a2a6;
-  }
-  .bg-jm {
-    background-image: url('../../public/jm-profile.jpg');
-    background-repeat: no-repeat;
-    background-position: right top;
-    background-size: 100% 100%;
+    background-position: right;
   }
   .demo_wrap {
     position: relative;
