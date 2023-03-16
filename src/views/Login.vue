@@ -10,30 +10,23 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { reactive, ref } from '@vue/runtime-core';
-import { useRouter } from 'vue-router';
+// import axios from 'axios';
+import { reactive } from '@vue/runtime-core';
+import { useAuth0 } from '@auth0/auth0-vue';
+
 export default {
   name: "Login",
   setup() {
-    const isUserVerified = ref(false);
-    const router = useRouter();
+    const { loginWithRedirect } = useAuth0();
+    // const isUserVerified = ref(false);
+    // const router = useRouter();
     const state = reactive({
       username: '',
       password: '',
     })
     const login = async () => {  
       try {
-        const user = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/user`, { params: {
-        username: state.username,
-        password: state.password
-      } });
-
-        isUserVerified.value = user.data;
-        if (user.data) {
-          alert('Correct credentials. Logging In');
-          router.push('/');
-        }
+        loginWithRedirect();
       } catch {
         console.error('error, huhuhu');
       }    

@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <taskbar />
+    <div>{{user}}</div>
+    <taskbar :userEmail="email"/>
     <introduction />
     <skill />
     <project />
@@ -17,6 +18,7 @@ import Skill from '@/components/Skill.vue';
 import Project from '@/components/Project.vue';
 import PersonalStory from '@/components/PersonalStory.vue';
 import Footer from '@/components/Footer.vue';
+import { useAuth0 } from '@auth0/auth0-vue';
 
 export default {
   name: 'Home',
@@ -27,6 +29,14 @@ export default {
     Project,
     PersonalStory,
     Footer,
+  },
+  setup() {
+    const { user } = useAuth0();
+
+
+    return {
+      user,
+    };
   }
 }
 </script>
