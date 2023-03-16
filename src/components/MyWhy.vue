@@ -4,7 +4,7 @@
     <h1 class="text-3xl">Why am I doing this?</h1>
     <h6 class="pt-1 text-sm">Because I love challenges</h6>
     <loader :isLoading="isLoading"/>
-    <p class="pt-8 text-justify leading-loose">{{ userWhy }}</p>
+    <p class="pt-8 text-justify leading-loose text-lg">{{ userWhy }}</p>
   </div>
   <!-- <div>
     <img src="../../public/jm-adventure.jpg" alt="Challenge photo" width="500" height="600" class="hidden sm:block">

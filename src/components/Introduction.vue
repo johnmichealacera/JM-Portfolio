@@ -1,11 +1,11 @@
 <template>
   <div class="bg-intro text-white p-10 sm:p-20 bg-jm" :style="{ backgroundImage: `url(${ bgImage })` }">
-    <div class="m-5 text-center" v-if="!isLoading">
-      <h1 class="text-5xl font-semibold">Hello, I'm {{ fullName }}.</h1>
-      <p>{{ jobDescription }}</p>  
+    <div class="m-5" v-if="!isLoading">
+      <h1 class="text-5xl font-semibold text-center">Hello, I'm {{ fullName }}.</h1>
+      <p style="text-indent: 2em;" class="text-gray-200 leading-6 mt-3 text-lg">{{ jobDescription }}</p>  
     </div>
     <loader :isLoading="isLoading"/>
-    <div v-if="!isLoading" class="pt-5 sm:pt-10 z-12 grid grid-cols-3 gap-4">
+    <div v-if="!isLoading" class="pt-5 sm:pt-10 z-12 grid grid-cols-2 gap-2">
       <ul class="flex justify-evenly items-center h-48 text-lg font-medium" v-for="(item, index) in introArrData" :key="index">
         <li class="h-full text-xs sm:text-base">
           <svg-icon :icon="item?.icon"></svg-icon>  
