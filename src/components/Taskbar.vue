@@ -3,7 +3,6 @@
     <router-link to="/" class="hover:bg-green-700 uppercase text-white text-xl name-link rounded-full p-2 mr-2" v-if="!isLoading">Home</router-link>
     <div class="hamburger-icon block">
       <button @click="isOpen = !isOpen" class="focus:outline-none">
-        <!-- TODO: Add in the icon assets -->
         <svg-icon :width="40" :height="40" icon="hamburgerClose" v-if="!isOpen"></svg-icon> 
         <svg-icon :width="40" :height="40" icon="hamburgerOpen" v-else></svg-icon>
       </button>
