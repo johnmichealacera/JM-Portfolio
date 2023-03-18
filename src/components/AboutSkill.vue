@@ -5,12 +5,12 @@
       <loader :isLoading="isLoading"/>
       <div class="grid grid-flow-col gap-4 grid-cols-2 grid-rows-2" v-if="!isLoading">
         <div v-for="(item, index) in softSkillsArr" :key="index">
-          <div class="flex items-center">
+          <div>
             <svg-icon :icon="item?.icon"></svg-icon>  
-            <div class="p-2 text-sm">
+            <div class="p-2 text-sm sm:text-lg leading-tight sm:leading-normal tracking-tighter">
               <h2 class="font-semibold">{{ item?.name }}</h2>
               <hr class="my-2">
-              <p class="text-justify">{{ item?.shortDescription }}</p>
+              <p class="text-start sm:text-justify">{{ item?.shortDescription }}</p>
             </div>
           </div>
         </div>
