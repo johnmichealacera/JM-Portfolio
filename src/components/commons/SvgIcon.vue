@@ -2,7 +2,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" :fill=iconObject?.styles?.fill :stroke-linecap=iconObject?.styles?.strokeLineCap
   :clip-rule=iconObject?.styles?.clipRule
   :fill-rule=iconObject?.styles?.fillRule
-  :stroke-linejoin=iconObject?.styles?.strokeLineJoin viewBox="0 0 24 24" :width="width" :height="height" class="stroke-current text-black h-28 sm:m-auto">
+  :stroke-linejoin=iconObject?.styles?.strokeLineJoin viewBox="0 0 24 24" :width="width" :height="height" class="stroke-current text-black sm:m-auto">
     <path :d=iconObject?.path />
   </svg> 
 </template>
