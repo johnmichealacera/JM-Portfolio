@@ -62,8 +62,6 @@ export default {
 @media (max-width: 640px) {
   .mobile-menu {
     position: absolute;
-    top: calc(0 + 3px);
-    right: calc(0 + 3px);
     z-index: 9999;
     background-color: #fff;
     padding: 5px;
