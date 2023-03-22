@@ -1,5 +1,5 @@
 <template>
-<div class="p-12 border-2 flex justify-evenly bg-color bg-opacity-0 text-white font-bold sm:text-xl">
+<div class="p-12 bg-color border-2 flex justify-evenly text-white font-bold sm:text-xl">
   <div class="max-w-5xl self-center sm:mx-4">
     <h1 class="text-3xl">Why am I doing this?</h1>
     <h6 class="pt-1 text-sm">Because I love challenges</h6>

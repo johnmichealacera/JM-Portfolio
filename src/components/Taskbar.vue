@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-evenly items-center text-xs font-black text-gray-500 p-10">
-    <router-link to="/" class="hover:bg-green-700 uppercase text-white text-xl name-link rounded-full p-2 mr-2" v-if="!isLoading">Home</router-link>
+    <router-link to="/" class="uppercase text-white text-xl rounded-full p-2 mr-2 name-link" v-if="!isLoading">Home</router-link>
     <div class="hamburger-icon block">
       <button @click="isOpen = !isOpen" class="focus:outline-none">
         <svg-icon :width="40" :height="40" icon="hamburgerClose" v-if="!isOpen"></svg-icon> 
@@ -44,7 +44,6 @@ export default {
   .name-link {
     background-color: #01a2a6;
   }
-
   @media screen and (min-width: 768px) {
     .hamburger-icon {
       display: none;

@@ -56,31 +56,7 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .bg-intro {
-    background-color: #01a2a6;
-    background-position: right;
-  }
-  .demo_wrap {
-    position: relative;
-    background: #01a2a6;
-    overflow: hidden;
+.bg-intro {
+  background-color: #01a2a6;
+  background-position: right;
 }
-/* You could use :after - it doesn't really matter */
-.demo_wrap:before {
-    content: ' ';
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.20;
-    background-image: url('../../public/jm-profile.jpg');
-    background-repeat: no-repeat;
-    background-position: right top;
-    background-size: 40% 100%;
-}
-</style>
