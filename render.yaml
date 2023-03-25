@@ -1,0 +1,6 @@
+routes:
+  # Redirect all requests to index.html
+  - src: "/*"
+    headers:
+      "Content-Type": "text/html"
+    dest: "/public/index.html"
