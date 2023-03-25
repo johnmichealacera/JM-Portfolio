@@ -22,32 +22,34 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Loader from './commons/Loader.vue';
 import { onMounted, ref } from '@vue/runtime-core';
+import { usePortfolioStore } from '@/store/pinia/portfolio';
 export default {
   name: "Skill.vue",
   components: {
     Loader,
   },
   setup() {
+    const portfolioStore = usePortfolioStore();
     const skillsArr = ref([]);
     const skillsTypeArr = ref([]);
     const isLoading = ref(false);
     const loadIntroData = async () => {    
-      isLoading.value = true;  
-      let result= await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/skills`);
-      const uniqueSkillsType = [...new Set(result?.data.map((item) => item.type))];
-
+      const uniqueSkillsType = [...new Set(portfolioStore?.skillData.map((item) => item.type))];
       skillsTypeArr.value = uniqueSkillsType;
-      skillsArr.value = result?.data;
+      skillsArr.value = portfolioStore?.skillData;
       isLoading.value = false; 
     };
     const filterSkillsByType = (type) => {
       return skillsArr.value.filter(item => item.type === type);
     }
 
-    onMounted(async () => await loadIntroData());
+    onMounted(async () => {
+      isLoading.value = true;  
+      await portfolioStore.fetchSkillsData(process.env.VUE_APP_USER_ID);
+      await loadIntroData();
+    });
 
     return {
       skillsTypeArr,
