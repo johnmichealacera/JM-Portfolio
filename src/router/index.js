@@ -10,6 +10,14 @@ const routes = [
     },
   },
   {
+    path: '/thank-you',
+    name: 'ThankYou',
+    component: () => import('@/views/ThankYou.vue'),
+    meta: {
+      title: 'Thank You Page',
+    },
+  },
+  {
     path: '/',
     name: 'Home',
     component: () => import('@/views/Home.vue'),
