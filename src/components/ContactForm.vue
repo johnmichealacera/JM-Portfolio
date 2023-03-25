@@ -40,7 +40,7 @@ import { computed } from 'vue';
 export default {
   setup() {
     const actionString = computed(() =>`https://formsubmit.io/send/${process.env.VUE_APP_FORM_EMAIL_CODE}`);
-    const redirectUrl = computed(() => process.env.VUE_APP_REDIRECT_URL);
+    const redirectUrl = computed(() => `${process.env.VUE_APP_REDIRECT_URL}/thank-you`);
     return {
       actionString,
       redirectUrl,
