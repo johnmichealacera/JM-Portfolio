@@ -8,9 +8,10 @@
         <div class="w-full m-4">
           <h1 class="font-semibold capitalize">{{ type }}</h1>
           <ul class="font-black text-right" v-for="(item, index) in filterSkillsByType(type)" :key="index">
-            <li class="capitalize">{{ item?.name }}
+            <li class="capitalize sm:text-base text-xs" style="position:relative;">{{ item?.name }}
+              <span v-if="hoveredItem === item" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:p-2 rounded shadow popup text-xs sm:text-xs">{{ item.mastery }}%</span>
               <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-pink-200">
-                <div :style="`width:${item?.mastery}%`" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-color"></div>
+                <div :style="`width:${item?.mastery}%`" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-color" @mouseover="hoveredItem = item" @mouseout="hoveredItem = null" @click="handleClick(item)" @touchstart="handleClick(item)"></div>
               </div>
             </li>
           </ul>
@@ -35,6 +36,7 @@ export default {
     const skillsArr = ref([]);
     const skillsTypeArr = ref([]);
     const isLoading = ref(false);
+    const hoveredItem = ref(null);
     const loadIntroData = async () => {    
       const uniqueSkillsType = [...new Set(portfolioStore?.skillData.map((item) => item.type))];
       skillsTypeArr.value = uniqueSkillsType;
@@ -43,6 +45,12 @@ export default {
     };
     const filterSkillsByType = (type) => {
       return skillsArr.value.filter(item => item.type === type);
+    }
+    const handleClick = (item) => {
+      setTimeout(() => {
+        hoveredItem.value = null;
+      }, 2000);
+      hoveredItem.value = item;
     }
 
     onMounted(async () => {
@@ -55,6 +63,8 @@ export default {
       skillsTypeArr,
       filterSkillsByType,
       isLoading,
+      handleClick,
+      hoveredItem,
     }
   }
 }
@@ -63,5 +73,8 @@ export default {
 <style scoped>
   .bg-color {
     background-color: #01a2a6;
+  }
+  .popup {
+    color: orange;
   }
 </style>

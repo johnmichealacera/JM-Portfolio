@@ -8,8 +8,8 @@
     <div v-if="!isLoading" class="pt-5 sm:pt-10 z-12 grid grid-cols-2 gap-2">
       <ul class="flex justify-evenly items-center h-48 text-lg font-medium" v-for="(item, index) in introArrData" :key="index">
         <li class="h-full text-xs sm:text-base">
-          <svg-icon :icon="item?.icon"></svg-icon>  
-          <a href=# class="hover:underline uppercase">{{ item?.title }}</a>
+          <svg-icon :icon="item?.icon" @mouseover="onMouseOver" @mouseout="onMouseOut" class="skill-icon"></svg-icon>  
+          <a href=# class="uppercase">{{ item?.title }}</a>
         </li>
       </ul>
     </div>
@@ -34,6 +34,14 @@ export default {
     const jobDescription = ref('');
     const bgImage = ref('');
     const isLoading = ref(false);
+    const isHover = ref(false);
+    const onMouseOver = () => {
+      isHover.value = true;
+    };
+    const onMouseOut = () => {
+      isHover.value = false;
+    };
+
 
     onMounted(async () => {
       isLoading.value = true;
@@ -52,11 +60,27 @@ export default {
       fullName,
       jobDescription,
       bgImage,
+      isHover,
+      onMouseOver,
+      onMouseOut,
     }
   }
 }
 </script>
+<style scoped>
 .bg-intro {
   background-color: #01a2a6;
   background-position: right;
 }
+.skill-icon:hover {
+  animation: scale 1s ease-in-out infinite alternate;
+}
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+</style>
