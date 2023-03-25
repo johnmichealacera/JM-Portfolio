@@ -17,7 +17,6 @@ import Skill from '@/components/Skill.vue';
 import Project from '@/components/Project.vue';
 import PersonalStory from '@/components/PersonalStory.vue';
 import Footer from '@/components/Footer.vue';
-
 export default {
   name: 'Home',
   components: {
@@ -27,6 +26,6 @@ export default {
     Project,
     PersonalStory,
     Footer,
-  }
+  },
 }
 </script>

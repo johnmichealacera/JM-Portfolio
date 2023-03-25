@@ -28,10 +28,10 @@ const icons = {
     }
   ],
   person: [
-    { fill: '#000000', strokeLinecap: 'round', strokeLinejoin: 'round', stroke: '#01a2a6', d: 'M9.5,16.5H.5c.423-2.286.353-3.58,1.609-4.118L6.5,10.5v-2S5.555,8.15,5.555,6c-.981,0-.981-2,0-2,0-.288-1.644-2.43.422-2,.491-2,5.331-2,5.822,0a2.63,2.63,0,0,1-.44,2c.951,0,.691,2,.007,2,0,2.15-.866,2.5-.866,2.5v2l1.5.643' },
-    { fill: '#000000', strokeLinecap: 'round', strokeLinejoin: 'round', stroke: '#01a2a6', d: 'M11.500 17.500 A6.000 6.000 0 1 0 23.500 17.500 A6.000 6.000 0 1 0 11.500 17.500 Z' },
-    { fill: '#000000', strokeLinecap: 'round', strokeLinejoin: 'round', stroke: '#01a2a6', d: 'M17.5 14.5L17.5 20.5' },
-    { fill: '#000000', strokeLinecap: 'round', strokeLinejoin: 'round', stroke: '#01a2a6', d: 'M20.5 17.5L14.5 17.5' }
+    { fill: 'none', strokeLinecap: 'round', strokeLinejoin: 'round', stroke: '#01a2a6', d: 'M9.5,16.5H.5c.423-2.286.353-3.58,1.609-4.118L6.5,10.5v-2S5.555,8.15,5.555,6c-.981,0-.981-2,0-2,0-.288-1.644-2.43.422-2,.491-2,5.331-2,5.822,0a2.63,2.63,0,0,1-.44,2c.951,0,.691,2,.007,2,0,2.15-.866,2.5-.866,2.5v2l1.5.643' },
+    { fill: 'none', strokeLinecap: 'round', strokeLinejoin: 'round', stroke: '#01a2a6', d: 'M11.500 17.500 A6.000 6.000 0 1 0 23.500 17.500 A6.000 6.000 0 1 0 11.500 17.500 Z' },
+    { fill: 'none', strokeLinecap: 'round', strokeLinejoin: 'round', stroke: '#01a2a6', d: 'M17.5 14.5L17.5 20.5' },
+    { fill: 'none', strokeLinecap: 'round', strokeLinejoin: 'round', stroke: '#01a2a6', d: 'M20.5 17.5L14.5 17.5' }
   ],
   instagram: [
     { fill: '#000000', d: 'M 8 3 C 5.239 3 3 5.239 3 8 L 3 16 C 3 18.761 5.239 21 8 21 L 16 21 C 18.761 21 21 18.761 21 16 L 21 8 C 21 5.239 18.761 3 16 3 L 8 3 z M 18 5 C 18.552 5 19 5.448 19 6 C 19 6.552 18.552 7 18 7 C 17.448 7 17 6.552 17 6 C 17 5.448 17.448 5 18 5 z M 12 7 C 14.761 7 17 9.239 17 12 C 17 14.761 14.761 17 12 17 C 9.239 17 7 14.761 7 12 C 7 9.239 9.239 7 12 7 z M 12 9 A 3 3 0 0 0 9 12 A 3 3 0 0 0 12 15 A 3 3 0 0 0 15 12 A 3 3 0 0 0 12 9 z',

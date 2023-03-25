@@ -21,7 +21,7 @@ export default {
     const state = reactive({
       username: '',
       password: '',
-    })
+    });
     const login = async () => {  
       try {
         const user = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/user`, { params: {
