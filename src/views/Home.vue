@@ -17,8 +17,6 @@ import Skill from '@/components/Skill.vue';
 import Project from '@/components/Project.vue';
 import PersonalStory from '@/components/PersonalStory.vue';
 import Footer from '@/components/Footer.vue';
-import { onMounted } from '@vue/runtime-core';
-import { useAuth0 } from '@auth0/auth0-vue';
 export default {
   name: 'Home',
   components: {
@@ -29,18 +27,5 @@ export default {
     PersonalStory,
     Footer,
   },
-  setup() {
-    const { user } = useAuth0();
-    const getUser = async () => {
-      const code = user ? JSON.stringify(user.value, null, 2) : "";
-      console.log('code', code);
-      return code;
-    };
-
-    onMounted(async () => {
-      const user = await getUser();
-      console.log('user', user);
-    })
-  }
 }
 </script>
