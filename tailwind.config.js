@@ -7,6 +7,12 @@ module.exports = {
         'primary': "#01a2a6",
        }),
     },
+    backgroundSize: {
+      'auto': 'auto',
+      'cover': 'cover',
+      'contain': 'contain',
+      '100': '100% 100%',
+    }
   },
   variants: {
     extend: {},
