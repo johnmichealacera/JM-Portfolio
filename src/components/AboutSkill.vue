@@ -6,7 +6,7 @@
       <div class="grid grid-flow-col gap-4 grid-cols-2 grid-rows-2" v-if="!isLoading">
         <div v-for="(item, index) in softSkillsArr" :key="index">
           <div>
-            <svg-icon :icon="item?.icon"></svg-icon>  
+            <svg-icon :icon="item?.icon" @mouseover="onMouseOver" @mouseout="onMouseOut" class="skill-icon"></svg-icon>  
             <div class="p-2 text-sm sm:text-lg leading-tight sm:leading-normal tracking-tighter">
               <h2 class="font-semibold">{{ item?.name }}</h2>
               <hr class="my-2">
@@ -52,8 +52,15 @@ export default {
 </script>
 
 <style scoped>
-/* TODO: make this style work on big screens */
-.logo-border {
-    @apply rounded-full border-4 border-green-700;
+.skill-icon:hover {
+  animation: scale 1s ease-in-out infinite alternate;
+}
+@keyframes scale {
+  0% {
+    transform: scale(1);
   }
+  100% {
+    transform: scale(1.2);
+  }
+}
 </style>
