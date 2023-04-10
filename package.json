@@ -2,6 +2,8 @@
   "name": "personal-portfolio",
   "version": "0.1.0",
   "private": true,
+  "author": "John Micheal Acera",
+  "keywords": ["portfolio", "personal", "software developer", "Content Management System", "johnmichealacera"],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
