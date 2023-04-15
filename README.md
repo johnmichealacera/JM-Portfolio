@@ -13,10 +13,10 @@
 ### Environment Variables
 The application requires the following environment variable to be set:
 
-`VUE_APP_FORM_EMAIL_CODE`: Your form email code from formsubmit.io.
-`VUE_APP_REDIRECT_URL`: Your email redirect url to be used when email has been sent.
-`VUE_APP_PORTFOLIO_BACKEND`: The personal portfolio backend built in express.
-`VUE_APP_USER_ID`: The ID of the user you want to showcase in the portfolio
+- `VUE_APP_FORM_EMAIL_CODE`: Your form email code from formsubmit.io.
+- `VUE_APP_REDIRECT_URL`: Your email redirect url to be used when email has been sent.
+- `VUE_APP_PORTFOLIO_BACKEND`: The personal portfolio backend built in express.
+- `VUE_APP_USER_ID`: The ID of the user you want to showcase in the portfolio
 
 Create a `.env` file in the root directory of the project with the keys above that serves your requirement
 
