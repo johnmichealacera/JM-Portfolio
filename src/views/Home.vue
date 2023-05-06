@@ -1,7 +1,6 @@
 <template>
-  <div class="home">
-    <h1 v-if="isAuthenticated">Welcome, {{ userInfo.nickname }}!</h1>
-    <taskbar />
+  <div class="home" v-if="isAuthenticated">
+    <taskbar :isAuthenticated="isAuthenticated"/>
     <introduction :userInfo="userInfo"/>
     <skill :userInfo="userInfo"/>
     <project :userInfo="userInfo"/>
@@ -20,7 +19,6 @@ import PersonalStory from '@/components/PersonalStory.vue';
 import Footer from '@/components/Footer.vue';
 import auth from '../services/auth';
 import { onMounted, ref } from 'vue';
-import { useAuth0 } from '@auth0/auth0-vue';
 export default {
   name: 'Home',
   components: {
@@ -32,41 +30,21 @@ export default {
     Footer,
   },
   setup() {
-    const { user } = useAuth0();
     const userInfo = ref(null);
     const isAuthenticated = ref(false);
-    const checkLoggedIn = async () => {
-      return new Promise((resolve, reject) => {
-        auth.checkSession({}, (err, authResult) => {
-          if (err) {
-            reject(err);
-          } else {
-            console.log('home portfolio', authResult);
-            auth.setSession(authResult);
-            userInfo.value = authResult; // add this line to get user profile after setting session
-            resolve(authResult);
-          }
-        });
-      });
-    };
 
-
-  onMounted(async () => {
-    try {
-      await auth.isAuthenticated();
-      
-      checkLoggedIn();
-      console.log('auth.getUserProfile()', auth.getUserProfile());
-      userInfo.value = auth.getUserProfile();
-      isAuthenticated.value = auth.isAuthenticated();
-    } catch (err) {
-      console.error(err);
-    }
-  });
+    onMounted(async () => {
+      try {
+        await auth.checkSession();
+        userInfo.value = await auth.getUserProfile();
+        isAuthenticated.value = await auth.isAuthenticated();
+      } catch (err) {
+        console.error(err);
+      }
+    });
 
     return {
       isAuthenticated,
-      user,
       userInfo,
     };
   }

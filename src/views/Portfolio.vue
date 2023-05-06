@@ -1,8 +1,8 @@
 <template>
-  <div class="home">
-    <taskbar />
-    <project />
-    <Footer />
+  <div class="home" v-if="isAuthenticated">
+    <taskbar :isAuthenticated="isAuthenticated"/>
+    <project :userInfo="userInfo"/>
+    <Footer :userInfo="userInfo"/>
   </div>
 </template>
 
@@ -11,6 +11,8 @@
 import Taskbar from '@/components/Taskbar.vue';
 import Project from '@/components/Project.vue';
 import Footer from '@/components/Footer.vue';
+import auth from '../services/auth';
+import { onMounted, ref } from 'vue';
 
 export default {
   name: 'Portfolio',
@@ -18,6 +20,25 @@ export default {
     Taskbar,
     Project,
     Footer,
+  },
+  setup() {
+    const userInfo = ref(null);
+    const isAuthenticated = ref(false);
+
+    onMounted(async () => {
+      try {
+        await auth.checkSession();
+        userInfo.value = await auth.getUserProfile();
+        isAuthenticated.value = await auth.isAuthenticated();
+      } catch (err) {
+        console.error(err);
+      }
+    });
+
+    return {
+      isAuthenticated,
+      userInfo,
+    };
   }
 }
 </script>

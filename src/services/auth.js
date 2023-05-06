@@ -31,7 +31,7 @@ class Auth {
     });
   }
 
-  isAuthenticated() {
+  async isAuthenticated() {
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
   }
@@ -57,27 +57,26 @@ class Auth {
     localStorage.setItem('user_profile', JSON.stringify(authResult.idTokenPayload));
   }
 
-  checkSession() {
-    this.auth0.checkSession({}, (err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        console.log('User is logged in');
-        console.log('authResult', authResult);
-        this.setSession(authResult);
-        this.getUserProfile(); // add this line to get user profile after setting session
-        // do something with the authentication tokens
-        return authResult;
-      } else if (err) {
-        console.log('err', err);
-        // handle the error
-      } else {
-        console.log('User is not logged in');
-        // redirect to the login page
-      }
+  async checkSession() {
+    return new Promise((resolve, reject) => {
+      this.auth0.checkSession({}, async (err, authResult) => {
+        if (authResult && authResult.accessToken && authResult.idToken) {
+          this.setSession(authResult);
+          resolve(authResult);
+        } else if (err) {
+          console.log('err', err);
+          reject(err);
+        } else {
+          console.log('User is not logged in');
+          reject('User is not logged in');
+        }
+      });
     });
   }
+  
 
 
-  getUserProfile() {
+  async getUserProfile() {
     const userProfile = localStorage.getItem('user_profile');
     if (userProfile) {
       return JSON.parse(userProfile);

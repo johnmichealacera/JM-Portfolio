@@ -23,22 +23,28 @@
 import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
-import { onMounted, ref } from '@vue/runtime-core';
+import { onMounted, ref, toRefs } from '@vue/runtime-core';
 
 export default {
   name: "AboutSkill",
+  props: { 
+    userInfo:{ 
+      type: Object,
+    },
+  },
   components: {
     Loader,
     SvgIcon,
   },
-  setup() {
+  setup(props) {
+    const { userInfo } = toRefs(props);
     const portfolioStore = usePortfolioStore();
     const softSkillsArr = ref([]);
     const isLoading = ref(false);
 
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchSoftSkills(process.env.VUE_APP_USER_ID);
+      await portfolioStore.fetchSoftSkills(userInfo?.value?.email);
       softSkillsArr.value = portfolioStore.softSkillsData;
       isLoading.value = false;
     })

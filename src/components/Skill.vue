@@ -61,8 +61,6 @@ export default {
 
     onMounted(async () => {
       isLoading.value = true;  
-      console.log('userInfo', userInfo);
-      console.log('userInfo?.value?.email', userInfo?.value?.email);
       await portfolioStore.fetchSkillsData(userInfo?.value?.email);
       await loadIntroData();
     });

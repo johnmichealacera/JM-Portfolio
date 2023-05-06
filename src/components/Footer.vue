@@ -45,7 +45,6 @@ export default {
 
     onMounted(async () => {
       isLoading.value = true; 
-      console.log('userInfo', userInfo);
       await portfolioStore.fetchSocialMediaData(userInfo?.value?.email);
       socialMediaArrData.value = portfolioStore.socialMediaData;
       isLoading.value = false;

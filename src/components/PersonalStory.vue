@@ -30,7 +30,6 @@ export default {
     const story = ref('');
     onMounted(async () => {
       isLoading.value = true;
-      console.log('userInfo', userInfo);
       await portfolioStore.fetchUserInfo(userInfo?.value?.email);
       story.value = portfolioStore.userInfoData?.lifeStory;
       isLoading.value = false;

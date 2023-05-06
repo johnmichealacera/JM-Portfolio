@@ -39,7 +39,6 @@ export default {
 
     onMounted(async () => {
       isLoading.value = true;
-      console.log('userInfo?.value?.email', userInfo?.value?.email);
       await portfolioStore.fetchProjectsData(userInfo?.value?.email);
       projectArr.value = portfolioStore.projectData;
       isLoading.value = false;

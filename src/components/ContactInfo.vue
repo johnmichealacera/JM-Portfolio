@@ -15,21 +15,27 @@
 <script>
 import SvgIcon from './commons/SvgIcon.vue';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
-import { onMounted, ref } from '@vue/runtime-core';
+import { onMounted, ref, toRefs } from '@vue/runtime-core';
 import Loader from './commons/Loader.vue';
 export default {
   name: 'AboutMe',
+  props: { 
+    userInfo:{ 
+      type: Object,
+    },
+  },
   components: {
     Loader,
     SvgIcon
   },
-  setup() {
+  setup(props) {
+    const { userInfo } = toRefs(props);
     const portfolioStore = usePortfolioStore();
     const isLoading = ref(false);
     const userDetailsData = ref('');
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchUserDetails(process.env.VUE_APP_USER_ID);
+      await portfolioStore.fetchUserDetails(userInfo?.value?.email);
       userDetailsData.value = portfolioStore?.userDetailsData;
       isLoading.value = false;
     })
