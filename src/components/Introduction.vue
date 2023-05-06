@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-right bg-cover bg-intro text-white p-10 sm:p-20" :style="{ backgroundImage: `url(${ bgImage })` }">
+  <div class="bg-right bg-cover bg-intro text-white p-10 sm:p-20" :style="{ backgroundImage: `url(${ userInfo?.picture })` }">
     <div class="m-3 sm:m-4" v-if="!isLoading">
-      <h1 class="font-semibold text-center text-xl sm:text-3xl">Hello, I'm {{ fullName }}.</h1>
+      <h1 class="font-semibold text-center text-xl sm:text-3xl">Hello, I'm {{ userInfo?.nickname }}.</h1>
       <p style="text-indent: 2em;" class="text-gray-200 text-justify mt-3 text-sm sm:text-lg leading-tight sm:leading-normal">{{ jobDescription }}</p>  
     </div>
     <loader :isLoading="isLoading"/>
@@ -19,15 +19,21 @@
 <script>
 import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
-import { onMounted, ref } from '@vue/runtime-core';
+import { onMounted, ref, toRefs } from '@vue/runtime-core';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
 export default {
   name: "Introduction",
+  props: { 
+    userInfo:{ 
+      type: Object,
+    },
+  },
   components: {
     SvgIcon,
     Loader,
   },
-  setup() {
+  setup(props) {
+    const { userInfo } = toRefs(props);
     const portfolioStore = usePortfolioStore();
     const introArrData = ref([]);
     const fullName = ref('');
@@ -45,8 +51,9 @@ export default {
 
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchIntroductionsData(process.env.VUE_APP_USER_ID);
-      await portfolioStore.fetchUserInfo(process.env.VUE_APP_USER_ID);
+      console.log('userInfo', userInfo);
+      await portfolioStore.fetchIntroductionsData(userInfo?.value?.email);
+      await portfolioStore.fetchUserInfo(userInfo?.value?.email);
       introArrData.value = portfolioStore.introductionData?.expertise;
       fullName.value = portfolioStore.introductionData?.fullName;
       jobDescription.value = portfolioStore.introductionData?.jobDescription;

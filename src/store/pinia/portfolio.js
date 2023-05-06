@@ -41,78 +41,78 @@ export const usePortfolioStore = defineStore({
     },
   },
   actions: {
-    async fetchIntroductionsData(userId) {
-      if (typeof userId === 'undefined') {
+    async fetchIntroductionsData(userEmail) {
+      if (typeof userEmail === 'undefined') {
         return;
       }
       try {
-        const introductions = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/introductions/${userId}`,);
+        const introductions = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/introductions/${userEmail}`,);
         this.introductions = introductions?.data;
       } catch (error) {
         console.error(error);
       }
     },
-    async fetchSocialMediaData(userId) {
-      if (typeof userId === 'undefined') {
+    async fetchSocialMediaData(userEmail) {
+      if (typeof userEmail === 'undefined') {
         return;
       }
       try {
-        const socialMedia = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/social-media/${userId}`);
+        const socialMedia = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/social-media/${userEmail}`);
         this.socialMedia = socialMedia?.data;
       } catch (error) {
         console.error(error);
       }
     },
-    async fetchProjectsData(userId) {
-      if (typeof userId === 'undefined') {
+    async fetchProjectsData(userEmail) {
+      if (typeof userEmail === 'undefined') {
         return;
       }
       try {
-        const projects = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/projects/${userId}`);
+        const projects = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/projects/${userEmail}`);
         this.projects = projects?.data;
       } catch (error) {
         console.error(error);
       }
     },
-    async fetchSkillsData(userId) {
-      if (typeof userId === 'undefined') {
+    async fetchSkillsData(userEmail) {
+      if (typeof userEmail === 'undefined') {
         return;
       }
       try {
-        const skills = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/skills/${userId}`);
+        const skills = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/skills/${userEmail}`);
         this.skills = skills?.data;
       } catch (error) {
         console.error(error);
       }
     },
-    async fetchUserInfo(userId) {
-      if (typeof userId === 'undefined') {
+    async fetchUserInfo(userEmail) {
+      if (typeof userEmail === 'undefined') {
         return;
       }
       try {
-        const userInfo = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/user-info/${userId}`);
+        const userInfo = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/user-info/${userEmail}`);
         this.userInfo = userInfo?.data;
       } catch (error) {
         console.error(error);
       }
     },
-    async fetchUserDetails(userId) {
-      if (typeof userId === 'undefined') {
+    async fetchUserDetails(userEmail) {
+      if (typeof userEmail === 'undefined') {
         return;
       }
       try {
-        const userDetails= await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/user-details/${userId}`);
+        const userDetails= await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/user-details/${userEmail}`);
         this.userDetails = userDetails?.data;
       } catch (error) {
         console.error(error);
       }
     },
-    async fetchSoftSkills(userId) {
-      if (typeof userId === 'undefined') {
+    async fetchSoftSkills(userEmail) {
+      if (typeof userEmail === 'undefined') {
         return;
       }
       try {
-        const softSkills= await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/soft-skills/${userId}`);
+        const softSkills= await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/soft-skills/${userEmail}`);
         this.softSkills = softSkills?.data;
       } catch (error) {
         console.error(error);

@@ -3,7 +3,14 @@
   "version": "0.1.0",
   "license": "MIT",
   "author": "John Micheal Acera",
-  "keywords": ["portfolio", "personal", "software developer", "johnmichealacera", "john micheal acera", "full stack developer"],
+  "keywords": [
+    "portfolio",
+    "personal",
+    "software developer",
+    "johnmichealacera",
+    "john micheal acera",
+    "full stack developer"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -11,6 +18,8 @@
     "start": "vue-cli-service serve"
   },
   "dependencies": {
+    "@auth0/auth0-vue": "^2.2.0",
+    "auth0-js": "^9.20.2",
     "axios": "^1.2.6",
     "core-js": "^3.6.5",
     "pinia": "^2.0.30",

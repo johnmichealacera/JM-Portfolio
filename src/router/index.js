@@ -40,6 +40,14 @@ const routes = [
     meta: {
       title: 'Contact',
     },
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/components/Login.vue'),
+    meta: {
+      title: 'Login',
+    },
   }
 ];
 

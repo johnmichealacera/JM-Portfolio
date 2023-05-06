@@ -18,15 +18,21 @@
 </template>
 
 <script>
-import { onMounted, ref } from '@vue/runtime-core';
+import { onMounted, ref, toRefs } from '@vue/runtime-core';
 import SvgIcon from './commons/SvgIcon.vue';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
 export default {
   name: "FooterBar",
+  props: { 
+    userInfo:{ 
+      type: Object,
+    },
+  },
   components: {
     SvgIcon,
   },
-  setup() {
+  setup(props) {
+    const { userInfo } = toRefs(props);
     const portfolioStore = usePortfolioStore();
     const socialMediaArrData = ref([]);
     const isLoading = ref(false);
@@ -39,7 +45,8 @@ export default {
 
     onMounted(async () => {
       isLoading.value = true; 
-      await portfolioStore.fetchSocialMediaData(process.env.VUE_APP_USER_ID);
+      console.log('userInfo', userInfo);
+      await portfolioStore.fetchSocialMediaData(userInfo?.value?.email);
       socialMediaArrData.value = portfolioStore.socialMediaData;
       isLoading.value = false;
     })
