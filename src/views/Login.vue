@@ -1,5 +1,6 @@
 <template>
   <div class="flex items-center justify-center h-screen">
+    <h1 v-if="isAuthenticated">Welcome, {{ user.name }}!</h1>
     <div class="flex flex-col">
       <h1 class="mb-4">Create your own professional, hobby or engaging portfolio!</h1>
       <input type="text" placeholder="Username" class="border-2 border-gray-300 my-2" v-model="state.username">
@@ -10,39 +11,26 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { reactive, ref } from '@vue/runtime-core';
-import { useRouter } from 'vue-router';
+import { reactive } from '@vue/runtime-core';
+import { useAuth0 } from '@auth0/auth0-vue';
 export default {
   name: "Login",
   setup() {
-    const isUserVerified = ref(false);
-    const router = useRouter();
     const state = reactive({
       username: '',
       password: '',
     });
+    const { isAuthenticated, user, loginWithRedirect } = useAuth0();
     const login = async () => {  
-      try {
-        const user = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/user`, { params: {
-        username: state.username,
-        password: state.password
-      } });
+      loginWithRedirect();   
 
-        isUserVerified.value = user.data;
-        if (user.data) {
-          alert('Correct credentials. Logging In');
-          router.push('/');
-        }
-      } catch {
-        console.error('error, huhuhu');
-      }    
-      
     };
 
     return {
       state,
       login,
+      isAuthenticated,
+      user,
     }
   }
 }
