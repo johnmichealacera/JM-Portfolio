@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import auth from '../services/auth';
+// import auth from '../services/auth';
 
 const routes = [
   {
@@ -8,7 +8,7 @@ const routes = [
     component: () => import('@/views/ThankYou.vue'),
     meta: {
       title: 'Thank You Page',
-      requiresAuth: true // requires authentication to access this route
+      // requiresAuth: true // requires authentication to access this route
     },
   },
   {
@@ -17,7 +17,7 @@ const routes = [
     component: () => import('@/views/Home.vue'),
     meta: {
       title: 'Home Page',
-      requiresAuth: true // requires authentication to access this route
+      // requiresAuth: true // requires authentication to access this route
     },
   },
   {
@@ -34,7 +34,7 @@ const routes = [
     component: () => import('@/views/Portfolio.vue'),
     meta: {
       title: 'Portfolio',
-      requiresAuth: true // requires authentication to access this route
+      // requiresAuth: true // requires authentication to access this route
     },
   },
   {
@@ -43,7 +43,7 @@ const routes = [
     component: () => import('@/views/Contact.vue'),
     meta: {
       title: 'Contact',
-      requiresAuth: true // requires authentication to access this route
+      // requiresAuth: true // requires authentication to access this route
     },
   },
   {
@@ -61,18 +61,18 @@ const router = createRouter({
   routes
 });
 
-router.beforeEach(async (to, from, next) => {
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  let isAuthenticated;
-  await auth.checkSession().catch(() => {
-    isAuthenticated = false;
-  });
-  isAuthenticated = await auth.isAuthenticated();
-  if (requiresAuth && !isAuthenticated) {
-    next('/login');
-  } else {
-    next();
-  }
-});
+// router.beforeEach(async (to, from, next) => {
+//   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+//   let isAuthenticated;
+//   await auth.checkSession().catch(() => {
+//     isAuthenticated = false;
+//   });
+//   isAuthenticated = await auth.isAuthenticated();
+//   if (requiresAuth && !isAuthenticated) {
+//     next('/login');
+//   } else {
+//     next();
+//   }
+// });
 
 export default router;

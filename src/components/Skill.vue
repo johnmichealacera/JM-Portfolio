@@ -24,7 +24,7 @@
 
 <script>
 import Loader from './commons/Loader.vue';
-import { onMounted, ref, toRefs } from '@vue/runtime-core';
+import { onMounted, ref } from '@vue/runtime-core';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
 export default {
   name: "Skill.vue",
@@ -36,8 +36,7 @@ export default {
   components: {
     Loader,
   },
-  setup(props) {
-    const { userInfo } = toRefs(props);
+  setup() {
     const portfolioStore = usePortfolioStore();
     const skillsArr = ref([]);
     const skillsTypeArr = ref([]);
@@ -61,7 +60,7 @@ export default {
 
     onMounted(async () => {
       isLoading.value = true;  
-      await portfolioStore.fetchSkillsData(userInfo?.value?.email);
+      await portfolioStore.fetchSkillsData(process.env.VUE_APP_USER_EMAIL);
       await loadIntroData();
     });
 

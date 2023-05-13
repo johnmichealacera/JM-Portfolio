@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { onMounted, ref, toRefs } from '@vue/runtime-core';
+import { onMounted, ref } from '@vue/runtime-core';
 import SvgIcon from './commons/SvgIcon.vue';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
 export default {
@@ -31,8 +31,7 @@ export default {
   components: {
     SvgIcon,
   },
-  setup(props) {
-    const { userInfo } = toRefs(props);
+  setup() {
     const portfolioStore = usePortfolioStore();
     const socialMediaArrData = ref([]);
     const isLoading = ref(false);
@@ -45,7 +44,7 @@ export default {
 
     onMounted(async () => {
       isLoading.value = true; 
-      await portfolioStore.fetchSocialMediaData(userInfo?.value?.email);
+      await portfolioStore.fetchSocialMediaData(process.env.VUE_APP_USER_EMAIL);
       socialMediaArrData.value = portfolioStore.socialMediaData;
       isLoading.value = false;
     })

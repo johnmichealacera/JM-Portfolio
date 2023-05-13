@@ -19,7 +19,7 @@
 <script>
 import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
-import { onMounted, ref, toRefs } from '@vue/runtime-core';
+import { onMounted, ref } from '@vue/runtime-core';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
 export default {
   name: "Introduction",
@@ -32,8 +32,7 @@ export default {
     SvgIcon,
     Loader,
   },
-  setup(props) {
-    const { userInfo } = toRefs(props);
+  setup() {
     const portfolioStore = usePortfolioStore();
     const introArrData = ref([]);
     const fullName = ref('');
@@ -51,8 +50,8 @@ export default {
 
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchIntroductionsData(userInfo?.value?.email);
-      await portfolioStore.fetchUserInfo(userInfo?.value?.email);
+      await portfolioStore.fetchIntroductionsData(process.env.VUE_APP_USER_EMAIL);
+      await portfolioStore.fetchUserInfo(process.env.VUE_APP_USER_EMAIL);
       introArrData.value = portfolioStore.introductionData?.expertise;
       fullName.value = portfolioStore.introductionData?.fullName;
       jobDescription.value = portfolioStore.introductionData?.jobDescription;

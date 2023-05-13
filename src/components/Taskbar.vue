@@ -10,38 +10,40 @@
         <li class="list-none block mt-2 lg:inline-block text-gray-500"><router-link to="/about" class="hover:underline sm:p-6 uppercase">About Me</router-link></li>
         <li class="list-none block mt-2 lg:inline-block text-gray-500"><router-link to="/portfolio" class="hover:underline sm:p-6 uppercase">Portfolio</router-link></li>
         <li class="list-none block mt-2 lg:inline-block text-gray-500"><router-link to="/contact" class="hover:underline sm:p-6 uppercase">Contact</router-link></li>
-        <li class="list-none block mt-2 lg:inline-block text-gray-500" v-if="!isAuthenticated"><router-link to="/login" class="hover:underline sm:p-6 uppercase">Login</router-link></li>
+        <li class="list-none block mt-2 lg:inline-block text-gray-500" v-if="isAdmin"><router-link to="/login" class="hover:underline sm:p-6 uppercase">Login</router-link></li>
       </ul>
     </div>
     <ul class="flex space-x-4 desktop-only">
       <li class=""><router-link to="/about" class="hover:underline sm:p-6 uppercase">About Me</router-link></li>
       <li class=""><router-link to="/portfolio" class="hover:underline sm:p-6 uppercase">Portfolio</router-link></li>
       <li class=""><router-link to="/contact" class="hover:underline sm:p-6 uppercase">Contact</router-link></li>
-      <li class="" v-if="!isAuthenticated"><router-link to="/login" class="hover:underline sm:p-6 uppercase">Login</router-link></li>
+      <li class="" v-if="isAdmin"><router-link to="/login" class="hover:underline sm:p-6 uppercase">Login</router-link></li>
     </ul>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import SvgIcon from './commons/SvgIcon.vue';
 export default {
   name: 'Taskbar',
-  props: { 
-    isAuthenticated:{ 
-      type: Boolean,
-    },
-  },
   components: {
     SvgIcon
   },
   setup() {
     const isOpen = ref(false);
     const showMenu = ref(false);
+    const isAdmin = ref(false);
+    
+    onMounted(() => {
+      isAdmin.value = typeof process.env.VUE_APP_IS_ADMIN === 'string' ? process.env.VUE_APP_IS_ADMIN == 'true' : process.env.VUE_APP_IS_ADMIN;
+    });
+    
 
     return {
       isOpen,
       showMenu,
+      isAdmin,
     }
   }
 }

@@ -10,7 +10,7 @@
             <div class="p-2 text-sm sm:text-lg leading-tight sm:leading-normal tracking-tighter">
               <h2 class="font-semibold">{{ item?.name }}</h2>
               <hr class="my-2">
-              <p class="text-start sm:text-justify">{{ item?.shortDescription }}</p>
+              <p class="text-start sm:text-justify">{{ item?.description }}</p>
             </div>
           </div>
         </div>
@@ -23,7 +23,7 @@
 import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
-import { onMounted, ref, toRefs } from '@vue/runtime-core';
+import { onMounted, ref } from '@vue/runtime-core';
 
 export default {
   name: "AboutSkill",
@@ -36,15 +36,14 @@ export default {
     Loader,
     SvgIcon,
   },
-  setup(props) {
-    const { userInfo } = toRefs(props);
+  setup() {
     const portfolioStore = usePortfolioStore();
     const softSkillsArr = ref([]);
     const isLoading = ref(false);
 
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchSoftSkills(userInfo?.value?.email);
+      await portfolioStore.fetchSoftSkills(process.env.VUE_APP_USER_EMAIL);
       softSkillsArr.value = portfolioStore.softSkillsData;
       isLoading.value = false;
     })

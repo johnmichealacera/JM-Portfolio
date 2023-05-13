@@ -11,6 +11,7 @@ export const usePortfolioStore = defineStore({
     userInfo: {},
     userDetails: {},
     softSkills: [],
+    personal: {},
   }),
   getters: {
     getLocalStorage(key) {
@@ -39,6 +40,9 @@ export const usePortfolioStore = defineStore({
     softSkillsData(state) {
       return state.softSkills;
     },
+    personalData(state) {
+      return state.personal;
+    }
   },
   actions: {
     async fetchIntroductionsData(userEmail) {
@@ -46,8 +50,18 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const introductions = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/introductions/${userEmail}`,);
-        this.introductions = introductions?.data;
+        const introductionObj = {
+          expertise: [],
+          fullName: '',
+          jobDescription: {},
+        };
+        const expertise = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/skill-overview/${userEmail}`,);
+        introductionObj.expertise = expertise?.data;
+        const userData = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/user-info/${userEmail}`,);
+        introductionObj.fullName = userData?.data?.fullName;
+        const personal = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/personal/${userEmail}`,);
+        introductionObj.jobDescription = personal?.data?.jobDescription;
+        this.introductions = introductionObj;
       } catch (error) {
         console.error(error);
       }
@@ -114,6 +128,17 @@ export const usePortfolioStore = defineStore({
       try {
         const softSkills= await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/soft-skills/${userEmail}`);
         this.softSkills = softSkills?.data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async fetchPersonalData(userEmail) {
+      if (typeof userEmail === 'undefined') {
+        return;
+      }
+      try {
+        const personal = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/personal/${userEmail}`);
+        this.personal = personal?.data;
       } catch (error) {
         console.error(error);
       }

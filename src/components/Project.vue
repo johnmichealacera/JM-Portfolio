@@ -6,7 +6,7 @@
   <div class="grid grid-cols-2 gap-4">
     <div v-for="(item, index) in projectArr"
     :key="index">
-    <div class="bg-project sm:bg-center bg-left sm:bg-100 bg-cover sm:h-96 h-full" v-if="item?.imageLink" :style="{ backgroundImage: `url(${item?.imageLink})` }">
+    <div class="bg-project sm:bg-center bg-left sm:bg-100 bg-cover sm:h-96 h-full" v-if="item?.backgroundImage" :style="{ backgroundImage: `url(${item?.backgroundImage})` }">
       <app-modal class="opacity-0 hover:opacity-100" :title="item?.title" :description="item?.description" :url="item?.url" :index="index+1"></app-modal>
     </div>
   </div>
@@ -18,7 +18,7 @@
 import AppModal from './AppModal.vue';
 import Loader from './commons/Loader.vue';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
-import { onMounted, ref, toRefs } from '@vue/runtime-core';
+import { onMounted, ref } from '@vue/runtime-core';
 
 export default {
   name: "Project",
@@ -31,15 +31,14 @@ export default {
     AppModal,
     Loader,
   },
-  setup(props) {
-    const { userInfo } = toRefs(props);
+  setup() {
     const portfolioStore = usePortfolioStore();
     const projectArr = ref([]);
     const isLoading = ref(false);
 
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchProjectsData(userInfo?.value?.email);
+      await portfolioStore.fetchProjectsData(process.env.VUE_APP_USER_EMAIL);
       projectArr.value = portfolioStore.projectData;
       isLoading.value = false;
     })
