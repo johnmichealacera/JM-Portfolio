@@ -32,8 +32,8 @@ export default {
     const userWhy = ref('');
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchUserInfo(process.env.VUE_APP_USER_EMAIL);
-      userWhy.value = portfolioStore.personalData?.whyDothis;
+      await portfolioStore.fetchPersonalData(process.env.VUE_APP_USER_EMAIL);
+      userWhy.value = portfolioStore.personalData?.whyDoThis;
       isLoading.value = false;
     })
     return {

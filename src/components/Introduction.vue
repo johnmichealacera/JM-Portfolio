@@ -1,7 +1,7 @@
 <template>
   <div class="bg-right bg-cover bg-intro text-white p-10 sm:p-20" :style="{ backgroundImage: `url(${ userInfo?.picture })` }">
     <div class="m-3 sm:m-4" v-if="!isLoading">
-      <h1 class="font-semibold text-center text-xl sm:text-3xl">Hello, I'm {{ userInfo?.name }}.</h1>
+      <h1 class="font-semibold text-center text-xl sm:text-3xl">Hello, I'm {{ fullName }}.</h1>
       <p style="text-indent: 2em;" class="text-gray-200 text-justify mt-3 text-sm sm:text-lg leading-tight sm:leading-normal">{{ jobDescription }}</p>  
     </div>
     <loader :isLoading="isLoading"/>
