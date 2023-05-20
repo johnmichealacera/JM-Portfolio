@@ -11,6 +11,10 @@ import { createMetaManager } from 'vue-meta'
 const pinia = createPinia();
 const app = createApp(App);
 
+const metaManager = createMetaManager(false, {
+  meta: { tag: 'meta', nameless: true },
+});
+
 app.use(pinia);
 app.use(
   createAuth0({
@@ -22,5 +26,6 @@ app.use(
   })
 );
 app.use(router);
-app.use(createMetaManager()); // Register vue-meta as a global plugin
+// app.use(createMetaManager()); // Register vue-meta as a global plugin
+app.use(metaManager);
 app.mount('#app');

@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <metainfo />
 </template>
 
 <script>

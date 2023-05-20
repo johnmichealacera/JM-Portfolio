@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <metainfo />
     <taskbar />
     <introduction />
     <skill />
