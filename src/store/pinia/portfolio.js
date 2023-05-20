@@ -54,6 +54,7 @@ export const usePortfolioStore = defineStore({
           expertise: [],
           fullName: '',
           jobDescription: {},
+          backgroundUrl: '',
         };
         const expertise = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/skill-overview/${userEmail}`,);
         introductionObj.expertise = expertise?.data;
@@ -61,6 +62,7 @@ export const usePortfolioStore = defineStore({
         introductionObj.fullName = userData?.data?.fullName;
         const personal = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/personal/${userEmail}`,);
         introductionObj.jobDescription = personal?.data?.jobDescription;
+        introductionObj.backgroundUrl = personal?.data?.backgroundUrl;
         this.introductions = introductionObj;
       } catch (error) {
         console.error(error);

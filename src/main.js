@@ -4,6 +4,8 @@ import App from './App.vue';
 import './index.css';
 import router from './router';
 import { createAuth0 } from '@auth0/auth0-vue';
+// import VueMeta from 'vue-meta';
+import { createMetaManager } from 'vue-meta'
 // import auth0 from 'auth0-js';
 
 const pinia = createPinia();
@@ -20,4 +22,5 @@ app.use(
   })
 );
 app.use(router);
+app.use(createMetaManager()); // Register vue-meta as a global plugin
 app.mount('#app');

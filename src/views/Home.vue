@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <metainfo />
     <taskbar />
     <introduction />
     <skill />
@@ -10,7 +11,6 @@
 </template>
 
 <script>
-
 import Taskbar from '@/components/Taskbar.vue';
 import Introduction from '@/components/Introduction.vue';
 import Skill from '@/components/Skill.vue';
@@ -26,6 +26,8 @@ export default {
     Project,
     PersonalStory,
     Footer,
+  },
+  setup() {
   },
 }
 </script>

@@ -34,7 +34,6 @@ export default {
   setup() {
     const portfolioStore = usePortfolioStore();
     const socialMediaArrData = ref([]);
-    const isLoading = ref(false);
     const scrollToTop = () => {
       window.scrollTo({
         top: 0,
@@ -43,15 +42,12 @@ export default {
     }
 
     onMounted(async () => {
-      isLoading.value = true; 
       await portfolioStore.fetchSocialMediaData(process.env.VUE_APP_USER_EMAIL);
       socialMediaArrData.value = portfolioStore.socialMediaData;
-      isLoading.value = false;
     })
 
     return {
       socialMediaArrData,
-      isLoading,
       scrollToTop,
     }
   }
