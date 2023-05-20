@@ -15,7 +15,7 @@ export default {
   setup(props) {
     const { meta } = toRefs(props);
     useMeta({
-      title: 'Some Page',
+      title: 'Personal Portfolio',
       meta: [
         { property: 'og:description', content: 'A personal portfolio that showcases my skill and personal information' },
         { property: 'og:image', content: meta.value.image },
