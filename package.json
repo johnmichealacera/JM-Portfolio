@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.2.0",
+    "@vue/server-renderer": "^3.3.4",
     "auth0-js": "^9.20.2",
     "axios": "^1.2.6",
     "core-js": "^3.6.5",
@@ -26,7 +27,9 @@
     "vue": "^3.0.0",
     "vue-meta": "^3.0.0-alpha.8",
     "vue-router": "^4.0.0-0",
-    "webpack": "^5.76.0"
+    "webpack": "^5.76.0",
+    "webpack-manifest-plugin": "^5.0.0",
+    "webpack-node-externals": "^3.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.3",

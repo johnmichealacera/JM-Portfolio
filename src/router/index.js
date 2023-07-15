@@ -1,5 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router';
+const { createRouter, createWebHistory, createMemoryHistory } = require('vue-router');
 // import auth from '../services/auth';
+
+const isServer = typeof window === 'undefined';
+const history = isServer ? createMemoryHistory() : createWebHistory();
 
 const routes = [
   {
@@ -56,10 +59,10 @@ const routes = [
   }
 ];
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
-});
+// const router = createRouter({
+//   history: createWebHistory(process.env.BASE_URL),
+//   routes
+// });
 
 // router.beforeEach(async (to, from, next) => {
 //   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
@@ -75,4 +78,9 @@ const router = createRouter({
 //   }
 // });
 
-export default router;
+const router = createRouter({
+  history,
+  routes,
+});
+
+module.exports = router;
