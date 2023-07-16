@@ -14,7 +14,7 @@
 
 <script>
 import { usePortfolioStore } from '@/store/pinia/portfolio';
-import { onMounted, ref } from '@vue/runtime-core';
+import { onMounted, onServerPrefetch, ref } from '@vue/runtime-core';
 import Loader from './commons/Loader.vue';
 export default {
   name: 'AboutMe',
@@ -32,10 +32,16 @@ export default {
     const userWhy = ref('');
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchPersonalData(process.env.VUE_APP_USER_EMAIL);
+      await portfolioStore.fetchPersonalData('jeanndelapena22@gmail.com');
       userWhy.value = portfolioStore.personalData?.whyDoThis;
       isLoading.value = false;
-    })
+    });
+    onServerPrefetch(async () => {
+      isLoading.value = true;
+      await portfolioStore.fetchPersonalData('jeanndelapena22@gmail.com');
+      userWhy.value = portfolioStore.personalData?.whyDoThis;
+      isLoading.value = false;
+    });
     return {
       isLoading,
       userWhy,

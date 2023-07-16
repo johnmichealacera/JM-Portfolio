@@ -18,7 +18,7 @@
 import AppModal from './AppModal.vue';
 import Loader from './commons/Loader.vue';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
-import { onMounted, ref } from '@vue/runtime-core';
+import { onMounted, onServerPrefetch, ref } from '@vue/runtime-core';
 
 export default {
   name: "Project",
@@ -38,10 +38,17 @@ export default {
 
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchProjectsData(process.env.VUE_APP_USER_EMAIL);
+      await portfolioStore.fetchProjectsData('jeanndelapena22@gmail.com');
       projectArr.value = portfolioStore.projectData;
       isLoading.value = false;
-    })
+    });
+
+    onServerPrefetch(async () => {
+      isLoading.value = true;
+      await portfolioStore.fetchProjectsData('jeanndelapena22@gmail.com');
+      projectArr.value = portfolioStore.projectData;
+      isLoading.value = false;
+    });
 
     return {
       projectArr,

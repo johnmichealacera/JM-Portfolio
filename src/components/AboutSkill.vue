@@ -23,7 +23,7 @@
 import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
-import { onMounted, ref } from '@vue/runtime-core';
+import { onMounted, onServerPrefetch, ref } from '@vue/runtime-core';
 
 export default {
   name: "AboutSkill",
@@ -43,10 +43,19 @@ export default {
 
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchSoftSkills(process.env.VUE_APP_USER_EMAIL);
+      // await portfolioStore.fetchSoftSkills(process.env.VUE_APP_USER_EMAIL);
+      await portfolioStore.fetchSoftSkills('jeanndelapena22@gmail.com')
       softSkillsArr.value = portfolioStore.softSkillsData;
       isLoading.value = false;
-    })
+    });
+
+    onServerPrefetch(async () => {
+      isLoading.value = true;
+      // await portfolioStore.fetchSoftSkills(process.env.VUE_APP_USER_EMAIL);
+      await portfolioStore.fetchSoftSkills('jeanndelapena22@gmail.com')
+      softSkillsArr.value = portfolioStore.softSkillsData;
+      isLoading.value = false;
+    });
 
     return {
       softSkillsArr,

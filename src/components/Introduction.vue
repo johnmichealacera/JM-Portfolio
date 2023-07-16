@@ -21,7 +21,7 @@
 import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
 import AppHead from './AppHead.vue';
-import { onMounted, ref } from '@vue/runtime-core';
+import { onMounted, onServerPrefetch, ref } from '@vue/runtime-core';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
 export default {
   name: "Introduction",
@@ -54,8 +54,24 @@ export default {
     // Fetch data and update variables
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchIntroductionsData(process.env.VUE_APP_USER_EMAIL);
-      await portfolioStore.fetchUserInfo(process.env.VUE_APP_USER_EMAIL);
+      await portfolioStore.fetchIntroductionsData('jeanndelapena22@gmail.com');
+      await portfolioStore.fetchUserInfo('jeanndelapena22@gmail.com');
+      introArrData.value = portfolioStore.introductionData?.expertise;
+      fullName.value = portfolioStore.introductionData?.fullName;
+      jobDescription.value = portfolioStore.introductionData?.jobDescription;
+      isLoading.value = false;
+      bgImage.value = portfolioStore.introductionData?.backgroundUrl;
+      meta.value = {
+        fullName: portfolioStore.introductionData?.fullName,
+        image: portfolioStore.introductionData?.backgroundUrl,
+        url: portfolioStore.userInfoData?.website,
+      }
+    });
+    
+    onServerPrefetch(async () => {
+      isLoading.value = true;
+      await portfolioStore.fetchIntroductionsData('jeanndelapena22@gmail.com');
+      await portfolioStore.fetchUserInfo('jeanndelapena22@gmail.com');
       introArrData.value = portfolioStore.introductionData?.expertise;
       fullName.value = portfolioStore.introductionData?.fullName;
       jobDescription.value = portfolioStore.introductionData?.jobDescription;

@@ -40,8 +40,10 @@
 import { computed } from 'vue';
 export default {
   setup() {
-    const actionString = computed(() =>`https://formsubmit.io/send/${process.env.VUE_APP_FORM_EMAIL_CODE}`);
-    const redirectUrl = computed(() => `${process.env.VUE_APP_REDIRECT_URL}/thank-you`);
+    // const actionString = computed(() =>`https://formsubmit.io/send/${process.env.VUE_APP_FORM_EMAIL_CODE}`);
+    // const redirectUrl = computed(() => `${process.env.VUE_APP_REDIRECT_URL}/thank-you`);
+    const actionString = computed(() =>`https://formsubmit.io/send/df9dc1cd-cced-4e64-9987-1729012c47b4`);
+    const redirectUrl = computed(() => `http://localhost:8080//thank-you`);
     return {
       actionString,
       redirectUrl,

@@ -15,7 +15,7 @@
 <script>
 import SvgIcon from './commons/SvgIcon.vue';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
-import { onMounted, ref } from '@vue/runtime-core';
+import { onMounted, onServerPrefetch, ref } from '@vue/runtime-core';
 import Loader from './commons/Loader.vue';
 export default {
   name: 'AboutMe',
@@ -34,10 +34,17 @@ export default {
     const userDetailsData = ref('');
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchUserDetails(process.env.VUE_APP_USER_EMAIL);
+      await portfolioStore.fetchUserDetails('jeanndelapena22@gmail.com');
       userDetailsData.value = portfolioStore?.userDetailsData;
       isLoading.value = false;
-    })
+    });
+
+    onServerPrefetch(async () => {
+      isLoading.value = true;
+      await portfolioStore.fetchUserDetails('jeanndelapena22@gmail.com');
+      userDetailsData.value = portfolioStore?.userDetailsData;
+      isLoading.value = false;
+    });
     return {
       isLoading,
       userDetailsData,

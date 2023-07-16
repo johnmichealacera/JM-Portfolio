@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { onMounted, ref } from '@vue/runtime-core';
+import { onMounted, onServerPrefetch, ref } from '@vue/runtime-core';
 import SvgIcon from './commons/SvgIcon.vue';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
 export default {
@@ -42,9 +42,14 @@ export default {
     }
 
     onMounted(async () => {
-      await portfolioStore.fetchSocialMediaData(process.env.VUE_APP_USER_EMAIL);
+      await portfolioStore.fetchSocialMediaData('jeanndelapena22@gmail.com');
       socialMediaArrData.value = portfolioStore.socialMediaData;
-    })
+    });
+
+    onServerPrefetch(async () => {
+      await portfolioStore.fetchSocialMediaData('jeanndelapena22@gmail.com');
+      socialMediaArrData.value = portfolioStore.socialMediaData;
+    });
 
     return {
       socialMediaArrData,

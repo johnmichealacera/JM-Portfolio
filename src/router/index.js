@@ -8,7 +8,9 @@ const routes = [
   {
     path: '/thank-you',
     name: 'ThankYou',
-    component: () => import('@/views/ThankYou.vue'),
+    component: () => 
+      // import('@/views/ThankYou.vue'),
+      import(/* webpackChunkName: "thankyou" */ '@/views/ThankYou.vue'),
     meta: {
       title: 'Thank You Page',
       // requiresAuth: true // requires authentication to access this route
@@ -17,7 +19,9 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/Home.vue'),
+    component: () => 
+      // import('@/views/Home.vue'),
+      import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
     meta: {
       title: 'Home Page',
       // requiresAuth: true // requires authentication to access this route
@@ -26,7 +30,9 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    component: () => import('@/views/About.vue'),
+    component: () => 
+      // import('@/views/About.vue'),
+      import(/* webpackChunkName: "about" */ '@/views/About.vue'),
     meta: {
       title: 'About Me',
     },
@@ -34,7 +40,9 @@ const routes = [
   {
     path: '/portfolio',
     name: 'Portfolio',
-    component: () => import('@/views/Portfolio.vue'),
+    component: () => 
+      // import('@/views/Portfolio.vue'),
+      import(/* webpackChunkName: "portfolio" */ '@/views/Portfolio.vue'),
     meta: {
       title: 'Portfolio',
       // requiresAuth: true // requires authentication to access this route
@@ -43,7 +51,9 @@ const routes = [
   {
     path: '/contact',
     name: 'Contact',
-    component: () => import('@/views/Contact.vue'),
+    component: () => 
+      // import('@/views/Contact.vue'),
+      import(/* webpackChunkName: "contact" */ '@/views/Contact.vue'),
     meta: {
       title: 'Contact',
       // requiresAuth: true // requires authentication to access this route
@@ -52,7 +62,9 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/components/Login.vue'),
+    component: () => 
+      // import('@/components/Login.vue'),
+      import(/* webpackChunkName: "login" */ '@/views/Login.vue'),
     meta: {
       title: 'Login',
     },

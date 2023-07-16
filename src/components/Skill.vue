@@ -24,7 +24,7 @@
 
 <script>
 import Loader from './commons/Loader.vue';
-import { onMounted, ref } from '@vue/runtime-core';
+import { onMounted, onServerPrefetch, ref } from '@vue/runtime-core';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
 export default {
   name: "Skill.vue",
@@ -60,7 +60,13 @@ export default {
 
     onMounted(async () => {
       isLoading.value = true;  
-      await portfolioStore.fetchSkillsData(process.env.VUE_APP_USER_EMAIL);
+      await portfolioStore.fetchSkillsData('jeanndelapena22@gmail.com');
+      await loadIntroData();
+    });
+    
+    onServerPrefetch(async () => {
+      isLoading.value = true;  
+      await portfolioStore.fetchSkillsData('jeanndelapena22@gmail.com');
       await loadIntroData();
     });
 
