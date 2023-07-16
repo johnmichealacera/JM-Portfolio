@@ -80,7 +80,21 @@ async function render(req, res) {
   } catch (err) {
     handleError(err);
   }
-  let { renderStyles, renderResourceHints, renderScripts } = context;
+  let { renderStyles, renderResourceHints, renderScripts, state } = context;
+
+  console.log('context', context);
+
+  // Set dynamic meta tags
+  const metaTags = [
+    { hid: 'description', name: 'description', content: 'Your meta description goes here' },
+    { property: 'og:description', content: 'A personal portfolio that showcases my skill and personal information' },
+    { property: 'og:image', content: state?.personal?.backgroundUrl },
+    { property: 'og:url', content: 'meta.value.url' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:author', content: state?.introduction.fullName },
+    { property: 'og:keywords', content: 'personal, portfolio, Data Analyst' },
+    // Add other dynamic meta tags as needed based on the fetched data
+  ];
 
   // TODO: Use loadash template
   const html = `
@@ -92,6 +106,8 @@ async function render(req, res) {
               ${renderResourceHints()}
               ${renderStyles()}
               <title>SSR Vue 3</title>
+              <!-- Insert dynamic meta tags -->
+              ${metaTags.map((tag) => `<meta ${Object.entries(tag).map(([key, value]) => `${key}="${value}"`).join(' ')}>`).join('\n')}
               </head>
               <body>
                 <div id="app">${page}</div>

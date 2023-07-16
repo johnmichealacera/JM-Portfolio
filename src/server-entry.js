@@ -1,5 +1,5 @@
 import { _createApp } from './app-new';
-// import { usePortfolioStore } from '@/store/pinia/portfolio';
+import { usePortfolioStore } from '@/store/pinia/portfolio';
 import './index.css';
 
 export default async ssrContext => {
@@ -13,10 +13,10 @@ export default async ssrContext => {
     await router.isReady();
 
     // console.log('url', url);
-    // ssrContext.state = {};
+    ssrContext.state = {};
 
     // // Call the Pinia store actions or fetch data as needed
-    // const portfolioStore = usePortfolioStore(pinia);
+    const portfolioStore = usePortfolioStore();
 
     // if (url === '/') {
     //   await portfolioStore.fetchPersonalData('jeanndelapena22@gmail.com');
@@ -29,7 +29,7 @@ export default async ssrContext => {
 
     // if (url === '/portfolio') {
     //   await portfolioStore.fetchPersonalData('jeanndelapena22@gmail.com');
-    //   ssrContext.state.personal = portfolioStore.personalData?.lifeStory;
+    //   ssrContext.state.personal = portfolioStore.personalData;
     //   await portfolioStore.fetchSoftSkills('jeanndelapena22@gmail.com')
     //   ssrContext.state.softSkills = portfolioStore.softSkillsData;
     //   await portfolioStore.fetchSocialMediaData('jeanndelapena22@gmail.com');
@@ -37,6 +37,11 @@ export default async ssrContext => {
     // }
 
     // console.log('portfolioStore', portfolioStore);
+
+    await portfolioStore.fetchPersonalData('jeanndelapena22@gmail.com');
+    await portfolioStore.fetchIntroductionsData('jeanndelapena22@gmail.com');
+    ssrContext.state.personal = portfolioStore.personalData;
+    ssrContext.state.introduction = portfolioStore.introductions;
 
     return app;
 }
