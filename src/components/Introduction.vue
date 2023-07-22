@@ -54,8 +54,8 @@ export default {
     // Fetch data and update variables
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchIntroductionsData('jeanndelapena22@gmail.com');
-      await portfolioStore.fetchUserInfo('jeanndelapena22@gmail.com');
+      await portfolioStore.fetchIntroductionsData();
+      await portfolioStore.fetchUserInfo();
       introArrData.value = portfolioStore.introductionData?.expertise;
       fullName.value = portfolioStore.introductionData?.fullName;
       jobDescription.value = portfolioStore.introductionData?.jobDescription;
@@ -70,8 +70,8 @@ export default {
     
     onServerPrefetch(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchIntroductionsData('jeanndelapena22@gmail.com');
-      await portfolioStore.fetchUserInfo('jeanndelapena22@gmail.com');
+      await portfolioStore.fetchIntroductionsData();
+      await portfolioStore.fetchUserInfo();
       introArrData.value = portfolioStore.introductionData?.expertise;
       fullName.value = portfolioStore.introductionData?.fullName;
       jobDescription.value = portfolioStore.introductionData?.jobDescription;

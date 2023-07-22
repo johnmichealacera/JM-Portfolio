@@ -2,6 +2,8 @@ const fs = require('fs'),
   path = require('path'),
   resolve = (file) => path.resolve(__dirname, file);
 
+require('dotenv').config();
+
 const express = require('express'),
   favicon = require('serve-favicon'),
   app = express();
