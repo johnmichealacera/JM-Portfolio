@@ -45,7 +45,8 @@ export const usePortfolioStore = defineStore({
     }
   },
   actions: {
-    async fetchIntroductionsData(userEmail) {
+    async fetchIntroductionsData() {
+      const userEmail = 'jeanndelapena22@gmail.com';
       if (typeof userEmail === 'undefined') {
         return;
       }
@@ -70,7 +71,8 @@ export const usePortfolioStore = defineStore({
         console.error(error);
       }
     },
-    async fetchSocialMediaData(userEmail) {
+    async fetchSocialMediaData() {
+      const userEmail = 'jeanndelapena22@gmail.com';
       if (typeof userEmail === 'undefined') {
         return;
       }
@@ -83,7 +85,8 @@ export const usePortfolioStore = defineStore({
         console.error(error);
       }
     },
-    async fetchProjectsData(userEmail) {
+    async fetchProjectsData() {
+      const userEmail = 'jeanndelapena22@gmail.com';
       if (typeof userEmail === 'undefined') {
         return;
       }
@@ -96,7 +99,8 @@ export const usePortfolioStore = defineStore({
         console.error(error);
       }
     },
-    async fetchSkillsData(userEmail) {
+    async fetchSkillsData() {
+      const userEmail = 'jeanndelapena22@gmail.com';
       if (typeof userEmail === 'undefined') {
         return;
       }
@@ -109,7 +113,8 @@ export const usePortfolioStore = defineStore({
         console.error(error);
       }
     },
-    async fetchUserInfo(userEmail) {
+    async fetchUserInfo() {
+      const userEmail = 'jeanndelapena22@gmail.com';
       if (typeof userEmail === 'undefined') {
         return;
       }
@@ -122,7 +127,8 @@ export const usePortfolioStore = defineStore({
         console.error(error);
       }
     },
-    async fetchUserDetails(userEmail) {
+    async fetchUserDetails() {
+      const userEmail = 'jeanndelapena22@gmail.com';
       if (typeof userEmail === 'undefined') {
         return;
       }
@@ -135,7 +141,8 @@ export const usePortfolioStore = defineStore({
         console.error(error);
       }
     },
-    async fetchSoftSkills(userEmail) {
+    async fetchSoftSkills() {
+      const userEmail = 'jeanndelapena22@gmail.com';
       if (typeof userEmail === 'undefined') {
         return;
       }
@@ -148,7 +155,8 @@ export const usePortfolioStore = defineStore({
         console.error(error);
       }
     },
-    async fetchPersonalData(userEmail) {
+    async fetchPersonalData() {
+      const userEmail = 'jeanndelapena22@gmail.com';
       if (typeof userEmail === 'undefined') {
         return;
       }
