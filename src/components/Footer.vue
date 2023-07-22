@@ -42,12 +42,12 @@ export default {
     }
 
     onMounted(async () => {
-      await portfolioStore.fetchSocialMediaData('jeanndelapena22@gmail.com');
+      await portfolioStore.fetchSocialMediaData();
       socialMediaArrData.value = portfolioStore.socialMediaData;
     });
 
     onServerPrefetch(async () => {
-      await portfolioStore.fetchSocialMediaData('jeanndelapena22@gmail.com');
+      await portfolioStore.fetchSocialMediaData();
       socialMediaArrData.value = portfolioStore.socialMediaData;
     });
 
