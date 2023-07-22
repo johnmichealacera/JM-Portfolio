@@ -4,14 +4,14 @@ import { defineStore } from 'pinia';
 export const usePortfolioStore = defineStore({
   id: 'portfolio',
   state: () => ({
-    introductions: [],
-    socialMedia: [],
-    projects: [],
-    skills: [],
-    userInfo: {},
-    userDetails: {},
-    softSkills: [],
-    personal: {},
+    introductions: null,
+    socialMedia: null,
+    projects: null,
+    skills: null,
+    userInfo: null,
+    userDetails: null,
+    softSkills: null,
+    personal: null,
   }),
   getters: {
     getLocalStorage(key) {
@@ -50,20 +50,22 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const introductionObj = {
-          expertise: [],
-          fullName: '',
-          jobDescription: {},
-          backgroundUrl: '',
-        };
-        const expertise = await axios.get(`https://portfolio-backend-revamp.onrender.com/skill-overview/${userEmail}`,);
-        introductionObj.expertise = expertise?.data;
-        const userData = await axios.get(`https://portfolio-backend-revamp.onrender.com/user-info/${userEmail}`,);
-        introductionObj.fullName = userData?.data?.fullName;
-        const personal = await axios.get(`https://portfolio-backend-revamp.onrender.com/personal/${userEmail}`,);
-        introductionObj.jobDescription = personal?.data?.jobDescription;
-        introductionObj.backgroundUrl = personal?.data?.backgroundUrl;
-        this.introductions = introductionObj;
+        if (!this.introductions) {
+          const introductionObj = {
+            expertise: [],
+            fullName: '',
+            jobDescription: {},
+            backgroundUrl: '',
+          };
+          const expertise = await axios.get(`https://portfolio-backend-revamp.onrender.com/skill-overview/${userEmail}`,);
+          introductionObj.expertise = expertise?.data;
+          const userData = await axios.get(`https://portfolio-backend-revamp.onrender.com/user-info/${userEmail}`,);
+          introductionObj.fullName = userData?.data?.fullName;
+          const personal = await axios.get(`https://portfolio-backend-revamp.onrender.com/personal/${userEmail}`,);
+          introductionObj.jobDescription = personal?.data?.jobDescription;
+          introductionObj.backgroundUrl = personal?.data?.backgroundUrl;
+          this.introductions = introductionObj;
+        }
       } catch (error) {
         console.error(error);
       }
@@ -73,8 +75,10 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const socialMedia = await axios.get(`https://portfolio-backend-revamp.onrender.com/social-media/${userEmail}`);
-        this.socialMedia = socialMedia?.data;
+        if (!this.socialMedia) {
+          const socialMedia = await axios.get(`https://portfolio-backend-revamp.onrender.com/social-media/${userEmail}`);
+          this.socialMedia = socialMedia?.data;
+        }
       } catch (error) {
         console.error(error);
       }
@@ -84,8 +88,10 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const projects = await axios.get(`https://portfolio-backend-revamp.onrender.com/projects/${userEmail}`);
-        this.projects = projects?.data;
+        if (!this.projects) {
+          const projects = await axios.get(`https://portfolio-backend-revamp.onrender.com/projects/${userEmail}`);
+          this.projects = projects?.data;
+        }
       } catch (error) {
         console.error(error);
       }
@@ -95,8 +101,10 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const skills = await axios.get(`https://portfolio-backend-revamp.onrender.com/skills/${userEmail}`);
-        this.skills = skills?.data;
+        if (!this.skills){
+          const skills = await axios.get(`https://portfolio-backend-revamp.onrender.com/skills/${userEmail}`);
+          this.skills = skills?.data;
+        }
       } catch (error) {
         console.error(error);
       }
@@ -106,8 +114,10 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const userInfo = await axios.get(`https://portfolio-backend-revamp.onrender.com/user-info/${userEmail}`);
-        this.userInfo = userInfo?.data;
+        if (!this.userInfo) {
+          const userInfo = await axios.get(`https://portfolio-backend-revamp.onrender.com/user-info/${userEmail}`);
+          this.userInfo = userInfo?.data;
+        }
       } catch (error) {
         console.error(error);
       }
@@ -117,8 +127,10 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const userDetails= await axios.get(`https://portfolio-backend-revamp.onrender.com/user-details/${userEmail}`);
-        this.userDetails = userDetails?.data;
+        if (!this.userDetails) {
+          const userDetails= await axios.get(`https://portfolio-backend-revamp.onrender.com/user-details/${userEmail}`);
+          this.userDetails = userDetails?.data;
+        }
       } catch (error) {
         console.error(error);
       }
@@ -128,8 +140,10 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const softSkills= await axios.get(`https://portfolio-backend-revamp.onrender.com/soft-skills/${userEmail}`);
-        this.softSkills = softSkills?.data;
+        if (!this.softSkills) {
+          const softSkills= await axios.get(`https://portfolio-backend-revamp.onrender.com/soft-skills/${userEmail}`);
+          this.softSkills = softSkills?.data;
+        }
       } catch (error) {
         console.error(error);
       }
@@ -139,8 +153,10 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const personal = await axios.get(`https://portfolio-backend-revamp.onrender.com/personal/${userEmail}`);
-        this.personal = personal?.data;
+        if (!this.personal) {
+          const personal = await axios.get(`https://portfolio-backend-revamp.onrender.com/personal/${userEmail}`);
+          this.personal = personal?.data;
+        } 
       } catch (error) {
         console.error(error);
       }
