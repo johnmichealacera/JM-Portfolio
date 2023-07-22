@@ -12,7 +12,7 @@
     "full stack developer"
   ],
   "scripts": {
-    "start:dev": "cross-env NODE_ENV=development node --max-old-space-size=4096 server",
+    "start:dev": "cross-env NODE_ENV=development node --max-old-space-size=8192 server",
     "start:prod": "cross-env NODE_ENV=production node server",
     "build": "rimraf dist && npm run build:client && npm run build:server",
     "build:client": "webpack --env prod --config build/webpack.client.config.js --progress --profile --json > stats.client.json",
