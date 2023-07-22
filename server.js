@@ -104,6 +104,7 @@ async function render(req, res) {
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               ${renderResourceHints()}
               ${renderStyles()}
+              <title>Personal Portfolio</title>
               ${metaTags.map((tag) => `<meta ${Object.entries(tag).map(([key, value]) => `${key}="${value}"`).join(' ')}>`).join('\n')}
               </head>
               <body>

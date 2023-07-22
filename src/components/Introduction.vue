@@ -20,7 +20,6 @@
 <script>
 import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
-import AppHead from './AppHead.vue';
 import { onMounted, onServerPrefetch, ref } from '@vue/runtime-core';
 import { usePortfolioStore } from '@/store/pinia/portfolio';
 export default {
@@ -33,7 +32,6 @@ export default {
   components: {
     SvgIcon,
     Loader,
-    AppHead,
   },
   setup() {
     const portfolioStore = usePortfolioStore();
@@ -54,8 +52,8 @@ export default {
     // Fetch data and update variables
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchIntroductionsData('jeanndelapena22@gmail.com');
-      await portfolioStore.fetchUserInfo('jeanndelapena22@gmail.com');
+      await portfolioStore.fetchIntroductionsData();
+      await portfolioStore.fetchUserInfo();
       introArrData.value = portfolioStore.introductionData?.expertise;
       fullName.value = portfolioStore.introductionData?.fullName;
       jobDescription.value = portfolioStore.introductionData?.jobDescription;
@@ -70,8 +68,8 @@ export default {
     
     onServerPrefetch(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchIntroductionsData('jeanndelapena22@gmail.com');
-      await portfolioStore.fetchUserInfo('jeanndelapena22@gmail.com');
+      await portfolioStore.fetchIntroductionsData();
+      await portfolioStore.fetchUserInfo();
       introArrData.value = portfolioStore.introductionData?.expertise;
       fullName.value = portfolioStore.introductionData?.fullName;
       jobDescription.value = portfolioStore.introductionData?.jobDescription;

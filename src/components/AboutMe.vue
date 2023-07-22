@@ -30,14 +30,14 @@ export default {
     onMounted(async () => {
       isLoading.value = true;
       // await portfolioStore.fetchPersonalData(process.env.VUE_APP_USER_EMAIL);
-      await portfolioStore.fetchPersonalData('jeanndelapena22@gmail.com');
+      await portfolioStore.fetchPersonalData();
       story.value = portfolioStore.personalData?.lifeStory;
       isLoading.value = false;
     });
     onServerPrefetch(async () => {
       isLoading.value = true;
       // await portfolioStore.fetchPersonalData(process.env.VUE_APP_USER_EMAIL);
-      await portfolioStore.fetchPersonalData('jeanndelapena22@gmail.com');
+      await portfolioStore.fetchPersonalData();
       story.value = portfolioStore.personalData?.lifeStory;
       isLoading.value = false;
     });
