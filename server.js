@@ -86,7 +86,6 @@ async function render(req, res) {
 
   // Set dynamic meta tags
   const metaTags = [
-    { hid: 'description', name: 'description', content: 'Your meta description goes here' },
     { property: 'og:description', content: 'A personal portfolio that showcases my skill and personal information' },
     { property: 'og:image', content: state?.personal?.backgroundUrl },
     { property: 'og:url', content: 'meta.value.url' },

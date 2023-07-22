@@ -56,11 +56,11 @@ export const usePortfolioStore = defineStore({
           jobDescription: {},
           backgroundUrl: '',
         };
-        const expertise = await axios.get(`http://localhost:3000/skill-overview/${userEmail}`,);
+        const expertise = await axios.get(`https://portfolio-backend-revamp.onrender.com/skill-overview/${userEmail}`,);
         introductionObj.expertise = expertise?.data;
-        const userData = await axios.get(`http://localhost:3000/user-info/${userEmail}`,);
+        const userData = await axios.get(`https://portfolio-backend-revamp.onrender.com/user-info/${userEmail}`,);
         introductionObj.fullName = userData?.data?.fullName;
-        const personal = await axios.get(`http://localhost:3000/personal/${userEmail}`,);
+        const personal = await axios.get(`https://portfolio-backend-revamp.onrender.com/personal/${userEmail}`,);
         introductionObj.jobDescription = personal?.data?.jobDescription;
         introductionObj.backgroundUrl = personal?.data?.backgroundUrl;
         this.introductions = introductionObj;
@@ -73,7 +73,7 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const socialMedia = await axios.get(`http://localhost:3000/social-media/${userEmail}`);
+        const socialMedia = await axios.get(`https://portfolio-backend-revamp.onrender.com/social-media/${userEmail}`);
         this.socialMedia = socialMedia?.data;
       } catch (error) {
         console.error(error);
@@ -84,7 +84,7 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const projects = await axios.get(`http://localhost:3000/projects/${userEmail}`);
+        const projects = await axios.get(`https://portfolio-backend-revamp.onrender.com/projects/${userEmail}`);
         this.projects = projects?.data;
       } catch (error) {
         console.error(error);
@@ -95,7 +95,7 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const skills = await axios.get(`http://localhost:3000/skills/${userEmail}`);
+        const skills = await axios.get(`https://portfolio-backend-revamp.onrender.com/skills/${userEmail}`);
         this.skills = skills?.data;
       } catch (error) {
         console.error(error);
@@ -106,7 +106,7 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const userInfo = await axios.get(`http://localhost:3000/user-info/${userEmail}`);
+        const userInfo = await axios.get(`https://portfolio-backend-revamp.onrender.com/user-info/${userEmail}`);
         this.userInfo = userInfo?.data;
       } catch (error) {
         console.error(error);
@@ -117,7 +117,7 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const userDetails= await axios.get(`http://localhost:3000/user-details/${userEmail}`);
+        const userDetails= await axios.get(`https://portfolio-backend-revamp.onrender.com/user-details/${userEmail}`);
         this.userDetails = userDetails?.data;
       } catch (error) {
         console.error(error);
@@ -128,7 +128,7 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const softSkills= await axios.get(`http://localhost:3000/soft-skills/${userEmail}`);
+        const softSkills= await axios.get(`https://portfolio-backend-revamp.onrender.com/soft-skills/${userEmail}`);
         this.softSkills = softSkills?.data;
       } catch (error) {
         console.error(error);
@@ -139,7 +139,7 @@ export const usePortfolioStore = defineStore({
         return;
       }
       try {
-        const personal = await axios.get(`http://localhost:3000/personal/${userEmail}`);
+        const personal = await axios.get(`https://portfolio-backend-revamp.onrender.com/personal/${userEmail}`);
         this.personal = personal?.data;
       } catch (error) {
         console.error(error);
