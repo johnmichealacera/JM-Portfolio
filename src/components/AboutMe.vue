@@ -29,13 +29,15 @@ export default {
     const story = ref('');
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchPersonalData();
+      // await portfolioStore.fetchPersonalData(process.env.VUE_APP_USER_EMAIL);
+      await portfolioStore.fetchPersonalData('jeanndelapena22@gmail.com');
       story.value = portfolioStore.personalData?.lifeStory;
       isLoading.value = false;
     });
     onServerPrefetch(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchPersonalData();
+      // await portfolioStore.fetchPersonalData(process.env.VUE_APP_USER_EMAIL);
+      await portfolioStore.fetchPersonalData('jeanndelapena22@gmail.com');
       story.value = portfolioStore.personalData?.lifeStory;
       isLoading.value = false;
     });

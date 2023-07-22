@@ -34,14 +34,14 @@ export default {
     const userDetailsData = ref('');
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchUserDetails();
+      await portfolioStore.fetchUserDetails('jeanndelapena22@gmail.com');
       userDetailsData.value = portfolioStore?.userDetailsData;
       isLoading.value = false;
     });
 
     onServerPrefetch(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchUserDetails();
+      await portfolioStore.fetchUserDetails('jeanndelapena22@gmail.com');
       userDetailsData.value = portfolioStore?.userDetailsData;
       isLoading.value = false;
     });

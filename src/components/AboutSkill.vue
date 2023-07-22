@@ -43,14 +43,16 @@ export default {
 
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchSoftSkills()
+      // await portfolioStore.fetchSoftSkills(process.env.VUE_APP_USER_EMAIL);
+      await portfolioStore.fetchSoftSkills('jeanndelapena22@gmail.com')
       softSkillsArr.value = portfolioStore.softSkillsData;
       isLoading.value = false;
     });
 
     onServerPrefetch(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchSoftSkills()
+      // await portfolioStore.fetchSoftSkills(process.env.VUE_APP_USER_EMAIL);
+      await portfolioStore.fetchSoftSkills('jeanndelapena22@gmail.com')
       softSkillsArr.value = portfolioStore.softSkillsData;
       isLoading.value = false;
     });

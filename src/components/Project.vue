@@ -38,14 +38,14 @@ export default {
 
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchProjectsData();
+      await portfolioStore.fetchProjectsData('jeanndelapena22@gmail.com');
       projectArr.value = portfolioStore.projectData;
       isLoading.value = false;
     });
 
     onServerPrefetch(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchProjectsData();
+      await portfolioStore.fetchProjectsData('jeanndelapena22@gmail.com');
       projectArr.value = portfolioStore.projectData;
       isLoading.value = false;
     });

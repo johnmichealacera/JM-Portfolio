@@ -32,13 +32,13 @@ export default {
     const userWhy = ref('');
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchPersonalData();
+      await portfolioStore.fetchPersonalData('jeanndelapena22@gmail.com');
       userWhy.value = portfolioStore.personalData?.whyDoThis;
       isLoading.value = false;
     });
     onServerPrefetch(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchPersonalData();
+      await portfolioStore.fetchPersonalData('jeanndelapena22@gmail.com');
       userWhy.value = portfolioStore.personalData?.whyDoThis;
       isLoading.value = false;
     });

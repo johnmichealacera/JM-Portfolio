@@ -60,13 +60,13 @@ export default {
 
     onMounted(async () => {
       isLoading.value = true;  
-      await portfolioStore.fetchSkillsData();
+      await portfolioStore.fetchSkillsData('jeanndelapena22@gmail.com');
       await loadIntroData();
     });
     
     onServerPrefetch(async () => {
       isLoading.value = true;  
-      await portfolioStore.fetchSkillsData();
+      await portfolioStore.fetchSkillsData('jeanndelapena22@gmail.com');
       await loadIntroData();
     });
 

@@ -45,8 +45,7 @@ export const usePortfolioStore = defineStore({
     }
   },
   actions: {
-    async fetchIntroductionsData() {
-      const userEmail = process.env.VUE_APP_USER_EMAIL;
+    async fetchIntroductionsData(userEmail) {
       if (typeof userEmail === 'undefined') {
         return;
       }
@@ -58,11 +57,11 @@ export const usePortfolioStore = defineStore({
             jobDescription: {},
             backgroundUrl: '',
           };
-          const expertise = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/skill-overview/${userEmail}`,);
+          const expertise = await axios.get(`https://portfolio-backend-revamp.onrender.com/skill-overview/${userEmail}`,);
           introductionObj.expertise = expertise?.data;
-          const userData = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/user-info/${userEmail}`,);
+          const userData = await axios.get(`https://portfolio-backend-revamp.onrender.com/user-info/${userEmail}`,);
           introductionObj.fullName = userData?.data?.fullName;
-          const personal = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/personal/${userEmail}`,);
+          const personal = await axios.get(`https://portfolio-backend-revamp.onrender.com/personal/${userEmail}`,);
           introductionObj.jobDescription = personal?.data?.jobDescription;
           introductionObj.backgroundUrl = personal?.data?.backgroundUrl;
           this.introductions = introductionObj;
@@ -71,98 +70,91 @@ export const usePortfolioStore = defineStore({
         console.error(error);
       }
     },
-    async fetchSocialMediaData() {
-      const userEmail = process.env.VUE_APP_USER_EMAIL;
+    async fetchSocialMediaData(userEmail) {
       if (typeof userEmail === 'undefined') {
         return;
       }
       try {
         if (!this.socialMedia) {
-          const socialMedia = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/social-media/${userEmail}`);
+          const socialMedia = await axios.get(`https://portfolio-backend-revamp.onrender.com/social-media/${userEmail}`);
           this.socialMedia = socialMedia?.data;
         }
       } catch (error) {
         console.error(error);
       }
     },
-    async fetchProjectsData() {
-      const userEmail = process.env.VUE_APP_USER_EMAIL;
+    async fetchProjectsData(userEmail) {
       if (typeof userEmail === 'undefined') {
         return;
       }
       try {
         if (!this.projects) {
-          const projects = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/projects/${userEmail}`);
+          const projects = await axios.get(`https://portfolio-backend-revamp.onrender.com/projects/${userEmail}`);
           this.projects = projects?.data;
         }
       } catch (error) {
         console.error(error);
       }
     },
-    async fetchSkillsData() {
-      const userEmail = process.env.VUE_APP_USER_EMAIL;
+    async fetchSkillsData(userEmail) {
       if (typeof userEmail === 'undefined') {
         return;
       }
       try {
         if (!this.skills){
-          const skills = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/skills/${userEmail}`);
+          const skills = await axios.get(`https://portfolio-backend-revamp.onrender.com/skills/${userEmail}`);
           this.skills = skills?.data;
         }
       } catch (error) {
         console.error(error);
       }
     },
-    async fetchUserInfo() {
-      const userEmail = process.env.VUE_APP_USER_EMAIL;
+    async fetchUserInfo(userEmail) {
       if (typeof userEmail === 'undefined') {
         return;
       }
       try {
         if (!this.userInfo) {
-          const userInfo = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/user-info/${userEmail}`);
+          const userInfo = await axios.get(`https://portfolio-backend-revamp.onrender.com/user-info/${userEmail}`);
           this.userInfo = userInfo?.data;
         }
       } catch (error) {
         console.error(error);
       }
     },
-    async fetchUserDetails() {
-      const userEmail = process.env.VUE_APP_USER_EMAIL;
+    async fetchUserDetails(userEmail) {
       if (typeof userEmail === 'undefined') {
         return;
       }
       try {
         if (!this.userDetails) {
-          const userDetails= await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/user-details/${userEmail}`);
+          const userDetails= await axios.get(`https://portfolio-backend-revamp.onrender.com/user-details/${userEmail}`);
           this.userDetails = userDetails?.data;
         }
       } catch (error) {
         console.error(error);
       }
     },
-    async fetchSoftSkills() {
-      const userEmail = process.env.VUE_APP_USER_EMAIL;
+    async fetchSoftSkills(userEmail) {
       if (typeof userEmail === 'undefined') {
         return;
       }
       try {
         if (!this.softSkills) {
-          const softSkills= await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/soft-skills/${userEmail}`);
+          const softSkills= await axios.get(`https://portfolio-backend-revamp.onrender.com/soft-skills/${userEmail}`);
           this.softSkills = softSkills?.data;
         }
       } catch (error) {
         console.error(error);
       }
     },
-    async fetchPersonalData() {
-      const userEmail = process.env.VUE_APP_USER_EMAIL;
+    async fetchPersonalData(userEmail) {
       if (typeof userEmail === 'undefined') {
         return;
       }
       try {
         if (!this.personal) {
-          const personal = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/personal/${userEmail}`);
+          const personal = await axios.get(`https://portfolio-backend-revamp.onrender.com/personal/${userEmail}`);
           this.personal = personal?.data;
         } 
       } catch (error) {
