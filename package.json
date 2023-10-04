@@ -29,7 +29,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^7.0.0-0",
-    "postcss": "^7.0.36",
+    "postcss": "^8.4.31",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
   },
   "eslintConfig": {
