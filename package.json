@@ -13,11 +13,11 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build-old": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "start": "vue-cli-service serve",
     "dev": "webpack-dev-server --open --mode development",
-    "build-webpack": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -47,7 +47,7 @@
     "@vue/compiler-sfc": "^3.0.0",
     "autoprefixer": "^10.4.2",
     "babel-eslint": "^10.1.0",
-    "eslint": "^8.8.0",
+    "eslint": "^7.32.0",
     "eslint-plugin-vue": "^7.0.0-0",
     "postcss": "^8.4.5",
     "tailwindcss": "^3.0.6",
