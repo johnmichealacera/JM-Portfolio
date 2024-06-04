@@ -14,7 +14,7 @@
 
 <script>
 import SvgIcon from './commons/SvgIcon.vue';
-import { usePortfolioStore } from '@/store/pinia/portfolio';
+import { usePortfolioStore } from '../store/pinia/portfolio';
 import { onMounted, ref } from '@vue/runtime-core';
 import Loader from './commons/Loader.vue';
 export default {

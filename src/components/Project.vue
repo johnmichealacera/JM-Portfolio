@@ -17,7 +17,7 @@
 <script>
 import AppModal from './AppModal.vue';
 import Loader from './commons/Loader.vue';
-import { usePortfolioStore } from '@/store/pinia/portfolio';
+import { usePortfolioStore } from '../store/pinia/portfolio';
 import { onMounted, ref } from '@vue/runtime-core';
 
 export default {

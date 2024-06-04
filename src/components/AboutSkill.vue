@@ -22,7 +22,7 @@
 <script>
 import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
-import { usePortfolioStore } from '@/store/pinia/portfolio';
+import { usePortfolioStore } from '../store/pinia/portfolio';
 import { onMounted, ref } from '@vue/runtime-core';
 
 export default {
@@ -35,6 +35,13 @@ export default {
     const portfolioStore = usePortfolioStore();
     const softSkillsArr = ref([]);
     const isLoading = ref(false);
+    const isHover = ref(false);
+    const onMouseOver = () => {
+      isHover.value = true;
+    };
+    const onMouseOut = () => {
+      isHover.value = false;
+    };
 
     onMounted(async () => {
       isLoading.value = true;
@@ -46,6 +53,8 @@ export default {
     return {
       softSkillsArr,
       isLoading,
+      onMouseOver,
+      onMouseOut,
     };
   }
 }

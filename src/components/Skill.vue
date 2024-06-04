@@ -25,7 +25,7 @@
 <script>
 import Loader from './commons/Loader.vue';
 import { onMounted, ref } from '@vue/runtime-core';
-import { usePortfolioStore } from '@/store/pinia/portfolio';
+import { usePortfolioStore } from '../store/pinia/portfolio';
 export default {
   name: "Skill.vue",
   components: {

@@ -3,17 +3,29 @@
   "version": "0.1.0",
   "license": "MIT",
   "author": "John Micheal Acera",
-  "keywords": ["portfolio", "personal", "software developer", "johnmichealacera", "john micheal acera", "full stack developer"],
+  "keywords": [
+    "portfolio",
+    "personal",
+    "software developer",
+    "johnmichealacera",
+    "john micheal acera",
+    "full stack developer"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "vue-cli-service serve"
+    "start": "vue-cli-service serve",
+    "dev": "webpack-dev-server --open --mode development",
+    "build-webpack": "webpack --config webpack.config.js"
   },
   "dependencies": {
     "axios": "^1.2.6",
     "core-js": "^3.6.5",
+    "dotenv-webpack": "^8.1.0",
+    "filemanager-webpack-plugin": "^8.0.0",
     "pinia": "^2.0.30",
+    "style-loader": "^4.0.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "webpack": "^5.76.0"
@@ -30,7 +42,8 @@
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^7.0.0-0",
     "postcss": "^7.0.36",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3",
+    "webpack-cli": "^5.1.4"
   },
   "eslintConfig": {
     "root": true,

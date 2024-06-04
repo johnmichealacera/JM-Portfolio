@@ -20,7 +20,7 @@
 <script>
 import { onMounted, ref } from '@vue/runtime-core';
 import SvgIcon from './commons/SvgIcon.vue';
-import { usePortfolioStore } from '@/store/pinia/portfolio';
+import { usePortfolioStore } from '../store/pinia/portfolio';
 export default {
   name: "FooterBar",
   components: {

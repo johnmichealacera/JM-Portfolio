@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-between items-center text-xs font-black text-gray-500 px-12 sm:px-64 py-8">
-    <router-link to="/" class="uppercase text-white text-xl rounded-full p-2 mr-2 name-link" v-if="!isLoading">Home</router-link>
+    <router-link to="/" class="uppercase text-white text-xl rounded-full p-2 mr-2 name-link">Home</router-link>
     <div class="hamburger-icon">
       <button @click="isOpen = !isOpen" class="focus:outline-none">
         <svg-icon :width="40" :height="40" icon="hamburgerClose" v-if="!isOpen"></svg-icon> 

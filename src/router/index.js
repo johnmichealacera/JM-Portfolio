@@ -1,26 +1,32 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+import ThankYouComponent from '../views/ThankYou.vue';
+import HomeComponent from '../views/Home.vue';
+import AboutComponent from '../views/About.vue';
+import PortfolioComponent from '../views/Portfolio.vue';
+import ContactComponent from '../views/Contact.vue';
+
 
 const routes = [
   {
-    path: '/thank-you',
-    name: 'ThankYou',
-    component: () => import('@/views/ThankYou.vue'),
-    meta: {
-      title: 'Thank You Page',
-    },
-  },
-  {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/Home.vue'),
+    component: HomeComponent,
     meta: {
       title: 'Home Page',
     },
   },
   {
+    path: '/thank-you',
+    name: 'ThankYou',
+    component: ThankYouComponent,
+    meta: {
+      title: 'Thank You Page',
+    },
+  },
+  {
     path: '/about',
     name: 'About',
-    component: () => import('@/views/About.vue'),
+    component: AboutComponent,
     meta: {
       title: 'About Me',
     },
@@ -28,7 +34,7 @@ const routes = [
   {
     path: '/portfolio',
     name: 'Portfolio',
-    component: () => import('@/views/Portfolio.vue'),
+    component: PortfolioComponent,
     meta: {
       title: 'Portfolio',
     },
@@ -36,7 +42,7 @@ const routes = [
   {
     path: '/contact',
     name: 'Contact',
-    component: () => import('@/views/Contact.vue'),
+    component: ContactComponent,
     meta: {
       title: 'Contact',
     },
