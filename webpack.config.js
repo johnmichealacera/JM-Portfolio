@@ -63,7 +63,7 @@ module.exports = {
         onEnd: {
           copy: [
             { source: "public/*.ico", destination: "dist/" },
-            { source: "public/googled07eb87a11ec4d91.html", destination: "dist/" },
+            { source: "public/google25524e0ff2b3cc08.html", destination: "dist/" },
             { source: "public/sitemap.xml", destination: "dist/" }
           ]
         }
