@@ -11,3 +11,17 @@
   background-color: #01a2a6;
 }
 </style>
+
+<script setup>
+import { useHead } from '@vueuse/head';
+
+// Set the canonical URL for the homepage
+useHead({
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://johnmichealacera.vercel.app/thank-you',
+    },
+  ],
+});
+</script>

@@ -15,6 +15,7 @@ import AboutMe from '../components/AboutMe.vue';
 import MyWhy from '../components/MyWhy.vue';
 import AboutSkill from '../components/AboutSkill.vue';
 import Footer from '../components/Footer.vue';
+import { useHead } from '@vueuse/head';
 
 export default {
   name: 'About',
@@ -24,6 +25,17 @@ export default {
     MyWhy,
     AboutSkill,
     Footer,
-  }
+  },
+  setup() {
+    // Adding canonical link
+    useHead({
+      link: [
+        {
+          rel: 'canonical',
+          href: 'https://johnmichealacera.vercel.app/about',
+        },
+      ],
+    });
+  },
 }
 </script>
