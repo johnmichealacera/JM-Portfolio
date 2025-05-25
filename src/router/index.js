@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import ThankYouComponent from '../views/ThankYou.vue';
 import HomeComponent from '../views/Home.vue';
 import AboutComponent from '../views/About.vue';
-import PortfolioComponent from '../views/Portfolio.vue';
 import ContactComponent from '../views/Contact.vue';
 
 
@@ -29,14 +28,6 @@ const routes = [
     component: AboutComponent,
     meta: {
       title: 'About Me',
-    },
-  },
-  {
-    path: '/portfolio',
-    name: 'Portfolio',
-    component: PortfolioComponent,
-    meta: {
-      title: 'Portfolio',
     },
   },
   {

@@ -1,11 +1,11 @@
 <template>
-  <div class="p-12 bg-yellow-50 bg-opacity-50 border-2 bg-gray-200 flex justify-center">
+  <div data-aos="fade-up" class="p-12 bg-yellow-50 bg-opacity-50 border-2 bg-gray-200 flex justify-center">
     <div class="flex flex-col">
-      <h1 class="text-xl sm:text-3xl mb-3">A few things you need to know</h1>
+      <h2 class="text-xl sm:text-3xl mb-3">💡 A Few Things You Should Know</h2>
       <loader :isLoading="isLoading"/>
       <div class="grid grid-flow-col gap-4 grid-cols-2 grid-rows-2" v-if="!isLoading">
         <div v-for="(item, index) in softSkillsArr" :key="index">
-          <div>
+          <div data-aos="flip-down" data-aos-duration="1300" data-aos-delay="400">
             <svg-icon :icon="item?.icon" @mouseover="onMouseOver" @mouseout="onMouseOut" class="skill-icon"></svg-icon>  
             <div class="p-2 text-sm sm:text-lg leading-tight sm:leading-normal tracking-tighter">
               <h2 class="font-semibold">{{ item?.name }}</h2>

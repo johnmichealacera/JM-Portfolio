@@ -1,7 +1,7 @@
 <template>
-<div class="p-12 bg-yellow-50 bg-opacity-50 border-2 bg-gray-200 flex justify-center">
+<div data-aos="fade-up" class="p-12 bg-yellow-50 bg-opacity-50 border-2 bg-gray-200 flex justify-center">
     <div class="max-w-5xl">
-      <h1 class="text-center text-2xl font-medium">A little information about me</h1>
+      <h2 class="text-center text-2xl font-medium">🙋‍♂️ A Little Information About Me</h2>
       <hr class="m-6">
       <loader :isLoading="isLoading"/>
       <p class="text-justify leading-loose py-5">{{ story }}</p>

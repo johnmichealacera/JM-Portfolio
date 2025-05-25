@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@vueuse/head": "^2.0.0",
+    "aos": "^2.3.4",
     "axios": "^0.24.0",
     "compression-webpack-plugin": "^11.1.0",
     "core-js": "^3.18.3",
