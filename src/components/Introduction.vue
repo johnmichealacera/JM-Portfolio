@@ -1,7 +1,8 @@
 <template>
   <div data-aos="fade-up" class="bg-right bg-cover bg-intro text-white p-10 sm:p-15" :style="{ backgroundImage: `url(${ bgImage })` }">
     <div class="m-3 sm:m-4" v-if="!isLoading">
-      <h2 class="font-semibold text-center text-xl sm:text-3xl">👋 Hello, I'm <strong>{{ fullName }}</strong></h2>
+      <!-- Hardcoding fullname for SEO visibility -->
+      <h1 class="font-semibold text-center text-xl sm:text-3xl">👋 Hello, I'm <strong>John Micheal Acera</strong>.</h1>
       <p style="text-indent: 2em;" class="text-gray-200 text-justify mt-3 text-sm sm:text-lg leading-tight sm:leading-normal">{{ jobDescription }}</p>  
     </div>
     <loader :isLoading="isLoading"/>
@@ -20,7 +21,7 @@
 import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
 import { onMounted, ref } from '@vue/runtime-core';
-import { usePortfolioStore } from '@/store/pinia/portfolio';
+import { usePortfolioStore } from '../store/pinia/portfolio';
 export default {
   name: "Introduction",
   components: {

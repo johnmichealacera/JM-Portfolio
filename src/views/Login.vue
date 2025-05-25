@@ -13,9 +13,19 @@
 import axios from 'axios';
 import { reactive, ref } from '@vue/runtime-core';
 import { useRouter } from 'vue-router';
+import { useHead } from '@vueuse/head';
 export default {
   name: "Login",
   setup() {
+    // Adding canonical link
+    useHead({
+      link: [
+        {
+          rel: 'canonical',
+          href: 'https://johnmichealacera.vercel.app/login',
+        },
+      ],
+    });
     const isUserVerified = ref(false);
     const router = useRouter();
     const state = reactive({

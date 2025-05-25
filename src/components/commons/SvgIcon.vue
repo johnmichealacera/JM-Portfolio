@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import getIcon from '@/assets/icon.ts';
+import getIcon from '../../assets/icon.ts';
 import { toRefs } from '@vue/reactivity';
 export default {
   name: "SvgIcon",

@@ -8,9 +8,10 @@
 
 <script>
 
-import Taskbar from '@/components/Taskbar.vue';
-import Project from '@/components/Project.vue';
-import Footer from '@/components/Footer.vue';
+import Taskbar from '../components/Taskbar.vue';
+import Project from '../components/Project.vue';
+import Footer from '../components/Footer.vue';
+import { useHead } from '@vueuse/head';
 
 export default {
   name: 'Portfolio',
@@ -18,6 +19,17 @@ export default {
     Taskbar,
     Project,
     Footer,
-  }
+  },
+  setup() {
+    // Adding canonical link
+    useHead({
+      link: [
+        {
+          rel: 'canonical',
+          href: 'https://johnmichealacera.vercel.app/portfolio',
+        },
+      ],
+    });
+  },
 }
 </script>
