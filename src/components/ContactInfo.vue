@@ -6,8 +6,8 @@
       <div class="text-lg sm:text-5xl font-semibold py-2">
         <h1>{{ userDetailsData?.fullName }}</h1>
       </div>
-      <h3 class="font-semibold">{{ userDetailsData?.email }}</h3>
-      <h3 class="font-semibold">{{ userDetailsData?.contactNumber }}</h3>
+      <h3 class="font-semibold">📧 Email: {{ userDetailsData?.email }}</h3>
+      <h3 class="font-semibold">📱 Phone: {{ userDetailsData?.contactNumber }}</h3>
     </div>
   </div>
 </template>

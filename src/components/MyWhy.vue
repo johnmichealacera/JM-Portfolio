@@ -1,14 +1,11 @@
 <template>
-<div class="p-12 bg-color border-2 flex justify-evenly text-white font-bold sm:text-xl">
+<div data-aos="fade-up" class="p-12 bg-color border-2 flex justify-evenly text-white font-bold sm:text-xl">
   <div class="max-w-5xl self-center sm:mx-4">
-    <h1 class="text-3xl">Why am I doing this?</h1>
+    <h2 class="text-3xl">🤔 Why Am I Doing This?</h2>
     <h6 class="pt-1 text-sm">Because I love challenges</h6>
     <loader :isLoading="isLoading"/>
     <p style="text-indent: 2em;" class="pt-8 text-justify text-base sm:text-lg leading-loose sm:leading-normal">{{ userWhy }}</p>
   </div>
-  <!-- <div>
-    <img src="../../public/jm-adventure.jpg" alt="Challenge photo" width="500" height="600" class="hidden sm:block">
-  </div> -->
 </div>
 </template>
 

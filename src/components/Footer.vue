@@ -1,9 +1,12 @@
 <template>
-  <div class="bg-color p-4 w-full">
+  <div data-aos="fade-up" class="bg-color p-10 w-full">
+    <h2 class="text-center text-3xl font-semibold mb-2">📬 Let's Connect</h2>
+    <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">
+      Whether you're planning a new product, need an extra hand on your dev team, or just want to collaborate — I'd love to hear from you.
+    </p>
     <div class="flex justify-center mb-4">
       <button class="flex text-gray-50 outline-none" @click="scrollToTop">
-        <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/></svg>
-        <router-link to="/contact" class="hover:underline px-1">Get in touch with me</router-link>
+        <router-link to="/contact" class="hover:underline px-1">🚀 Let's build something great together</router-link>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M24 12l-9-8v6h-15v4h15v6z"/></svg>
       </button>
     </div>

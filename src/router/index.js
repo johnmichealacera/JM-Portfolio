@@ -26,14 +26,6 @@ const routes = [
     },
   },
   {
-    path: '/portfolio',
-    name: 'Portfolio',
-    component: () => import('@/views/Portfolio.vue'),
-    meta: {
-      title: 'Portfolio',
-    },
-  },
-  {
     path: '/contact',
     name: 'Contact',
     component: () => import('@/views/Contact.vue'),
