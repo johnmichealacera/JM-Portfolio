@@ -4,7 +4,7 @@
       <h1 class="text-center text-2xl font-medium">🎯 My Journey</h1>
       <hr class="m-6">
       <loader :isLoading="isLoading"/>
-      <p class="text-justify leading-loose py-5">{{  story }}</p>
+      <p v-if="!isLoading" class="text-justify leading-loose py-5">{{  story }}</p>
     </div>
   </div>
 </template>
