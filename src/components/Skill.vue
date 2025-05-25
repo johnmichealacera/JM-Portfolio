@@ -8,7 +8,7 @@
         <div class="w-full m-4">
           <h3 class="font-semibold capitalize">{{ type }}</h3>
           <ul class="font-black text-right" v-for="(item, index) in filterSkillsByType(type)" :key="index">
-            <li data-aos="flip-up" class="capitalize sm:text-base text-xs" style="position:relative;">{{ item?.name }}
+            <li data-aos="flip-up" data-aos-delay="400" data-aos-duration="1400" class="capitalize sm:text-base text-xs" style="position:relative;">{{ item?.name }}
               <span v-if="hoveredItem === item" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:p-2 rounded shadow popup text-xs sm:text-xs">{{ item.mastery }}%</span>
               <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-pink-200">
                 <div :style="`width:${item?.mastery}%`" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-color" @mouseover="hoveredItem = item" @mouseout="hoveredItem = null" @click="handleClick(item)" @touchstart="handleClick(item)"></div>
