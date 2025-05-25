@@ -1,9 +1,9 @@
 <template>
-  <div data-aos="fade-up" class="border-2 p-2 sm:p-10 bg-yellow-50 bg-opacity-50">
+  <div v-if="!isLoading" data-aos="fade-up" class="border-2 p-2 sm:p-10 bg-yellow-50 bg-opacity-50">
     <h2 class="text-center text-xl sm:text-2xl font-medium">🛠️ My Skills</h2>
     <hr class="sm:m-2">
     <loader :isLoading="isLoading"/>
-    <div v-if="!isLoading" class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-3 gap-4">
       <div class="flex justify-evenly text-xs sm:text-base" v-for="(type, index) in skillsTypeArr" :key="index">
         <div class="w-full m-4">
           <h3 class="font-semibold capitalize">{{ type }}</h3>
