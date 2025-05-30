@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="bg-cream">
     <taskbar />
     <about-me />
     <my-why />

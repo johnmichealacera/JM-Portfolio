@@ -1,10 +1,10 @@
 <template>
-  <div data-aos="fade-up" class="p-12 bg-yellow-50 bg-opacity-50 border-2 bg-gray-200 flex justify-center">
+  <div data-aos="fade-up" class="p-12 border-2 bg-white flex justify-center">
     <div class="max-w-5xl">
-      <h1 class="text-center text-2xl font-medium">🎯 My Journey</h1>
+      <h1 class="text-center text-2xl font-medium text-forest">🎯 My Journey</h1>
       <hr class="m-6">
       <loader :isLoading="isLoading"/>
-      <p v-if="!isLoading" class="text-justify leading-loose py-5">{{  story }}</p>
+      <p v-if="!isLoading" class="text-justify leading-loose py-5 text-forest">{{  story }}</p>
     </div>
   </div>
 </template>
