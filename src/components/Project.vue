@@ -9,7 +9,7 @@
     <div v-if="!isLoading" class="grid grid-cols-2 gap-4">
       <div v-for="(item, index) in projectArr"
       :key="index">
-      <div data-aos="zoom-in" data-aos-delay="400" data-aos-duration="1400" class="bg-project sm:bg-center bg-left sm:bg-100 bg-cover sm:h-96 h-full" v-if="item?.imageLink" :style="{ backgroundImage: `url(${item?.imageLink})` }">
+      <div data-aos="zoom-in" data-aos-delay="400" data-aos-duration="1400" class="bg-project bg-center bg-cover h-64 sm:h-96 rounded-xl shadow-md" v-if="item?.imageLink" :style="{ backgroundImage: `url(${item?.imageLink})` }">
         <app-modal class="opacity-0 hover:opacity-100" :title="item?.title" :description="item?.description" :url="item?.url" :index="index+1"></app-modal>
       </div>
     </div>
