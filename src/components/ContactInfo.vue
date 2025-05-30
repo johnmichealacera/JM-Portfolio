@@ -1,10 +1,11 @@
 <template>
-  <div class="contact h-80 w-full min-h-full flex justify-center items-center flex-auto justify-items-center p-12 ">
+  <div class="h-80 w-full min-h-full flex justify-center items-center flex-auto justify-items-center p-12 bg-olive">
     <loader :isLoading="isLoading"/>
-    <div class="border-2 rounded-full bg-white flex flex-col justify-center w-auto p-6 items-center" v-if="!isLoading">
+    <div class="border-2 rounded-full flex flex-col justify-center w-auto p-6 items-center bg-cream" v-if="!isLoading">
       <svg-icon icon="contactMe"></svg-icon>  
-      <div class="text-lg sm:text-5xl font-semibold py-2">
-        <h1>{{ userDetailsData?.fullName }}</h1>
+      <div class="text-lg sm:text-5xl font-semibold py-2 text-forest">
+        <!-- Hardcoding fullname for SEO visibility -->
+        <h1><strong>John Micheal Acera</strong></h1>
       </div>
       <h3 class="font-semibold">📧 Email: {{ userDetailsData?.email }}</h3>
       <h3 class="font-semibold">📱 Phone: {{ userDetailsData?.contactNumber }}</h3>
@@ -42,7 +43,4 @@ export default {
 </script>
 
 <style scoped>
-  .contact {
-    background-color: #01a2a6;
-  }
 </style>

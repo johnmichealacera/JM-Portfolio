@@ -1,16 +1,16 @@
 <template>
-  <div class="home">
+  <div class="bg-cream">
     <taskbar />
     <contact-info />
     <contact-form />
-    <Footer />
+    <footer-bar />
   </div>
 </template>
 
 <script>
 
 import Taskbar from '../components/Taskbar.vue';
-import Footer from '../components/Footer.vue';
+import FooterBar from '../components/Footer.vue';
 import ContactInfo from '../components/ContactInfo.vue';
 import ContactForm from '../components/ContactForm.vue';
 import { useHead } from '@vueuse/head';
@@ -21,7 +21,7 @@ export default {
     Taskbar,
     ContactInfo,
     ContactForm,
-    Footer
+    FooterBar
   },
   setup() {
     // Adding canonical link

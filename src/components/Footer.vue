@@ -1,12 +1,12 @@
 <template>
-  <div data-aos="fade-up" class="bg-color p-10 w-full">
+  <div data-aos="fade-up" class="p-10 w-full bg-forest text-cream">
     <h2 class="text-center text-3xl font-semibold mb-2">📬 Let's Connect</h2>
-    <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">
+    <p class="text-center text-cream mb-6 max-w-2xl mx-auto">
       Whether you're planning a new product, need an extra hand on your dev team, or just want to collaborate — I'd love to hear from you.
     </p>
     <div class="flex justify-center mb-4">
-      <button class="flex text-gray-50 outline-none" @click="scrollToTop">
-        <router-link to="/contact" class="hover:underline px-1">🚀 Let's build something great together</router-link>
+      <button class="flex text-white hover:bg-gold outline-none bg-burnt" @click="scrollToTop">
+        <router-link to="/contact" class="px-1">🚀 Let's build something great together</router-link>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M24 12l-9-8v6h-15v4h15v6z"/></svg>
       </button>
     </div>
@@ -57,7 +57,4 @@ export default {
 </script>
 
 <style scoped>
-.bg-color {
-    background-color: #01a2a6;
-  }
 </style>

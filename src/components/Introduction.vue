@@ -1,19 +1,36 @@
 <template>
-  <div data-aos="fade-up" class="bg-right bg-cover bg-intro text-white p-10 sm:p-15" :style="{ backgroundImage: `url(${ bgImage })` }">
-    <div class="m-3 sm:m-4" v-if="!isLoading">
-      <!-- Hardcoding fullname for SEO visibility -->
-      <h1 class="font-semibold text-center text-xl sm:text-3xl">👋 Hello, I'm <strong>John Micheal Acera</strong>.</h1>
-      <p style="text-indent: 2em;" class="text-gray-200 text-justify mt-3 text-sm sm:text-lg leading-tight sm:leading-normal">{{ jobDescription }}</p>  
-    </div>
-    <loader :isLoading="isLoading"/>
-      <div v-if="!isLoading" class="pt-5 sm:pt-10 z-12 grid grid-cols-2 gap-2">
-        <ul class="flex justify-evenly items-center h-48 text-lg font-medium" v-for="(item, index) in introArrData" :key="index">
-          <li class="h-full text-xs sm:text-base">
-            <svg-icon :icon="item?.icon" @mouseover="onMouseOver" @mouseout="onMouseOut" class="skill-icon"></svg-icon>  
-            <a href=# class="uppercase">{{ item?.title }}</a>
-          </li>
-        </ul>
+  <div data-aos="fade-up" class="bg-cream p-10 sm:p-15">
+    <div v-if="!isLoading" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      
+      <!-- Left: Text Content -->
+      <div class="m-3 sm:m-4">
+        <h1 class="font-bold text-xl sm:text-4xl text-forest text-center md:text-left">
+          👋 Hello, I'm <span class="text-burnt">John Micheal Acera</span>.
+        </h1>
+        <p style="text-indent: 2em;" class="text-justify mt-3 text-sm sm:text-lg leading-tight sm:leading-normal text-forest">
+          {{ jobDescription }}
+        </p>
+        <div class="pt-5 sm:pt-10 grid grid-cols-2 gap-4">
+          <ul class="flex flex-col justify-evenly h-full text-lg font-medium text-forest" v-for="(item, index) in introArrData" :key="index">
+            <li class="text-xs sm:text-base flex items-center gap-2">
+              <svg-icon :icon="item?.icon" @mouseover="onMouseOver" @mouseout="onMouseOut" class="skill-icon" />
+              <a href="#" class="uppercase text-forest hover:text-gold transition-colors duration-300">
+                {{ item?.title }}
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
+
+      <!-- Right: Profile Image -->
+      <div class="flex justify-center md:justify-end">
+        <img :src="bgImage || '/default-profile.jpg'" alt="John Micheal Acera" class="h-auto rounded-full shadow-lg object-cover border-4 border-gold" />
+      </div>
+
+    </div>
+
+    <!-- Loader -->
+    <loader :isLoading="isLoading" />
   </div>
 </template>
 

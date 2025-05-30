@@ -1,6 +1,6 @@
 <template>
-<div data-aos="fade-up" class="p-12 bg-yellow-50 bg-opacity-50 border-2 bg-gray-200 flex justify-center">
-    <div class="max-w-5xl">
+<div data-aos="fade-up" class="p-12 bg-opacity-50 border-2 flex justify-center">
+    <div class="max-w-5xl text-forest">
       <h2 class="text-center text-2xl font-medium">🙋‍♂️ A Little Information About Me</h2>
       <hr class="m-6">
       <loader :isLoading="isLoading"/>

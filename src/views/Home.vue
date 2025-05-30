@@ -1,11 +1,11 @@
 <template>
-  <div class="home">
+  <div class="bg-cream">
     <taskbar />
     <introduction />
     <skill />
     <project />
     <personal-story />
-    <Footer />
+    <footer-bar />
   </div>
 </template>
 
@@ -16,7 +16,7 @@ import Introduction from '../components/Introduction.vue';
 import Skill from '../components/Skill.vue';
 import Project from '../components/Project.vue';
 import PersonalStory from '../components/PersonalStory.vue';
-import Footer from '../components/Footer.vue';
+import FooterBar from '../components/Footer.vue';
 import { useHead } from '@vueuse/head';
 
 export default {
@@ -27,7 +27,7 @@ export default {
     Skill,
     Project,
     PersonalStory,
-    Footer,
+    FooterBar,
   },
 
   setup() {

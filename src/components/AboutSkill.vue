@@ -8,9 +8,9 @@
           <div data-aos="flip-down" data-aos-duration="1300" data-aos-delay="400">
             <svg-icon :icon="item?.icon" @mouseover="onMouseOver" @mouseout="onMouseOut" class="skill-icon"></svg-icon>  
             <div class="p-2 text-sm sm:text-lg leading-tight sm:leading-normal tracking-tighter">
-              <h2 class="font-semibold">{{ item?.name }}</h2>
+              <h2 class="font-semibold text-burnt">{{ item?.name }}</h2>
               <hr class="my-2">
-              <p class="text-start sm:text-justify">{{ item?.shortDescription }}</p>
+              <p class="text-start sm:text-justify text-forest">{{ item?.shortDescription }}</p>
             </div>
           </div>
         </div>
