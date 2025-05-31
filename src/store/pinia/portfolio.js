@@ -43,6 +43,8 @@ export const usePortfolioStore = defineStore({
   actions: {
     // Graphql api equivalent from rust api
     async fetchIntroductionsData() {
+      
+    console.log('JM: ', process.env.VUE_APP_PORTFOLIO_BACKEND);
       const query = `
         {
           users {
