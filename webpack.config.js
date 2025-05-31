@@ -8,6 +8,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
+console.log('🔍 Webpack ENV:', process.env.VUE_APP_PORTFOLIO_BACKEND);
+
+
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -57,7 +60,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
-    new Dotenv(),
+    // new Dotenv(),
+    new Dotenv({
+      systemvars: true, // 👈 Add this line to allow Vercel env vars
+    }),
     new FileManagerPlugin({
       events: {
         onEnd: {
