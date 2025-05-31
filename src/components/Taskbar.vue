@@ -2,9 +2,13 @@
   <div class="flex justify-between items-center text-xs font-black px-12 sm:px-64 py-8">
     <router-link to="/" class="uppercase text-xl sm:p-6 p-2 mr-2 bg-burnt text-black hover:bg-gold">Home</router-link>
     <div class="hamburger-icon">
-      <button @click="isOpen = !isOpen" class="focus:outline-none">
-        <svg-icon :width="40" :height="40" icon="hamburgerClose" v-if="!isOpen"></svg-icon> 
-        <svg-icon :width="40" :height="40" icon="hamburgerOpen" v-else></svg-icon>
+      <button
+        @click="isOpen = !isOpen"
+        class="focus:outline-none"
+        :aria-label="isOpen ? 'Close menu' : 'Open menu'"
+        :title="isOpen ? 'Close menu' : 'Open menu'"
+      >
+        <svg-icon :width="40" :height="40" :icon="isOpen ? 'hamburgerOpen' : 'hamburgerClose'" />
       </button>
       <ul :class="{'hidden': !isOpen, 'flex-col': isOpen}" class="mobile-menu">
         <li class="list-none block mt-2 lg:inline-block bg-burnt hover:bg-gold text-black"><router-link to="/about" class="hover:underline sm:p-6 uppercase">About Me</router-link></li>
