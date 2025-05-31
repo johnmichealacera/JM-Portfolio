@@ -7,9 +7,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-
-console.log('🔍 Webpack ENV:', process.env.VUE_APP_PORTFOLIO_BACKEND);
-
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/main.js',
@@ -60,9 +58,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
-    // new Dotenv(),
     new Dotenv({
-      systemvars: true, // 👈 Add this line to allow Vercel env vars
+      systemvars: true,
     }),
     new FileManagerPlugin({
       events: {
@@ -74,6 +71,11 @@ module.exports = {
           ]
         }
       }
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'public', to: '.' }, // ✅ copies everything from public/ to dist/
+      ],
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
