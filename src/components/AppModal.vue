@@ -8,7 +8,7 @@
     </li>
     <li>
       <a
-        class="inline-block bg-gold text-cream text-sm px-4 py-2 rounded-md hover:bg-burnt transition-colors duration-200"
+        class="inline-block bg-gold text-forest text-sm px-4 py-2 rounded-md hover:bg-burnt transition-colors duration-200"
         :href="url"
         target="_blank"
         rel="noopener noreferrer"

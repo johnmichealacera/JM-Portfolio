@@ -27,7 +27,7 @@
           <textarea name="message" id="message" cols="30" rows="10" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" placeholder="📌 Let me know what you have in mind"></textarea>
         </div>
         <div class="flex items-center justify-between">
-          <button class="text-cream bg-burnt hover:bg-gold text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+          <button class="text-black bg-cream hover:bg-gold font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
             Send
           </button>
         </div>
