@@ -24,7 +24,11 @@
 
       <!-- Right: Profile Image -->
       <div class="flex justify-center md:justify-end">
-        <img :src="bgImage || 'https://live.staticflickr.com/65535/54555592319_70b91a3ef4_b.jpg'" alt="John Micheal Acera" class="h-auto rounded-full shadow-lg object-cover border-4 border-gold" />
+        <img :src="bgImage || 'https://live.staticflickr.com/65535/54555592319_70b91a3ef4_b.jpg'"
+          loading="lazy"
+          alt="John Micheal Acera"
+          class="h-auto rounded-full shadow-lg object-cover border-4 border-gold"
+        />
       </div>
 
     </div>

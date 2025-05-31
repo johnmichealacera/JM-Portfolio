@@ -10,6 +10,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+  // content: ['./public/**/*.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),

@@ -1,7 +1,9 @@
 <template>
   <div class="w-full flex flex-col items-center justify-center p-8">
     <div>
-      <h2 class="text-lg sm:text-2xl font-light sm:font-medium text-justify text-forest" style="text-indent: 2em;" >If you like what you see and want to work together, I'd love to hear from you. Whether it's a new project, collaboration, or just a friendly hello — feel free to get in touch!</h2>
+      <h2 class="text-left sm:text-justify text-lg sm:text-2xl font-light sm:font-medium text-forest max-w-[90%] mx-auto sm:indent-8">
+        If you like what you see and want to work together, I'd love to hear from you...
+      </h2>
     </div>
     <div>
       <form class="bg-olive shadow-md rounded px-8 pt-6 pb-8 mb-4" :action=actionString method="POST">
