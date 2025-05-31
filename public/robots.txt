@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://johnmichealacera.vercel.com/sitemap.xml
