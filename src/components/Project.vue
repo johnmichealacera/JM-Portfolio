@@ -1,7 +1,7 @@
 <template>
   <section id="project" data-aos="fade-up" class="py-10 px-2 bg-white">
     <h2 class="text-center text-3xl font-semibold mb-2 text-burnt">💼 Selected Projects</h2>
-    <p class="text-center text-burnt mb-6 max-w-2xl mx-auto">
+    <p class="text-center text-olive mb-6 max-w-2xl mx-auto">
       A showcase of applications I've built to solve real-world problems and explore creative ideas — combining performance, usability, and modern design.
     </p>
     <hr class="m-6" />

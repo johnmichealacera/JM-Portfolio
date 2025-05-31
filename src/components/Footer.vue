@@ -5,15 +5,26 @@
       Whether you're planning a new product, need an extra hand on your dev team, or just want to collaborate — I'd love to hear from you.
     </p>
     <div class="flex justify-center mb-4">
-      <button class="flex text-white hover:bg-gold outline-none bg-burnt" @click="scrollToTop">
+      <button class="flex outline-none bg-burnt hover:bg-gold text-black" @click="scrollToTop">
         <router-link to="/contact" class="px-1">🚀 Let's build something great together</router-link>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M24 12l-9-8v6h-15v4h15v6z"/></svg>
       </button>
     </div>
     <div class="flex justify-center">
-      <div class="flex justify-center items-center" v-for="(item, index) in socialMediaArrData" :key="index">
-        <a class="px-2" :href=item?.url target="_blank">
-          <svg-icon :icon="item?.type" :width="40" :height="40"></svg-icon>  
+      <div
+        class="flex justify-center items-center"
+        v-for="(item, index) in socialMediaArrData"
+        :key="index"
+      >
+        <a
+          class="px-2"
+          :href="item?.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          :aria-label="`${item?.type} Profile`"
+        >
+          <svg-icon :icon="item?.type" :width="40" :height="40" />
+          <span class="sr-only">{{ item?.type }} Profile</span>
         </a>
       </div>
     </div>
