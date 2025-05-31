@@ -2,7 +2,7 @@ const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-const FileManagerPlugin = require('filemanager-webpack-plugin');
+// const FileManagerPlugin = require('filemanager-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
@@ -61,20 +61,20 @@ module.exports = {
     new Dotenv({
       systemvars: true,
     }),
-    new FileManagerPlugin({
-      events: {
-        onEnd: {
-          copy: [
-            { source: "public/*.ico", destination: "dist/" },
-            { source: "public/google25524e0ff2b3cc08.html", destination: "dist/" },
-            { source: "public/sitemap.xml", destination: "dist/" }
-          ]
-        }
-      }
-    }),
+    // new FileManagerPlugin({
+    //   events: {
+    //     onEnd: {
+    //       copy: [
+    //         { source: "public/*.ico", destination: "dist/" },
+    //         { source: "public/google25524e0ff2b3cc08.html", destination: "dist/" },
+    //         { source: "public/sitemap.xml", destination: "dist/" }
+    //       ]
+    //     }
+    //   }
+    // }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'public', to: '.' }, // ✅ copies everything from public/ to dist/
+        { from: 'public', to: '.', globOptions: { ignore: ['**/index.html'] } }, // ✅ prevent index.html conflict
       ],
     }),
     new MiniCssExtractPlugin({
