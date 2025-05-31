@@ -1,42 +1,34 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import ThankYouComponent from '../views/ThankYou.vue';
-import HomeComponent from '../views/Home.vue';
-import AboutComponent from '../views/About.vue';
-import ContactComponent from '../views/Contact.vue';
 
+const HomeComponent = () => import('../views/Home.vue');
+const ThankYouComponent = () => import('../views/ThankYou.vue');
+const AboutComponent = () => import('../views/About.vue');
+const ContactComponent = () => import('../views/Contact.vue');
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: HomeComponent,
-    meta: {
-      title: 'Home Page',
-    },
+    meta: { title: 'Home Page' },
   },
   {
     path: '/thank-you',
     name: 'ThankYou',
     component: ThankYouComponent,
-    meta: {
-      title: 'Thank You Page',
-    },
+    meta: { title: 'Thank You Page' },
   },
   {
     path: '/about',
     name: 'About',
     component: AboutComponent,
-    meta: {
-      title: 'About Me',
-    },
+    meta: { title: 'About Me' },
   },
   {
     path: '/contact',
     name: 'Contact',
     component: ContactComponent,
-    meta: {
-      title: 'Contact',
-    },
+    meta: { title: 'Contact' },
   }
 ];
 
