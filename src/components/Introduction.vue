@@ -1,9 +1,8 @@
 <template>
   <div data-aos="fade-up" class="bg-cream p-10 sm:p-15">
     <div v-if="!isLoading" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-      
       <!-- Left: Text Content -->
-      <div class="m-3 sm:m-4">
+      <div ref="leftContent" class="m-3 sm:m-4 flex flex-col justify-center">
         <h1 class="font-bold text-xl sm:text-4xl text-forest text-center md:text-left">
           👋 Hello, I'm <span class="text-burnt">John Micheal Acera</span>.
         </h1>
@@ -21,17 +20,17 @@
           </ul>
         </div>
       </div>
-
-      <!-- Right: Profile Image -->
-      <div class="flex justify-center md:justify-end">
-        <img src="/john.webp"
+      <!-- Right: Profile Image with dynamic height -->
+      <div class="flex justify-center">
+        <img
+          ref="profileImage"
+          src="/john.webp"
           alt="John Micheal Acera"
-          class="h-auto rounded-full shadow-lg object-cover border-4 border-gold"
+          class="rounded-lg shadow-lg object-cover border-4 border-gold w-full max-w-xs"
+          :style="{ height: imageHeight + 'px' }"
         />
       </div>
-
     </div>
-
     <!-- Loader -->
     <loader :isLoading="isLoading" />
   </div>
@@ -40,7 +39,7 @@
 <script>
 import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
-import { onMounted, ref } from '@vue/runtime-core';
+import { onMounted, ref, nextTick } from '@vue/runtime-core';
 import { usePortfolioStore } from '../store/pinia/portfolio';
 export default {
   name: "Introduction",
@@ -49,6 +48,21 @@ export default {
     Loader,
   },
   setup() {
+      const imageHeight = ref(null);
+      const leftContent = ref(null);
+
+      const setHeight = () => {
+        if (leftContent.value) {
+          imageHeight.value = leftContent.value.offsetHeight;
+        }
+      };
+
+      onMounted(() => {
+        nextTick(() => {
+          setHeight();
+          window.addEventListener('resize', setHeight);
+        });
+      });
     const portfolioStore = usePortfolioStore();
     const introArrData = ref([]);
     const fullName = ref('');
@@ -84,6 +98,8 @@ export default {
       isHover,
       onMouseOver,
       onMouseOut,
+      imageHeight,
+      leftContent,
     }
   }
 }
