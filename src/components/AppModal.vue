@@ -1,6 +1,6 @@
 <template>
   <ul class="h-full flex flex-col justify-center items-center bg-cream text-forest sm:space-y-6 space-y-4 p-5 rounded-lg shadow-md transition hover:shadow-lg bg-opacity-75">
-    <li class="sm:text-2xl text-sm font-semibold text-center">
+    <li class="sm:text-4xl text-base font-semibold text-center">
       Project {{ index }} – {{ title }}
     </li>
     <li class="text-xs sm:text-base text-center sm:px-4 sm:py-2 px-0 py-0 sm:leading-relaxed sm:line-clamp-none line-clamp-6">

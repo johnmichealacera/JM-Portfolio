@@ -1,6 +1,6 @@
 <template>
   <section id="project" data-aos="fade-up" class="py-10 px-2 bg-white">
-    <h2 class="text-center text-3xl font-semibold mb-2 text-forest">💼 Selected Projects</h2>
+    <h2 class="text-center sm:text-5xl text-2xl font-semibold mb-2 text-forest">💼 Selected Projects</h2>
     <p class="text-center text-black mb-6 max-w-2xl mx-auto">
       A showcase of applications I've built to solve real-world problems and explore creative ideas — combining performance, usability, and modern design.
     </p>
