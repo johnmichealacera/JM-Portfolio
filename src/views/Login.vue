@@ -22,7 +22,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: 'https://johnmichealacera.vercel.app/login',
+          href: 'https://johnmichealacera.com/login',
         },
       ],
     });
