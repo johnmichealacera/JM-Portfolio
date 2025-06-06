@@ -20,7 +20,7 @@ useHead({
   link: [
     {
       rel: 'canonical',
-      href: 'https://johnmichealacera.vercel.app/thank-you',
+      href: 'https://johnmichealacera.com/thank-you',
     },
   ],
 });
