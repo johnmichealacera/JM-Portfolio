@@ -36,7 +36,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: 'https://johnmichealacera.vercel.app/',
+          href: 'https://johnmichealacera.com/',
         },
       ],
     });

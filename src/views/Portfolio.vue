@@ -26,7 +26,7 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: 'https://johnmichealacera.vercel.app/portfolio',
+          href: 'https://johnmichealacera.com/portfolio',
         },
       ],
     });
