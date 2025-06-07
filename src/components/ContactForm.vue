@@ -6,27 +6,31 @@
       </h2>
     </div>
     <div>
-      <form class="bg-olive shadow-md rounded px-8 pt-6 pb-8 mb-4" :action=actionString method="POST">
-      <input name="_redirect" type="hidden" id="name" :value=redirectUrl>
-      <input type="hidden" name="_autoresponse" value="Thank you for your email! I will get back to you as soon as possible.">
-      <input name="_formsubmit_id" type="text" style="display:none">
-        <div class="mb-4">
-          <label class="block text-sm font-bold mb-2 text-cream" for="name">
-            Name
-          </label>
-          <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="name" name="name" type="text" placeholder="📌 Enter your full name">
-        </div>
-        <div class="mb-6">
-          <label class="block text-sm font-bold mb-2 text-cream" for="email">
-            Email
-          </label>
-          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="email" id="email" type="email" placeholder="📌 Enter your email address">
-        </div>
-        <div class="mb-6">
-          <label class="block text-cream text-sm font-bold mb-2" for="message">
-            Message
-          </label>
-          <textarea name="message" id="message" cols="30" rows="10" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" placeholder="📌 Let me know what you have in mind"></textarea>
+      <form class="bg-olive shadow-md rounded px-8 pt-6 pb-8 mb-4" action="https://formsubmit.co/jm@johnmichealacera.com" method="POST">
+      <!-- Optional: Disable captcha -->
+      <input type="hidden" name="_captcha" value="false">
+      
+      <!-- Optional: Redirect after success -->
+      <input type="hidden" name="_next" value="https://www.johnmichealacera.com/thank-you">
+
+      <div class="mb-4">
+        <label class="block text-sm font-bold mb-2 text-cream" for="name">
+          Name
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" name="name" placeholder="📌 Enter your full name" required>
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-sm font-bold mb-2 text-cream" for="email">
+          Email
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="email" id="email" type="email" placeholder="📌 Enter your email address" required>
+      </div>
+      <div class="mb-6">
+        <label class="block text-cream text-sm font-bold mb-2" for="message">
+          Message
+        </label>
+          <textarea name="message" id="message" cols="30" rows="10" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" placeholder="📌 Let me know what you have in mind" required></textarea>
         </div>
         <div class="flex items-center justify-between">
           <button class="text-black bg-cream hover:bg-gold font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
