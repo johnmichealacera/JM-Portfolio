@@ -42,7 +42,10 @@ export const usePortfolioStore = defineStore({
   },
   actions: {
     // Graphql api equivalent from rust api
-    async fetchIntroductionsData() {
+    async fetchIntroductionsData(forceRefresh = false) {
+      if (this?.introductions?.fullName && !forceRefresh) {
+        return; // Don't refetch if already fetched
+      }
       const query = `
         {
           users {
@@ -81,7 +84,10 @@ export const usePortfolioStore = defineStore({
         console.error(error);
       }
     },
-    async fetchSocialMediaData() {
+    async fetchSocialMediaData(forceRefresh = false) {
+      if (this?.socialMedia?.length > 0 && !forceRefresh) {
+        return; // Don't refetch if already fetched
+      }
       const query = `
         {
           socialMedia {
@@ -110,7 +116,10 @@ export const usePortfolioStore = defineStore({
         console.error(error);
       }
     },
-    async fetchUserInfo() {
+    async fetchUserInfo(forceRefresh = false) {
+      if (this?.userInfo?.lifeStory && !forceRefresh) {
+        return; // Don't refetch if already fetched
+      }
       const query = `
         {
           personals {
@@ -143,7 +152,10 @@ export const usePortfolioStore = defineStore({
         console.error(error);
       }
     },
-    async fetchProjectsData() {
+    async fetchProjectsData(forceRefresh = false) {
+      if (this?.projects?.length > 0 && !forceRefresh) {
+        return; // Don't refetch if already fetched
+      }
       const query = `
         {
           projects {
@@ -177,7 +189,10 @@ export const usePortfolioStore = defineStore({
         console.error(error);
       }
     },
-    async fetchSkillsData() {
+    async fetchSkillsData(forceRefresh = false) {
+      if (this?.skills?.length > 0 && !forceRefresh) {
+        return; // Don't refetch if already fetched
+      }
       const query = `
         {
           skills {
@@ -208,7 +223,10 @@ export const usePortfolioStore = defineStore({
         console.error(error);
       }
     },
-    async fetchUserDetails() {
+    async fetchUserDetails(forceRefresh = false) {
+      if (this?.userDetails && !forceRefresh) {
+        return; // Don't refetch if already fetched
+      }
       const query = `
         {
           users {
@@ -236,7 +254,10 @@ export const usePortfolioStore = defineStore({
         console.error(error);
       }
     },
-    async fetchSoftSkills() {
+    async fetchSoftSkills(forceRefresh = false) {
+      if (this?.softSkills?.length > 0 && !forceRefresh) {
+        return; // Don't refetch if already fetched
+      }
       const query = `
         {
           softSkills {

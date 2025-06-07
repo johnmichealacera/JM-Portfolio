@@ -3,6 +3,12 @@ const icons = {
     { fill: 'none', d: 'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4',
     }
   ],
+  dedication: [
+    {
+      fill: 'none',
+      d: 'M12 2C10.5 4 9 6 9 9c0 2 1.5 3.5 3 4s3-1 3-3c0-2.5-1.5-4-3-8z',
+    },
+  ],
   backend: [
     { fill: 'none', d: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
     }
@@ -80,6 +86,42 @@ const icons = {
     {
       d: 'M18,21.25a.25.25,0,1,0,.25.25.25.25,0,0,0-.25-.25h0', strokeLineCap: 'round', strokeLineJoin: 'round', stroke: '#000', fill: 'none'
     }
+  ],
+  personalGrowth: [
+    {
+      fill: 'none',
+      d: 'M3 17h2v-5h2v5h2v-8h2v8h2v-3h2v3h2v-6h2v6h2',
+    },
+  ],
+  learnings: [
+    {
+      fill: 'none',
+      d: 'M4 19.5A2.5 2.5 0 006.5 22H18M4 4v15.5M4 4h16v16H6.5A2.5 2.5 0 014 19.5V4z',
+    },
+  ],
+  programming: [
+    {
+      fill: 'none',
+      d: 'M16 18l6-6-6-6M8 6l-6 6 6 6',
+    },
+  ],
+  teamplayer: [
+    {
+      fill: 'none',
+      d: 'M7 14s-3 1-3 4v2h16v-2c0-3-3-4-3-4M12 14a4 4 0 100-8 4 4 0 000 8z',
+    },
+  ],
+  adaptability: [
+    {
+      fill: 'none',
+      d: 'M17 3v4h-4M7 21v-4h4M3 7l5-5 5 5M21 17l-5 5-5-5',
+    },
+  ],
+  skills: [
+    {
+      fill: 'none',
+      d: 'M12 2l2.09 6.26L20 9l-5 3.64L16.18 20 12 16.77 7.82 20 9 12.64 4 9l5.91-.74L12 2z',
+    },
   ],
 };
 
