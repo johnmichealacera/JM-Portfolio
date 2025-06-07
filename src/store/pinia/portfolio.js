@@ -50,6 +50,9 @@ export const usePortfolioStore = defineStore({
         {
           users {
             fullName
+            email
+            contactNumber
+            website
           }
           personals {
             jobDescription
@@ -80,6 +83,7 @@ export const usePortfolioStore = defineStore({
           jobDescription: personalData?.jobDescription,
           expertise: skillsOverviewData,
         };
+        this.userDetails = userData;
       } catch (error) {
         console.error(error);
       }
@@ -219,37 +223,6 @@ export const usePortfolioStore = defineStore({
           type: skill?.skillType,
         }))
         this.skills = skillsdata;
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    async fetchUserDetails(forceRefresh = false) {
-      if (this?.userDetails && !forceRefresh) {
-        return; // Don't refetch if already fetched
-      }
-      const query = `
-        {
-          users {
-            fullName
-            email
-            contactNumber
-            website
-          }
-        }
-      `;
-    
-      try {
-        const data = await axios.post(
-          `${process.env.VUE_APP_PORTFOLIO_BACKEND}/graphql`,
-          query,
-          {
-            headers: {
-              'Content-Type': 'application/graphql',
-            },
-          }
-        );
-        const usersData = data?.data?.data?.users?.[0];
-        this.userDetails = usersData;
       } catch (error) {
         console.error(error);
       }

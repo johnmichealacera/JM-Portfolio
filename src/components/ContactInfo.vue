@@ -30,7 +30,7 @@ export default {
     const userDetailsData = ref('');
     onMounted(async () => {
       isLoading.value = true;
-      await portfolioStore.fetchUserDetails(process.env.VUE_APP_USER_ID);
+      await portfolioStore.fetchIntroductionsData();
       userDetailsData.value = portfolioStore?.userDetailsData;
       isLoading.value = false;
     })
