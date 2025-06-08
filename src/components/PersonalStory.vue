@@ -1,10 +1,15 @@
 <template>
-  <div data-aos="fade-up" class="p-12 border-2 bg-white flex justify-center">
-    <div class="max-w-5xl">
-      <h1 class="text-center text-2xl font-medium text-forest">🎯 My Journey</h1>
-      <hr class="m-6">
+  <div data-aos="fade-up" class="p-4 sm:p-8 md:p-12 border-2 bg-white flex justify-center">
+    <div class="max-w-5xl w-full">
+      <h1 class="text-center text-xl sm:text-2xl font-medium text-forest">🎯 My Journey</h1>
+      <hr class="m-4 sm:m-6">
       <loader :isLoading="isLoading"/>
-      <p v-if="!isLoading" class="text-justify leading-loose py-5 text-forest">{{  story }}</p>
+      <p 
+        v-if="!isLoading" 
+        class="text-justify text-base sm:text-lg leading-relaxed sm:leading-loose py-3 sm:py-5 px-2 sm:px-0 text-forest"
+      >
+        {{ story }}
+      </p>
     </div>
   </div>
 </template>
@@ -37,5 +42,19 @@ export default {
 </script>
 
 <style scoped>
+/* Add responsive styles */
+@media (max-width: 640px) {
+  p {
+    font-size: 0.9375rem; /* 15px */
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+}
 
+/* Optional: Add a max-width for very small screens */
+@media (max-width: 360px) {
+  p {
+    font-size: 0.875rem; /* 14px */
+  }
+}
 </style>

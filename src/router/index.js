@@ -4,6 +4,7 @@ const HomeComponent = () => import('../views/Home.vue');
 const ThankYouComponent = () => import('../views/ThankYou.vue');
 const AboutComponent = () => import('../views/About.vue');
 const ContactComponent = () => import('../views/Contact.vue');
+const ManifestoComponent = () => import('../views/Manifesto.vue');
 
 const routes = [
   {
@@ -23,6 +24,12 @@ const routes = [
     name: 'About',
     component: AboutComponent,
     meta: { title: 'About Me' },
+  },
+  {
+    path: '/manifesto',
+    name: 'Manifesto',
+    component: ManifestoComponent,
+    meta: { title: 'Dev Manifesto' },
   },
   {
     path: '/contact',

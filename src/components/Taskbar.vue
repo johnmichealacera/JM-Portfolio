@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between items-center text-xs font-black px-12 sm:px-64 py-8">
+  <div class="flex justify-between items-center text-xs font-black px-12 sm:px-8 md:px-12 lg:px-64 py-8">
     <router-link to="/" class="uppercase text-xl sm:p-6 p-2 mr-2 bg-burnt text-black hover:bg-gold">Home</router-link>
     <div class="hamburger-icon">
       <button
@@ -11,13 +11,36 @@
         <svg-icon :width="40" :height="40" :icon="isOpen ? 'hamburgerOpen' : 'hamburgerClose'" />
       </button>
       <ul :class="{'hidden': !isOpen, 'flex-col': isOpen}" class="mobile-menu">
+        <li class="list-none block mt-2 lg:inline-block bg-burnt hover:bg-gold text-black"><router-link to="/manifesto" class="hover:underline text-xs sm:text-lg sm:p-6 uppercase">Manifesto</router-link></li>
         <li class="list-none block mt-2 lg:inline-block bg-burnt hover:bg-gold text-black"><router-link to="/about" class="hover:underline sm:p-6 uppercase">About Me</router-link></li>
         <li class="list-none block mt-2 lg:inline-block bg-burnt hover:bg-gold text-black"><router-link to="/contact" class="hover:underline sm:p-6 uppercase">Contact</router-link></li>
       </ul>
     </div>
-    <ul class="flex space-x-4 desktop-only">
-      <li class=""><router-link to="/about" class="hover:underline sm:p-6 uppercase bg-burnt hover:bg-gold text-black">About Me</router-link></li>
-      <li class=""><router-link to="/contact" class="hover:underline sm:p-6 uppercase bg-burnt hover:bg-gold text-black">Contact</router-link></li>
+    <ul class="hidden md:flex space-x-2 lg:space-x-4">
+      <li>
+        <router-link 
+          to="/manifesto" 
+          class="hover:underline p-2 sm:p-4 lg:p-6 uppercase bg-burnt hover:bg-gold text-black whitespace-nowrap"
+        >
+          Dev Manifesto
+        </router-link>
+      </li>
+      <li>
+        <router-link 
+          to="/about" 
+          class="hover:underline p-2 sm:p-4 lg:p-6 uppercase bg-burnt hover:bg-gold text-black whitespace-nowrap"
+        >
+          About Me
+        </router-link>
+      </li>
+      <li>
+        <router-link 
+          to="/contact" 
+          class="hover:underline p-2 sm:p-4 lg:p-6 uppercase bg-burnt hover:bg-gold text-black whitespace-nowrap"
+        >
+          Contact
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>
@@ -61,7 +84,7 @@ export default {
   .mobile-menu {
     position: absolute;
     z-index: 9999;
-    padding: 5px;
+    padding: 0px;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
@@ -70,4 +93,18 @@ export default {
     display: block;
   }
 }
+
+/* @media (min-width: 768px) and (max-width: 1023px) {
+  .hidden.md\:flex {
+    display: flex;
+  }
+  
+  .p-2.sm\:p-4 {
+    padding: 0.5rem;
+  }
+} */
+
+/* .whitespace-nowrap {
+  white-space: nowrap;
+} */
 </style>
