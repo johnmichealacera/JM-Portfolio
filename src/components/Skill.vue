@@ -38,7 +38,7 @@ export default {
     const isLoading = ref(false);
     const hoveredItem = ref(null);
     const loadIntroData = async () => {    
-      const uniqueSkillsType = [...new Set(portfolioStore?.skillData.map((item) => item.type))];
+      const uniqueSkillsType = [...new Set(portfolioStore?.skillData?.map((item) => item.type))];
       skillsTypeArr.value = uniqueSkillsType;
       skillsArr.value = portfolioStore?.skillData;
       isLoading.value = false; 

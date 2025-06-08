@@ -29,6 +29,7 @@
     "dotenv-webpack": "^7.0.3",
     "filemanager-webpack-plugin": "^8.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "html2pdf.js": "^0.10.3",
     "mini-css-extract-plugin": "^2.3.0",
     "pinia": "^2.0.30",
     "style-loader": "^3.2.1",

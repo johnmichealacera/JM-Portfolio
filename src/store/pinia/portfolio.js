@@ -11,6 +11,7 @@ export const usePortfolioStore = defineStore({
     userInfo: {},
     userDetails: {},
     softSkills: [],
+    manifestos: [],
   }),
   getters: {
     getLocalStorage(key) {
@@ -39,6 +40,9 @@ export const usePortfolioStore = defineStore({
     softSkillsData(state) {
       return state.softSkills;
     },
+    manifestoData(state) {
+      return state.manifestos;
+    },
   },
   actions: {
     // Graphql api equivalent from rust api
@@ -53,6 +57,11 @@ export const usePortfolioStore = defineStore({
             email
             contactNumber
             website
+          }
+          manifestos {
+            sectionName
+            content
+            order
           }
           personals {
             jobDescription
@@ -77,13 +86,14 @@ export const usePortfolioStore = defineStore({
         const userData = data?.data?.data.users?.[0];
         const personalData = data?.data?.data.personals?.[0];
         const skillsOverviewData = data?.data?.data.skillsOverview;
-
+        const manifestoData = data?.data?.data.manifestos;
         this.introductions = {
           fullName: userData?.fullName,
           jobDescription: personalData?.jobDescription,
           expertise: skillsOverviewData,
         };
         this.userDetails = userData;
+        this.manifestos = manifestoData;
       } catch (error) {
         console.error(error);
       }

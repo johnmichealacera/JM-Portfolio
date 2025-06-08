@@ -11,11 +11,13 @@
         <svg-icon :width="40" :height="40" :icon="isOpen ? 'hamburgerOpen' : 'hamburgerClose'" />
       </button>
       <ul :class="{'hidden': !isOpen, 'flex-col': isOpen}" class="mobile-menu">
+        <li class="list-none block mt-2 lg:inline-block bg-burnt hover:bg-gold text-black"><router-link to="/fire" class="hover:underline sm:p-6 uppercase">Dev Manifesto</router-link></li>
         <li class="list-none block mt-2 lg:inline-block bg-burnt hover:bg-gold text-black"><router-link to="/about" class="hover:underline sm:p-6 uppercase">About Me</router-link></li>
         <li class="list-none block mt-2 lg:inline-block bg-burnt hover:bg-gold text-black"><router-link to="/contact" class="hover:underline sm:p-6 uppercase">Contact</router-link></li>
       </ul>
     </div>
     <ul class="flex space-x-4 desktop-only">
+      <li class=""><router-link to="/manifesto" class="hover:underline sm:p-6 uppercase bg-burnt hover:bg-gold text-black">Dev Manifesto</router-link></li>
       <li class=""><router-link to="/about" class="hover:underline sm:p-6 uppercase bg-burnt hover:bg-gold text-black">About Me</router-link></li>
       <li class=""><router-link to="/contact" class="hover:underline sm:p-6 uppercase bg-burnt hover:bg-gold text-black">Contact</router-link></li>
     </ul>
