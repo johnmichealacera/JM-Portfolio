@@ -2,26 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://johnmichealacera.com/</loc>
-        <lastmod>2025-06-06</lastmod>
+        <lastmod>2025-06-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://johnmichealacera.com/about</loc>
-        <lastmod>2025-06-06</lastmod>
+        <lastmod>2025-06-08</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://johnmichealacera.com/contact</loc>
-        <lastmod>2025-06-06</lastmod>
+        <lastmod>2025-06-08</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://johnmichealacera.com/thank-you</loc>
-        <lastmod>2023-04-10</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.5</priority>
+        <loc>https://johnmichealacera.com/manifesto</loc>
+        <lastmod>2025-06-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>
 </urlset>
