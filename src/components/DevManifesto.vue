@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import html2pdf from 'html2pdf.js';
 import { usePortfolioStore } from '../store/pinia/portfolio';
 import Loader from './commons/Loader.vue';
@@ -75,10 +75,11 @@ export default {
   setup() {
     const manifestoContent = ref(null);
     const isGeneratingPDF = ref(false);
-    const firstSection = ref([]);
-    const secondSection = ref([]);
-    const finalSection = ref([]);
-    const isLoading = ref(false);
+    const portfolioStore = usePortfolioStore();
+    const firstSection = computed(() => portfolioStore.firstSection);
+    const secondSection = computed(() => portfolioStore.secondSection);
+    const finalSection = computed(() => portfolioStore.finalSection);
+    const isLoading = computed(() => portfolioStore.isLoading);
     const getStaticContent = () => {
       return `
         <div class="manifesto-content max-w-4xl mx-auto bg-forest text-cream p-8 sm:p-12 rounded-lg border-2">
@@ -149,16 +150,6 @@ export default {
         isGeneratingPDF.value = false;
       }
     };
-
-    onMounted(async () => {
-      isLoading.value = true;
-      await usePortfolioStore().fetchIntroductionsData();
-      console.log(usePortfolioStore().manifestos);
-      firstSection.value = usePortfolioStore().manifestos?.find(manifesto => manifesto.sectionName === 'firstSection')?.content;
-      secondSection.value = usePortfolioStore().manifestos?.find(manifesto => manifesto.sectionName === 'secondSection')?.content;
-      finalSection.value = usePortfolioStore().manifestos?.find(manifesto => manifesto.sectionName === 'finalSection')?.content;
-      isLoading.value = false;
-    });
 
     return {
       manifestoContent,

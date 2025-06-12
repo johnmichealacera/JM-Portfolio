@@ -12,6 +12,19 @@ export const usePortfolioStore = defineStore({
     userDetails: {},
     softSkills: [],
     manifestos: [],
+    currentWork: null,
+    isLoading: false,
+    isInitialized: false, // Track if data has been loaded
+    lastFetchTime: null,
+    cacheDuration: 5 * 60 * 1000, // 5 minutes
+    error: null,
+    // TODO: Make use and modify this dynamically
+    // loadingStates: {
+    //   all: false,
+    //   user: false,
+    //   projects: false,
+    //   // ... etc
+    // },
   }),
   getters: {
     getLocalStorage(key) {
@@ -19,62 +32,104 @@ export const usePortfolioStore = defineStore({
         return JSON.parse(localStorage.getItem(key));
       return {}
       },
-    introductionData(state) {
-      return state.introductions;
+    shouldRefetch() {
+      if (!this.lastFetchTime) return true;
+      return Date.now() - this.lastFetchTime > this.cacheDuration;
     },
-    socialMediaData(state) {
-      return state.socialMedia;
+    // Get unique skill types
+    getSkillsType() {
+      const types = [...new Set(this.skills.map(skill => skill.type))];
+      return types.filter(type => type); // Remove empty/null values
     },
-    projectData(state) {
-      return state.projects;
+    // Return a function that filters skills by type
+    filterSkillsByType() {
+      return (type) => {
+        return this.skills.filter(skill => skill.type === type).sort((a, b) => b?.mastery - a?.mastery);
+      };
     },
-    skillData(state) {
-      return state.skills;
+    // Generic getter for any manifesto section
+    getManifestoSection() {
+      return (sectionName) => {
+        return this.manifestos?.find(manifesto => manifesto.sectionName === sectionName)?.content || [];
+      };
     },
-    userInfoData(state) {
-      return state.userInfo;
+    // Specific getters for common sections
+    firstSection() {
+      return this.getManifestoSection('firstSection');
     },
-    userDetailsData(state) {
-      return state.userDetails;
+    
+    secondSection() {
+      return this.getManifestoSection('secondSection');
     },
-    softSkillsData(state) {
-      return state.softSkills;
-    },
-    manifestoData(state) {
-      return state.manifestos;
+    
+    finalSection() {
+      return this.getManifestoSection('finalSection');
     },
   },
   actions: {
-    // Graphql api equivalent from rust api
-    async fetchIntroductionsData(forceRefresh = false) {
-      if (this?.introductions?.fullName && !forceRefresh) {
-        return; // Don't refetch if already fetched
+    // Single comprehensive Graphql fetch method
+    async fetchAllData(forceRefresh = false) {
+      if (!forceRefresh && !this.shouldRefetch && this.isInitialized) {
+        return;
       }
-      const query = `
-        {
-          users {
-            fullName
-            email
-            contactNumber
-            website
-          }
-          manifestos {
-            sectionName
-            content
-            order
-          }
-          personals {
-            jobDescription
-          }
-          skillsOverview  {
-            title
-            icon
-          }
-        }
-      `;
-    
+      
+      this.isLoading = true;
+      
       try {
-        const data = await axios.post(
+        const query = `
+          {
+            users {
+              fullName
+              email
+              contactNumber
+              website
+            }
+            manifestos {
+              sectionName
+              content
+              order
+            }
+            personals {
+              backgroundUrl
+              jobDescription
+              whyDoThis
+              lifeStory
+            }
+            skillsOverview {
+              title
+              icon
+            }
+            socialMedia {
+              socialMediaType
+              url
+            }
+            projects {
+              backgroundImage
+              description
+              title
+              url
+            }
+            skills {
+              name
+              mastery
+              skillType
+            }
+            softSkills {
+              name
+              description
+              icon
+            }
+            currentWork {
+              title
+              company
+              companyWebsite
+              description
+              tags
+            }
+          }
+        `;
+
+        const response = await axios.post(
           `${process.env.VUE_APP_PORTFOLIO_BACKEND}/graphql`,
           query,
           {
@@ -83,272 +138,100 @@ export const usePortfolioStore = defineStore({
             },
           }
         );
-        const userData = data?.data?.data.users?.[0];
-        const personalData = data?.data?.data.personals?.[0];
-        const skillsOverviewData = data?.data?.data.skillsOverview;
-        const manifestoData = data?.data?.data.manifestos;
-        this.introductions = {
-          fullName: userData?.fullName,
-          jobDescription: personalData?.jobDescription,
-          expertise: skillsOverviewData,
-        };
-        this.userDetails = userData;
-        this.manifestos = manifestoData;
+
+        const data = response.data.data;
+        
+        // Process all data at once
+        this.processUserData(data);
+        this.processManifestoData(data);
+        this.processPersonalData(data);
+        this.processSkillsData(data);
+        this.processSocialMediaData(data);
+        this.processProjectsData(data);
+        this.processSoftSkillsData(data);
+        this.processCurrentWorkData(data);
+        
+        this.isInitialized = true;
+        
+        this.lastFetchTime = Date.now();
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching all data:', error);
+        throw error;
+      } finally {
+        this.isLoading = false;
       }
     },
-    async fetchSocialMediaData(forceRefresh = false) {
-      if (this?.socialMedia?.length > 0 && !forceRefresh) {
-        return; // Don't refetch if already fetched
-      }
-      const query = `
-        {
-          socialMedia {
-            socialMediaType
-            url
-          }
-        }
-      `;
-    
-      try {
-        const data = await axios.post(
-          `${process.env.VUE_APP_PORTFOLIO_BACKEND}/graphql`,
-          query,
-          {
-            headers: {
-              'Content-Type': 'application/graphql',
-            },
-          }
-        );
-        const rawSocials = data?.data?.data.socialMedia?.map((item) => ({
-          url: item?.url,
-          type: item?.socialMediaType,
-        }));
-        this.socialMedia = rawSocials;
-      } catch (error) {
-        console.error(error);
-      }
+
+    // Helper methods to process data
+    processUserData(data) {
+      const userData = data.users?.[0];
+      const personalData = data.personals?.[0];
+      const skillsOverviewData = data.skillsOverview;
+      
+      this.introductions = {
+        fullName: userData?.fullName,
+        jobDescription: personalData?.jobDescription,
+        expertise: skillsOverviewData,
+      };
+      this.userDetails = userData;
     },
-    async fetchUserInfo(forceRefresh = false) {
-      if (this?.userInfo?.lifeStory && !forceRefresh) {
-        return; // Don't refetch if already fetched
-      }
-      const query = `
-        {
-          personals {
-            backgroundUrl
-            jobDescription
-            whyDoThis
-            lifeStory
-          }
-        }
-      `;
-    
-      try {
-        const data = await axios.post(
-          `${process.env.VUE_APP_PORTFOLIO_BACKEND}/graphql`,
-          query,
-          {
-            headers: {
-              'Content-Type': 'application/graphql',
-            },
-          }
-        );
-        const personalData = data?.data?.data?.personals?.[0];
-        const userInfo = {
-          lifeStory: personalData?.lifeStory,
-          bgUrl: personalData?.backgroundUrl,
-          userWhy: personalData?.whyDoThis,
-        }
-        this.userInfo = userInfo;
-      } catch (error) {
-        console.error(error);
-      }
+
+    processManifestoData(data) {
+      this.manifestos = data.manifestos || [];
     },
-    async fetchProjectsData(forceRefresh = false) {
-      if (this?.projects?.length > 0 && !forceRefresh) {
-        return; // Don't refetch if already fetched
-      }
-      const query = `
-        {
-          projects {
-            backgroundImage
-            description
-            title
-            url
-          }
-        }
-      `;
-    
-      try {
-        const data = await axios.post(
-          `${process.env.VUE_APP_PORTFOLIO_BACKEND}/graphql`,
-          query,
-          {
-            headers: {
-              'Content-Type': 'application/graphql',
-            },
-          }
-        );
-        const rawProjectsData = data?.data?.data?.projects;
-        const projectsdata = rawProjectsData?.map((project) => ({
-          imageLink: project?.backgroundImage,
-          title: project?.title,
-          description: project?.description,
-          url: project?.url,
-        }))
-        this.projects = projectsdata;
-      } catch (error) {
-        console.error(error);
-      }
+
+    processPersonalData(data) {
+      const personalData = data.personals?.[0];
+      this.userInfo = {
+        lifeStory: personalData?.lifeStory,
+        bgUrl: personalData?.backgroundUrl,
+        userWhy: personalData?.whyDoThis,
+      };
     },
-    async fetchSkillsData(forceRefresh = false) {
-      if (this?.skills?.length > 0 && !forceRefresh) {
-        return; // Don't refetch if already fetched
-      }
-      const query = `
-        {
-          skills {
-            name
-            mastery
-            skillType
-          }
-        }
-      `;
-    
-      try {
-        const data = await axios.post(
-          `${process.env.VUE_APP_PORTFOLIO_BACKEND}/graphql`,
-          query,
-          {
-            headers: {
-              'Content-Type': 'application/graphql',
-            },
-          }
-        );
-        const rawSkillsData = data?.data?.data?.skills;
-        const skillsdata = rawSkillsData?.map((skill) => ({
-          ...skill,
-          type: skill?.skillType,
-        }))
-        this.skills = skillsdata;
-      } catch (error) {
-        console.error(error);
-      }
+
+    processSkillsData(data) {
+      const rawSkillsData = data.skills || [];
+      this.skills = rawSkillsData.map(skill => ({
+        ...skill,
+        type: skill.skillType,
+      }));
     },
-    async fetchSoftSkills(forceRefresh = false) {
-      if (this?.softSkills?.length > 0 && !forceRefresh) {
-        return; // Don't refetch if already fetched
-      }
-      const query = `
-        {
-          softSkills {
-            name
-            description
-            icon
-          }
-        }
-      `;
-    
-      try {
-        const data = await axios.post(
-          `${process.env.VUE_APP_PORTFOLIO_BACKEND}/graphql`,
-          query,
-          {
-            headers: {
-              'Content-Type': 'application/graphql',
-            },
-          }
-        );
-        const rawSoftSkillsData = data?.data?.data?.softSkills;
-        const softSkillsData = rawSoftSkillsData?.map((softSkill) => ({
-          icon: softSkill?.icon,
-          name: softSkill?.name,
-          shortDescription: softSkill?.description,
-        }));
-        this.softSkills = softSkillsData;
-      } catch (error) {
-        console.error(error);
-      }
+
+    processSocialMediaData(data) {
+      const rawSocials = data.socialMedia || [];
+      this.socialMedia = rawSocials.map(item => ({
+        url: item.url,
+        type: item.socialMediaType,
+      }));
     },
-    // Rest api equivalent from express api
-    // async fetchIntroductionsData(userId) {
-    //   if (typeof userId === 'undefined') {
-    //     return;
-    //   }
-    //   try {
-    //     const introductions = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/introductions/${userId}`,);
-    //     this.introductions = introductions?.data;
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // },
-    // async fetchSocialMediaData(userId) {
-    //   if (typeof userId === 'undefined') {
-    //     return;
-    //   }
-    //   try {
-    //     const socialMedia = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/social-media/${userId}`);
-    //     this.socialMedia = socialMedia?.data;
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // },
-    // async fetchProjectsData(userId) {
-    //   if (typeof userId === 'undefined') {
-    //     return;
-    //   }
-    //   try {
-    //     const projects = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/projects/${userId}`);
-    //     this.projects = projects?.data;
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // },
-    // async fetchSkillsData(userId) {
-    //   if (typeof userId === 'undefined') {
-    //     return;
-    //   }
-    //   try {
-    //     const skills = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/skills/${userId}`);
-    //     this.skills = skills?.data;
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // },
-    // async fetchUserInfo(userId) {
-    //   if (typeof userId === 'undefined') {
-    //     return;
-    //   }
-    //   try {
-    //     const userInfo = await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/user-info/${userId}`);
-    //     this.userInfo = userInfo?.data;
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // },
-    // async fetchUserDetails(userId) {
-    //   if (typeof userId === 'undefined') {
-    //     return;
-    //   }
-    //   try {
-    //     const userDetails= await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/user-details/${userId}`);
-    //     this.userDetails = userDetails?.data;
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // },
-    // async fetchSoftSkills(userId) {
-    //   if (typeof userId === 'undefined') {
-    //     return;
-    //   }
-    //   try {
-    //     const softSkills= await axios.get(`${process.env.VUE_APP_PORTFOLIO_BACKEND}/soft-skills/${userId}`);
-    //     this.softSkills = softSkills?.data;
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
+
+    processProjectsData(data) {
+      const rawProjectsData = data.projects || [];
+      this.projects = rawProjectsData.map(project => ({
+        imageLink: project.backgroundImage,
+        title: project.title,
+        description: project.description,
+        url: project.url,
+      }));
+    },
+
+    processSoftSkillsData(data) {
+      const rawSoftSkillsData = data.softSkills || [];
+      this.softSkills = rawSoftSkillsData.map(softSkill => ({
+        icon: softSkill.icon,
+        name: softSkill.name,
+        shortDescription: softSkill.description,
+      }));
+    },
+
+    processCurrentWorkData(data) {
+      this.currentWork = data.currentWork?.[0] || null;
+    },
+
+    // Individual fetch methods for specific updates (optional)
+    // async refreshSpecificData(dataType) {
+    //   // Only fetch specific data if needed for updates
+    //   // This can be used for real-time updates or specific data refreshes
     // },
   },
 });

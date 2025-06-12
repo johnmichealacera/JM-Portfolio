@@ -39,7 +39,7 @@
 <script>
 import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
-import { onMounted, ref, nextTick } from '@vue/runtime-core';
+import { onMounted, ref, nextTick, computed } from '@vue/runtime-core';
 import { usePortfolioStore } from '../store/pinia/portfolio';
 export default {
   name: "Introduction",
@@ -64,30 +64,19 @@ export default {
         });
       });
     const portfolioStore = usePortfolioStore();
-    const introArrData = ref([]);
-    const fullName = ref('');
-    const jobDescription = ref('');
-    const bgImage = ref('');
-    const isLoading = ref(false);
     const isHover = ref(false);
+    // Use computed properties that react to store changes
+    const introArrData = computed(() => portfolioStore?.introductions?.expertise);
+    const fullName = computed(() => portfolioStore?.introductions?.fullName);
+    const jobDescription = computed(() => portfolioStore?.introductions?.jobDescription);
+    const bgImage = computed(() => portfolioStore?.userInfoData?.bgUrl);
+    const isLoading = computed(() => portfolioStore?.isLoading);
     const onMouseOver = () => {
       isHover.value = true;
     };
     const onMouseOut = () => {
       isHover.value = false;
     };
-
-
-    onMounted(async () => {
-      isLoading.value = true;
-      await portfolioStore.fetchIntroductionsData(process.env.VUE_APP_USER_ID);
-      await portfolioStore.fetchUserInfo(process.env.VUE_APP_USER_ID);
-      introArrData.value = portfolioStore.introductionData?.expertise;
-      fullName.value = portfolioStore.introductionData?.fullName;
-      jobDescription.value = portfolioStore.introductionData?.jobDescription;
-      isLoading.value = false;
-      bgImage.value = portfolioStore.userInfoData?.bgUrl;
-    });
 
     return {
       introArrData,

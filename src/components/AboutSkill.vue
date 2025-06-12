@@ -23,7 +23,7 @@
 import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
 import { usePortfolioStore } from '../store/pinia/portfolio';
-import { onMounted, ref } from '@vue/runtime-core';
+import { ref, computed } from '@vue/runtime-core';
 
 export default {
   name: "AboutSkill",
@@ -33,8 +33,8 @@ export default {
   },
   setup() {
     const portfolioStore = usePortfolioStore();
-    const softSkillsArr = ref([]);
-    const isLoading = ref(false);
+    const softSkillsArr = computed(() => portfolioStore?.softSkills);
+    const isLoading = computed(() => portfolioStore?.isLoading);
     const isHover = ref(false);
     const onMouseOver = () => {
       isHover.value = true;
@@ -42,13 +42,6 @@ export default {
     const onMouseOut = () => {
       isHover.value = false;
     };
-
-    onMounted(async () => {
-      isLoading.value = true;
-      await portfolioStore.fetchSoftSkills(process.env.VUE_APP_USER_ID);
-      softSkillsArr.value = portfolioStore.softSkillsData;
-      isLoading.value = false;
-    })
 
     return {
       softSkillsArr,

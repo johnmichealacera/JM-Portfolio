@@ -16,6 +16,8 @@ import MyWhy from '../components/MyWhy.vue';
 import AboutSkill from '../components/AboutSkill.vue';
 import Footer from '../components/Footer.vue';
 import { useHead } from '@vueuse/head';
+import { usePortfolioStore } from '../store/pinia/portfolio';
+import { onMounted } from 'vue';
 
 export default {
   name: 'About',
@@ -27,6 +29,14 @@ export default {
     Footer,
   },
   setup() {
+    const portfolioStore = usePortfolioStore();
+
+    onMounted(() => {
+      // Only fetch if data isn't already loaded
+      if (!portfolioStore.isInitialized) {
+        portfolioStore.fetchAllData();
+      }
+    })
     // Adding canonical link
     useHead({
       link: [

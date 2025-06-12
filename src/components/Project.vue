@@ -21,7 +21,7 @@
 import AppModal from './AppModal.vue';
 import Loader from './commons/Loader.vue';
 import { usePortfolioStore } from '../store/pinia/portfolio';
-import { onMounted, ref } from '@vue/runtime-core';
+import { computed } from '@vue/runtime-core';
 
 export default {
   name: "Project",
@@ -31,15 +31,8 @@ export default {
   },
   setup() {
     const portfolioStore = usePortfolioStore();
-    const projectArr = ref([]);
-    const isLoading = ref(false);
-
-    onMounted(async () => {
-      isLoading.value = true;
-      await portfolioStore.fetchProjectsData(process.env.VUE_APP_USER_ID);
-      projectArr.value = portfolioStore.projectData;
-      isLoading.value = false;
-    })
+    const projectArr = computed(() => portfolioStore?.projects);
+    const isLoading = computed(() => portfolioStore?.isLoading);
 
     return {
       projectArr,

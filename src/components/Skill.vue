@@ -8,10 +8,29 @@
         <div class="w-full m-4">
           <h3 class="font-semibold capitalize text-cream">{{ type }}</h3>
           <ul class="font-black text-right" v-for="(item, index) in filterSkillsByType(type)" :key="index">
-            <li data-aos="flip-up" data-aos-delay="400" data-aos-duration="1400" class="capitalize sm:text-base text-xs text-cream" style="position:relative;" @mouseover="hoveredItem = item" @mouseout="hoveredItem = null" @click="handleClick(item)" @touchstart="handleClick(item)">{{ item?.name }}
-              <span v-if="hoveredItem === item" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:p-2 rounded shadow popup text-xs sm:text-xs bg-cream text-red">{{ item.mastery }}%</span>
+            <li 
+              data-aos="flip-up" 
+              data-aos-delay="400" 
+              data-aos-duration="1400" 
+              class="capitalize sm:text-base text-xs text-cream" 
+              style="position:relative;" 
+              @mouseover="hoveredItem = item" 
+              @mouseout="hoveredItem = null" 
+              @click="handleClick(item)" 
+              @touchstart="handleClick(item)"
+            >
+              {{ item?.name }}
+              <span 
+                v-if="hoveredItem === item" 
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:p-2 rounded shadow popup text-xs sm:text-xs bg-cream text-red"
+              >
+                {{ item.mastery }}%
+              </span>
               <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-pink-200">
-                <div :style="`width:${item?.mastery}%`" class="shadow-none flex flex-col text-center whitespace-nowrap justify-center bg-burnt text-white"></div>
+                <div 
+                  :style="`width:${item?.mastery}%`" 
+                  class="shadow-none flex flex-col text-center whitespace-nowrap justify-center bg-burnt text-white"
+                ></div>
               </div>
             </li>
           </ul>
@@ -24,7 +43,7 @@
 
 <script>
 import Loader from './commons/Loader.vue';
-import { onMounted, ref } from '@vue/runtime-core';
+import { ref, computed } from '@vue/runtime-core';
 import { usePortfolioStore } from '../store/pinia/portfolio';
 export default {
   name: "Skill.vue",
@@ -33,31 +52,20 @@ export default {
   },
   setup() {
     const portfolioStore = usePortfolioStore();
-    const skillsArr = ref([]);
-    const skillsTypeArr = ref([]);
-    const isLoading = ref(false);
     const hoveredItem = ref(null);
-    const loadIntroData = async () => {    
-      const uniqueSkillsType = [...new Set(portfolioStore?.skillData?.map((item) => item.type))];
-      skillsTypeArr.value = uniqueSkillsType;
-      skillsArr.value = portfolioStore?.skillData;
-      isLoading.value = false; 
-    };
-    const filterSkillsByType = (type) => {
-      return skillsArr.value.filter(item => item.type === type);
-    }
+    const skillsTypeArr = computed(() => portfolioStore.getSkillsType);
+    const isLoading = computed(() => portfolioStore.isLoading);
+    // Create a computed function that returns the filter function
+    const filterSkillsByType = computed(() => {
+      return (type) => portfolioStore.filterSkillsByType(type);
+    });
+    
     const handleClick = (item) => {
       setTimeout(() => {
         hoveredItem.value = null;
       }, 2000);
       hoveredItem.value = item;
     }
-
-    onMounted(async () => {
-      isLoading.value = true;  
-      await portfolioStore.fetchSkillsData(process.env.VUE_APP_USER_ID);
-      await loadIntroData();
-    });
 
     return {
       skillsTypeArr,

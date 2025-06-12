@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { onMounted, ref } from '@vue/runtime-core';
+import { computed } from '@vue/runtime-core';
 import SvgIcon from './commons/SvgIcon.vue';
 import { usePortfolioStore } from '../store/pinia/portfolio';
 export default {
@@ -42,21 +42,14 @@ export default {
   },
   setup() {
     const portfolioStore = usePortfolioStore();
-    const socialMediaArrData = ref([]);
-    const isLoading = ref(false);
+    const socialMediaArrData = computed(() => portfolioStore?.socialMedia);
+    const isLoading = computed(() => portfolioStore?.isLoading);
     const scrollToTop = () => {
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       });
     }
-
-    onMounted(async () => {
-      isLoading.value = true; 
-      await portfolioStore.fetchSocialMediaData(process.env.VUE_APP_USER_ID);
-      socialMediaArrData.value = portfolioStore.socialMediaData;
-      isLoading.value = false;
-    })
 
     return {
       socialMediaArrData,
