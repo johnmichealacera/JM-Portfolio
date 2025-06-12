@@ -38,10 +38,14 @@ export default {
   setup() {
     const portfolioStore = usePortfolioStore();
 
-    onMounted(() => {
+    onMounted(async () => {
       // Only fetch if data isn't already loaded
       if (!portfolioStore.isInitialized) {
-        portfolioStore.fetchAllData();
+        try {
+          await portfolioStore.fetchAllData();
+        } catch (err) {
+          console.error('Failed to load portfolio data', err);
+        }
       }
     })
     // Adding canonical link

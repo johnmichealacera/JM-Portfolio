@@ -43,7 +43,7 @@
 
 <script>
 import Loader from './commons/Loader.vue';
-import { ref, computed } from '@vue/runtime-core';
+import { ref, computed } from 'vue';
 import { usePortfolioStore } from '../store/pinia/portfolio';
 export default {
   name: "Skill.vue",

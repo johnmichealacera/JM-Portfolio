@@ -4,7 +4,7 @@ import { defineStore } from 'pinia';
 export const usePortfolioStore = defineStore({
   id: 'portfolio',
   state: () => ({
-    introductions: [],
+    introductions: { fullName: '', jobDescription: '', expertise: [] },
     socialMedia: [],
     projects: [],
     skills: [],

@@ -39,7 +39,7 @@
 <script>
 import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
-import { onMounted, ref, nextTick, computed } from '@vue/runtime-core';
+import { onMounted, ref, nextTick, computed, onUnmounted } from 'vue';
 import { usePortfolioStore } from '../store/pinia/portfolio';
 export default {
   name: "Introduction",
@@ -49,20 +49,22 @@ export default {
   },
   setup() {
       const imageHeight = ref(null);
-      const leftContent = ref(null);
+    const leftContent = ref(null);
 
-      const setHeight = () => {
-        if (leftContent.value) {
-          imageHeight.value = leftContent.value.offsetHeight;
-        }
-      };
-
-      onMounted(() => {
-        nextTick(() => {
-          setHeight();
-          window.addEventListener('resize', setHeight);
-        });
+    const setHeight = () => {
+      if (leftContent.value) {
+        imageHeight.value = leftContent.value.offsetHeight;
+      }
+    };
+    onMounted(() => {
+      nextTick(() => {
+        setHeight();
+        window.addEventListener('resize', setHeight);
       });
+    });
+    onUnmounted(() => {
+      window.removeEventListener('resize', setHeight);
+    });
     const portfolioStore = usePortfolioStore();
     const isHover = ref(false);
     // Use computed properties that react to store changes

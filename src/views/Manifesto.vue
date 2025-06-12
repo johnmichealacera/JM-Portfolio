@@ -16,7 +16,7 @@ import { usePortfolioStore } from '../store/pinia/portfolio';
 import { onMounted } from 'vue';
 
 export default {
-  name: 'Contact',
+  name: 'Manifesto',
   components: {
     Taskbar,
     DevManifesto,

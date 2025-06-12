@@ -23,7 +23,7 @@
 import SvgIcon from './commons/SvgIcon.vue';
 import Loader from './commons/Loader.vue';
 import { usePortfolioStore } from '../store/pinia/portfolio';
-import { ref, computed } from '@vue/runtime-core';
+import { ref, computed } from 'vue';
 
 export default {
   name: "AboutSkill",

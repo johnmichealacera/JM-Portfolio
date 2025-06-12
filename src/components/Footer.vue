@@ -5,10 +5,8 @@
       Whether you're planning a new product, need an extra hand on your dev team, or just want to collaborate — I'd love to hear from you.
     </p>
     <div class="flex justify-center mb-4">
-      <button class="flex outline-none bg-burnt hover:bg-gold text-black" @click="scrollToTop">
-        <router-link to="/contact" class="px-1">🚀 Let's build something great together</router-link>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M24 12l-9-8v6h-15v4h15v6z"/></svg>
-      </button>
+      <router-link @click="scrollToTop" to="/contact" class="px-1 flex outline-none bg-burnt hover:bg-gold text-black">🚀 Let's build something great together</router-link>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M24 12l-9-8v6h-15v4h15v6z"/></svg>
     </div>
     <div class="flex justify-center">
       <div
@@ -32,7 +30,7 @@
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core';
+import { computed } from 'vue';
 import SvgIcon from './commons/SvgIcon.vue';
 import { usePortfolioStore } from '../store/pinia/portfolio';
 export default {

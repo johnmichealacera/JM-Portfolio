@@ -21,7 +21,7 @@
 import AppModal from './AppModal.vue';
 import Loader from './commons/Loader.vue';
 import { usePortfolioStore } from '../store/pinia/portfolio';
-import { computed } from '@vue/runtime-core';
+import { computed } from 'vue';
 
 export default {
   name: "Project",

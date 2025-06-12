@@ -13,7 +13,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
             </svg>
-            <button>Download Manifesto</button>
+            <span>Download Manifesto</span>
           </div>
         </span>
       </button>
@@ -107,12 +107,14 @@ export default {
         </div>
       `;
     };
+    // TODO: Transfer it as a helper function
     const downloadPDF = async () => {
       isGeneratingPDF.value = true;
+      let pdfContent = null;
 
       try {
         // Create a new div for PDF content
-        const pdfContent = document.createElement('div');
+        pdfContent = document.createElement('div');
         pdfContent.className = 'pdf-content';
         
         // Set the static content
@@ -141,12 +143,14 @@ export default {
         // Generate PDF
         await html2pdf().set(options).from(pdfContent).save();
 
-        // Clean up
-        document.body.removeChild(pdfContent);
       } catch (error) {
         console.error('Error generating PDF:', error);
         alert('There was an error generating the PDF. Please try again.');
       } finally {
+        // ✅ ALWAYS clean up, regardless of success or failure
+        if (pdfContent && document.body.contains(pdfContent)) {
+          document.body.removeChild(pdfContent);
+        }
         isGeneratingPDF.value = false;
       }
     };

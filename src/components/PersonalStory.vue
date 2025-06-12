@@ -16,7 +16,7 @@
 
 <script>
 import { usePortfolioStore } from '../store/pinia/portfolio';
-import { computed } from '@vue/runtime-core';
+import { computed } from 'vue';
 import Loader from './commons/Loader.vue';
 export default {
   name: "PersonalStory",

@@ -35,8 +35,7 @@ import { onMounted } from 'vue';
 
 const portfolioStore = usePortfolioStore();
 
-onMounted(async () => {
-  // Start loading data immediately when app starts
+onMounted(() => {
   portfolioStore.fetchAllData();
 });
 </script>
