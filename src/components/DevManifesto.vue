@@ -13,7 +13,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
             </svg>
-            <button>Download Manifesto</button>
+            <span>Download Manifesto</span>
           </div>
         </span>
       </button>
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import html2pdf from 'html2pdf.js';
 import { usePortfolioStore } from '../store/pinia/portfolio';
 import Loader from './commons/Loader.vue';
@@ -75,10 +75,11 @@ export default {
   setup() {
     const manifestoContent = ref(null);
     const isGeneratingPDF = ref(false);
-    const firstSection = ref([]);
-    const secondSection = ref([]);
-    const finalSection = ref([]);
-    const isLoading = ref(false);
+    const portfolioStore = usePortfolioStore();
+    const firstSection = computed(() => portfolioStore.firstSection);
+    const secondSection = computed(() => portfolioStore.secondSection);
+    const finalSection = computed(() => portfolioStore.finalSection);
+    const isLoading = computed(() => portfolioStore.isLoading);
     const getStaticContent = () => {
       return `
         <div class="manifesto-content max-w-4xl mx-auto bg-forest text-cream p-8 sm:p-12 rounded-lg border-2">
@@ -106,12 +107,14 @@ export default {
         </div>
       `;
     };
+    // TODO: Transfer it as a helper function
     const downloadPDF = async () => {
       isGeneratingPDF.value = true;
+      let pdfContent = null;
 
       try {
         // Create a new div for PDF content
-        const pdfContent = document.createElement('div');
+        pdfContent = document.createElement('div');
         pdfContent.className = 'pdf-content';
         
         // Set the static content
@@ -140,25 +143,17 @@ export default {
         // Generate PDF
         await html2pdf().set(options).from(pdfContent).save();
 
-        // Clean up
-        document.body.removeChild(pdfContent);
       } catch (error) {
         console.error('Error generating PDF:', error);
         alert('There was an error generating the PDF. Please try again.');
       } finally {
+        // ✅ ALWAYS clean up, regardless of success or failure
+        if (pdfContent && document.body.contains(pdfContent)) {
+          document.body.removeChild(pdfContent);
+        }
         isGeneratingPDF.value = false;
       }
     };
-
-    onMounted(async () => {
-      isLoading.value = true;
-      await usePortfolioStore().fetchIntroductionsData();
-      console.log(usePortfolioStore().manifestos);
-      firstSection.value = usePortfolioStore().manifestos?.find(manifesto => manifesto.sectionName === 'firstSection')?.content;
-      secondSection.value = usePortfolioStore().manifestos?.find(manifesto => manifesto.sectionName === 'secondSection')?.content;
-      finalSection.value = usePortfolioStore().manifestos?.find(manifesto => manifesto.sectionName === 'finalSection')?.content;
-      isLoading.value = false;
-    });
 
     return {
       manifestoContent,

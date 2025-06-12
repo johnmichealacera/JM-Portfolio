@@ -17,7 +17,7 @@
 
 <script>
 import { usePortfolioStore } from '../store/pinia/portfolio';
-import { onMounted, ref } from '@vue/runtime-core';
+import { computed } from 'vue';
 import Loader from './commons/Loader.vue';
 export default {
   name: 'AboutMe',
@@ -26,14 +26,9 @@ export default {
   },
   setup() {
     const portfolioStore = usePortfolioStore();
-    const isLoading = ref(false);
-    const story = ref('');
-    onMounted(async () => {
-      isLoading.value = true;
-      await portfolioStore.fetchUserInfo(process.env.VUE_APP_USER_ID);
-      story.value = portfolioStore.userInfoData?.lifeStory;
-      isLoading.value = false;
-    })
+    const story = computed(() => portfolioStore?.userInfo?.lifeStory);
+    const isLoading = computed(() => portfolioStore?.isLoading);
+
     return {
       isLoading,
       story,

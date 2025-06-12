@@ -93,18 +93,4 @@ export default {
     display: block;
   }
 }
-
-/* @media (min-width: 768px) and (max-width: 1023px) {
-  .hidden.md\:flex {
-    display: flex;
-  }
-  
-  .p-2.sm\:p-4 {
-    padding: 0.5rem;
-  }
-} */
-
-/* .whitespace-nowrap {
-  white-space: nowrap;
-} */
 </style>

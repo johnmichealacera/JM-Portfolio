@@ -28,3 +28,14 @@ html {
   scroll-behavior: smooth;
 }
 </style>
+
+<script setup>
+import { usePortfolioStore } from './store/pinia/portfolio';
+import { onMounted } from 'vue';
+
+const portfolioStore = usePortfolioStore();
+
+onMounted(() => {
+  portfolioStore.fetchAllData();
+});
+</script>
