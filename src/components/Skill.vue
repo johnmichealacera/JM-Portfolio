@@ -1,52 +1,137 @@
 <template>
-  <div data-aos="fade-up" class="border-2 p-2 sm:p-10 bg-forest">
-    <h2 class="text-center text-xl sm:text-2xl text-cream font-bold">🛠️ My Skills</h2>
-    <hr class="sm:m-2">
-    <loader :isLoading="isLoading"/>
-    <div v-if="!isLoading" class="grid grid-cols-3 gap-4">
-      <div class="flex justify-evenly text-xs sm:text-base" v-for="(type, index) in skillsTypeArr" :key="index">
-        <div class="w-full m-4">
-          <h3 class="font-semibold capitalize text-cream">{{ type }}</h3>
-          <ul class="font-black text-right" v-for="(item, index) in filterSkillsByType(type)" :key="index">
-            <li 
-              data-aos="flip-up" 
-              data-aos-delay="400" 
-              data-aos-duration="1400" 
-              class="capitalize sm:text-base text-xs text-cream" 
-              style="position:relative;" 
-              @mouseover="hoveredItem = item" 
-              @mouseout="hoveredItem = null" 
-              @click="handleClick(item)" 
-              @touchstart="handleClick(item)"
+  <section class="relative py-16 lg:py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, #60a5fa 1px, transparent 0); background-size: 25px 25px;"></div>
+    </div>
+    
+    <!-- Decorative Elements -->
+    <div class="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-tl from-purple-500/20 to-blue-500/20 rounded-full blur-2xl"></div>
+    
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header Section -->
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl mb-6 shadow-lg">
+          <span class="text-2xl">🛠️</span>
+        </div>
+        <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">
+          My Skills & Expertise
+        </h2>
+        <p class="text-xl text-blue-300 max-w-2xl mx-auto">
+          A comprehensive overview of my technical skills and proficiency levels
+        </p>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full mt-6"></div>
+      </div>
+
+      <!-- Skills Grid -->
+      <loader :isLoading="isLoading" />
+      
+      <div v-if="!isLoading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div 
+          v-for="(type, index) in skillsTypeArr" 
+          :key="index"
+          class="bg-white/10 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105"
+        >
+          <!-- Category Header -->
+          <div class="bg-gradient-to-r from-blue-500/20 to-purple-500/20 px-6 py-4 border-b border-white/10">
+            <h3 class="text-xl font-bold text-white capitalize">{{ type }}</h3>
+          </div>
+          
+          <!-- Skills List -->
+          <div class="p-6 space-y-6">
+            <div 
+              v-for="(item, skillIndex) in filterSkillsByType(type)" 
+              :key="skillIndex"
+              class="group"
+              data-aos="fade-up"
+              :data-aos-delay="skillIndex * 100"
             >
-              {{ item?.name }}
-              <span 
-                v-if="hoveredItem === item" 
-                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 sm:p-2 rounded shadow popup text-xs sm:text-xs bg-cream text-red"
-              >
-                {{ item.mastery }}%
-              </span>
-              <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-pink-200">
+              <!-- Skill Header -->
+              <div class="flex items-center justify-between mb-3">
+                <h4 class="text-white font-semibold capitalize group-hover:text-blue-300 transition-colors duration-300">
+                  {{ item?.name }}
+                </h4>
+                <div class="relative">
+                  <span 
+                    class="text-blue-300 font-bold text-sm"
+                    @mouseover="hoveredItem = item" 
+                    @mouseout="hoveredItem = null" 
+                    @click="handleClick(item)" 
+                    @touchstart="handleClick(item)"
+                  >
+                    {{ item?.mastery }}%
+                  </span>
+                  
+                  <!-- Tooltip -->
+                  <div 
+                    v-if="hoveredItem === item" 
+                    class="absolute bottom-full right-0 mb-2 px-3 py-2 bg-white text-gray-900 text-xs rounded-lg shadow-lg z-10 whitespace-nowrap"
+                  >
+                    <div class="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white"></div>
+                    Mastery Level: {{ item?.mastery }}%
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Progress Bar -->
+              <div class="relative">
+                <div class="w-full h-3 bg-white/20 rounded-full overflow-hidden">
+                  <div 
+                    class="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-1000 ease-out"
+                    :style="{ width: `${item?.mastery}%` }"
+                  ></div>
+                </div>
+                
+                <!-- Animated Glow Effect -->
                 <div 
-                  :style="`width:${item?.mastery}%`" 
-                  class="shadow-none flex flex-col text-center whitespace-nowrap justify-center bg-burnt text-white"
+                  class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-sm"
+                  :style="{ width: `${item?.mastery}%` }"
                 ></div>
               </div>
-            </li>
-          </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills Summary -->
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center shadow-lg border border-white/20">
+          <div class="text-3xl font-bold text-blue-400 mb-2">
+            {{ getTotalSkills() }}
+          </div>
+          <div class="text-white/80 font-medium">Total Skills</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center shadow-lg border border-white/20">
+          <div class="text-3xl font-bold text-green-400 mb-2">
+            {{ getAverageMastery() }}%
+          </div>
+          <div class="text-white/80 font-medium">Average Mastery</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center shadow-lg border border-white/20">
+          <div class="text-3xl font-bold text-purple-400 mb-2">
+            {{ getExpertSkills() }}
+          </div>
+          <div class="text-white/80 font-medium">Expert Level</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center shadow-lg border border-white/20">
+          <div class="text-3xl font-bold text-yellow-400 mb-2">
+            {{ getLearningSkills() }}
+          </div>
+          <div class="text-white/80 font-medium">Learning</div>
         </div>
       </div>
     </div>
-    
-  </div>
+  </section>
 </template>
 
 <script>
 import Loader from './commons/Loader.vue';
 import { ref, computed } from 'vue';
 import { usePortfolioStore } from '../store/pinia/portfolio';
+
 export default {
-  name: "Skill.vue",
+  name: "Skill",
   components: {
     Loader,
   },
@@ -55,6 +140,7 @@ export default {
     const hoveredItem = ref(null);
     const skillsTypeArr = computed(() => portfolioStore.getSkillsType);
     const isLoading = computed(() => portfolioStore.isLoading);
+    
     // Create a computed function that returns the filter function
     const filterSkillsByType = computed(() => {
       return (type) => portfolioStore.filterSkillsByType(type);
@@ -65,7 +151,26 @@ export default {
         hoveredItem.value = null;
       }, 2000);
       hoveredItem.value = item;
-    }
+    };
+
+    // Helper functions for statistics
+    const getTotalSkills = () => {
+      return portfolioStore.skills?.length || 0;
+    };
+
+    const getAverageMastery = () => {
+      if (!portfolioStore.skills?.length) return 0;
+      const total = portfolioStore.skills.reduce((sum, skill) => sum + skill.mastery, 0);
+      return Math.round(total / portfolioStore.skills.length);
+    };
+
+    const getExpertSkills = () => {
+      return portfolioStore.skills?.filter(skill => skill.mastery >= 90).length || 0;
+    };
+
+    const getLearningSkills = () => {
+      return portfolioStore.skills?.filter(skill => skill.mastery < 70).length || 0;
+    };
 
     return {
       skillsTypeArr,
@@ -73,16 +178,81 @@ export default {
       isLoading,
       handleClick,
       hoveredItem,
+      getTotalSkills,
+      getAverageMastery,
+      getExpertSkills,
+      getLearningSkills,
     }
   }
 }
 </script>
 
 <style scoped>
-  .bg-color {
-    background-color: #01a2a6;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f2937;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+/* Progress bar animations */
+@keyframes progressFill {
+  from {
+    width: 0%;
   }
-  .popup {
-    color: orange;
+  to {
+    width: var(--progress-width);
   }
+}
+
+/* Tooltip animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .text-xl {
+    font-size: 1.125rem;
+  }
+}
 </style>
