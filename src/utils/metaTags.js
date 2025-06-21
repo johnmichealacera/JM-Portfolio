@@ -4,6 +4,14 @@ export function useMetaTags(meta) {
   const baseUrl = 'https://johnmichealacera.com';
   const defaultImage = '/jm-bg.png';
   
+  // Ensure image URL is absolute and properly formatted
+  const getAbsoluteImageUrl = (imagePath) => {
+    if (imagePath.startsWith('http')) {
+      return imagePath;
+    }
+    return `${baseUrl}${imagePath.startsWith('/') ? imagePath : `/${imagePath}`}`;
+  };
+  
   const headConfig = {
     title: meta.title || 'John Micheal Acera - Developer Portfolio',
     meta: [
@@ -21,7 +29,7 @@ export function useMetaTags(meta) {
         content: 'John Micheal Acera'
       },
       
-      // Open Graph meta tags
+      // Open Graph meta tags (Facebook, LinkedIn)
       {
         property: 'og:title',
         content: meta.ogTitle || meta.title || 'John Micheal Acera - Developer Portfolio'
@@ -32,7 +40,23 @@ export function useMetaTags(meta) {
       },
       {
         property: 'og:image',
-        content: `${baseUrl}${meta.ogImage || defaultImage}`
+        content: getAbsoluteImageUrl(meta.ogImage || defaultImage)
+      },
+      {
+        property: 'og:image:width',
+        content: '1200'
+      },
+      {
+        property: 'og:image:height',
+        content: '630'
+      },
+      {
+        property: 'og:image:alt',
+        content: 'John Micheal Acera - Software Developer Portfolio'
+      },
+      {
+        property: 'og:image:type',
+        content: 'image/png'
       },
       {
         property: 'og:url',
@@ -46,11 +70,23 @@ export function useMetaTags(meta) {
         property: 'og:site_name',
         content: 'John Micheal Acera Portfolio'
       },
+      {
+        property: 'og:locale',
+        content: 'en_US'
+      },
       
-      // Twitter Card meta tags
+      // Twitter Card meta tags - Fixed implementation
       {
         name: 'twitter:card',
         content: 'summary_large_image'
+      },
+      {
+        name: 'twitter:site',
+        content: '@johnmichealacera'
+      },
+      {
+        name: 'twitter:creator',
+        content: '@johnmichealacera'
       },
       {
         name: 'twitter:title',
@@ -62,15 +98,15 @@ export function useMetaTags(meta) {
       },
       {
         name: 'twitter:image',
-        content: `${baseUrl}${meta.twitterImage || defaultImage}`
+        content: getAbsoluteImageUrl(meta.twitterImage || defaultImage)
+      },
+      {
+        name: 'twitter:image:alt',
+        content: 'John Micheal Acera - Software Developer Portfolio'
       },
       {
         name: 'twitter:url',
         content: meta.ogUrl || `${baseUrl}${meta.canonical?.replace(baseUrl, '') || '/'}`
-      },
-      {
-        name: 'twitter:creator',
-        content: '@johnmichealacera'
       },
       
       // Additional meta tags
@@ -98,7 +134,7 @@ export function useMetaTags(meta) {
       }
     ],
     script: [
-      // Structured data for SEO
+      // Structured data for SEO - Single instance to avoid duplicates
       {
         type: 'application/ld+json',
         children: JSON.stringify({
@@ -108,7 +144,7 @@ export function useMetaTags(meta) {
           url: baseUrl,
           jobTitle: 'Software Developer',
           description: meta.description || 'Explore the portfolio of John Micheal Acera, showcasing projects, skills, and achievements in software development.',
-          image: `${baseUrl}${defaultImage}`,
+          image: getAbsoluteImageUrl(defaultImage),
           sameAs: [
             'https://github.com/johnmichealacera',
             'https://linkedin.com/in/johnmichealacera'
@@ -119,4 +155,4 @@ export function useMetaTags(meta) {
   };
 
   useHead(headConfig);
-} 
+}

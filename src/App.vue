@@ -40,7 +40,7 @@ const route = useRoute();
 
 // Function to update meta tags when route changes
 const updateMetaTags = () => {
-  if (route.meta) {
+  if (route.meta && Object.keys(route.meta).length > 0) {
     useMetaTags(route.meta);
   }
 };
