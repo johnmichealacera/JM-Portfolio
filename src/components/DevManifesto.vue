@@ -1,64 +1,141 @@
 <template>
-  <div class="manifesto-container py-16 px-4 sm:px-8">
-    <!-- Download Button -->
-    <div class="max-w-4xl mb-6 flex justify-end align-end">
-      <button 
-        @click="downloadPDF"
-        class="download-btn px-6 py-2 bg-cream text-forest rounded-lg hover:bg-opacity-90 transition-all flex items-center justify-end"
-        :disabled="isGeneratingPDF"
-      >
-        <span v-if="isGeneratingPDF">Generating PDF...</span>
-        <span v-else>
-          <div class="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-            </svg>
-            <span>Download Manifesto</span>
-          </div>
-        </span>
-      </button>
+  <section class="relative min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
     </div>
-
-    <!-- Manifesto Content -->
-    <div 
-      ref="manifestoContent"
-      data-aos="fade-up" 
-      class="manifesto-content max-w-4xl mx-auto bg-forest text-cream p-8 sm:p-12 rounded-lg border-2"
-    >
-      <header class="text-center mb-12">
-        <h1 class="text-3xl sm:text-4xl font-bold mb-4">Personal Developer Manifesto</h1>
-        <h2 class="text-xl sm:text-2xl italic">"Rooted in growth. Driven by purpose."</h2>
-        <!-- Add the introduction text -->
-        <p class="text-base sm:text-lg italic text-cream/90 max-w-2xl mx-auto">
+    
+    <!-- Decorative Elements -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full blur-3xl opacity-30"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-200 to-blue-200 rounded-full blur-2xl opacity-30"></div>
+    
+    <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <!-- Header Section -->
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl mb-6 shadow-lg">
+          <span class="text-2xl">📜</span>
+        </div>
+        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          Personal Developer Manifesto
+        </h1>
+        <p class="text-xl lg:text-2xl text-gray-600 mb-6">
+          "Rooted in growth. Driven by purpose."
+        </p>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
           This manifesto is my personal reminder — not to replace faith, but to center myself when the noise of the world tries to distract me from who I am and what I value.
         </p>
-      </header>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mt-8"></div>
+      </div>
 
-      <div class="manifesto-sections space-y-12">
-        <loader :isLoading="isLoading"/>
-        <!-- First Section -->
-        <section class="space-y-6">
-          <template v-for="(line, index) in firstSection" :key="'first-'+index">
-            <p class="manifesto-line">{{ line }}</p>
-          </template>
-        </section>
+      <!-- Download Button -->
+      <div class="flex justify-center mb-12">
+        <button 
+          @click="downloadPDF"
+          class="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-4 rounded-xl hover:shadow-xl transition-all duration-300 hover:scale-105 shadow-lg flex items-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed"
+          :disabled="isGeneratingPDF"
+        >
+          <svg v-if="!isGeneratingPDF" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+          <div v-if="isGeneratingPDF" class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+          <span>{{ isGeneratingPDF ? 'Generating PDF...' : 'Download Manifesto' }}</span>
+        </button>
+      </div>
 
-        <!-- Second Section -->
-        <section class="space-y-6">
-          <template v-for="(line, index) in secondSection" :key="'second-'+index">
-            <p class="manifesto-line">{{ line }}</p>
-          </template>
-        </section>
+      <!-- Manifesto Content -->
+      <div 
+        ref="manifestoContent"
+        class="max-w-5xl mx-auto bg-white/70 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200/50 overflow-hidden"
+      >
+        <!-- Content Header -->
+        <div class="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-6 text-white">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-2xl font-bold">Developer Principles</h2>
+              <p class="text-blue-100">Core values that guide my work and decisions</p>
+            </div>
+            <div class="hidden sm:block">
+              <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                <span class="text-xl">💡</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <!-- Final Section -->
-        <section class="space-y-6">
-          <template v-for="(line, index) in finalSection" :key="'final-'+index">
-            <p class="manifesto-line">{{ line }}</p>
-          </template>
-        </section>
+        <!-- Manifesto Sections -->
+        <div class="p-8 lg:p-12">
+          <loader :isLoading="isLoading" />
+          
+          <div v-if="!isLoading" class="space-y-12">
+            <!-- First Section -->
+            <section class="manifesto-section">
+              <div class="section-header mb-8">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mb-4">
+                  <span class="text-white text-xl">1</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Foundation Principles</h3>
+              </div>
+              <div class="space-y-6">
+                <div 
+                  v-for="(line, index) in firstSection" 
+                  :key="'first-'+index"
+                  class="manifesto-line bg-gray-50/50 rounded-xl p-6 hover:bg-gray-50 transition-all duration-300 hover:shadow-md"
+                >
+                  <p class="text-gray-700 leading-relaxed text-lg">{{ line }}</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Second Section -->
+            <section class="manifesto-section">
+              <div class="section-header mb-8">
+                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-500 rounded-xl flex items-center justify-center mb-4">
+                  <span class="text-white text-xl">2</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Growth & Development</h3>
+              </div>
+              <div class="space-y-6">
+                <div 
+                  v-for="(line, index) in secondSection" 
+                  :key="'second-'+index"
+                  class="manifesto-line bg-gray-50/50 rounded-xl p-6 hover:bg-gray-50 transition-all duration-300 hover:shadow-md"
+                >
+                  <p class="text-gray-700 leading-relaxed text-lg">{{ line }}</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Final Section -->
+            <section class="manifesto-section">
+              <div class="section-header mb-8">
+                <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-4">
+                  <span class="text-white text-xl">3</span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900">Purpose & Impact</h3>
+              </div>
+              <div class="space-y-6">
+                <div 
+                  v-for="(line, index) in finalSection" 
+                  :key="'final-'+index"
+                  class="manifesto-line bg-gray-50/50 rounded-xl p-6 hover:bg-gray-50 transition-all duration-300 hover:shadow-md"
+                >
+                  <p class="text-gray-700 leading-relaxed text-lg">{{ line }}</p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-8 py-6 border-t border-gray-200">
+          <div class="text-center">
+            <p class="text-gray-600 font-medium">Living these principles daily</p>
+            <p class="text-gray-500 text-sm mt-1">Updated regularly as I grow and learn</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -80,13 +157,14 @@ export default {
     const secondSection = computed(() => portfolioStore.secondSection);
     const finalSection = computed(() => portfolioStore.finalSection);
     const isLoading = computed(() => portfolioStore.isLoading);
+    
     const getStaticContent = () => {
       return `
-        <div class="manifesto-content max-w-4xl mx-auto bg-forest text-cream p-8 sm:p-12 rounded-lg border-2">
+        <div class="manifesto-content max-w-4xl mx-auto bg-white p-8 rounded-lg">
           <header class="text-center mb-12">
-            <h1 class="text-3xl sm:text-4xl font-bold mb-4">Personal Developer Manifesto</h1>
-            <h2 class="text-xl sm:text-2xl italic">"Rooted in growth. Driven by purpose."</h2>
-            <p class="text-base sm:text-lg italic text-cream/90 max-w-2xl mx-auto">
+            <h1 class="text-3xl font-bold mb-4 text-gray-900">Personal Developer Manifesto</h1>
+            <h2 class="text-xl italic text-gray-600">"Rooted in growth. Driven by purpose."</h2>
+            <p class="text-base italic text-gray-600 max-w-2xl mx-auto">
               This manifesto is my personal reminder — not to replace faith, but to center myself when the noise of the world tries to distract me from who I am and what I value.
             </p>
           </header>
@@ -107,23 +185,17 @@ export default {
         </div>
       `;
     };
-    // TODO: Transfer it as a helper function
+    
     const downloadPDF = async () => {
       isGeneratingPDF.value = true;
       let pdfContent = null;
 
       try {
-        // Create a new div for PDF content
         pdfContent = document.createElement('div');
         pdfContent.className = 'pdf-content';
-        
-        // Set the static content
         pdfContent.innerHTML = getStaticContent();
-
-        // Add the container to the document temporarily
         document.body.appendChild(pdfContent);
 
-        // PDF options
         const options = {
           margin: 1,
           filename: 'Personal-Developer-Manifesto.pdf',
@@ -140,14 +212,12 @@ export default {
           }
         };
 
-        // Generate PDF
         await html2pdf().set(options).from(pdfContent).save();
 
       } catch (error) {
         console.error('Error generating PDF:', error);
         alert('There was an error generating the PDF. Please try again.');
       } finally {
-        // ✅ ALWAYS clean up, regardless of success or failure
         if (pdfContent && document.body.contains(pdfContent)) {
           document.body.removeChild(pdfContent);
         }
@@ -169,34 +239,49 @@ export default {
 </script>
 
 <style scoped>
-.manifesto-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: center; */
-  background-color: rgba(0, 0, 0, 0.02);
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-.manifesto-content {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
 }
 
-.manifesto-sections {
-  font-family: 'Georgia', serif;
-  font-size: 1.125rem;
-  line-height: 1.75;
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
 }
 
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Manifesto line animations */
 .manifesto-line {
   opacity: 0;
-  animation: fadeIn 0.5s ease-in forwards;
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -204,7 +289,7 @@ export default {
   }
 }
 
-/* Add animation delay for each line */
+/* Staggered animation delays */
 .manifesto-line:nth-child(1) { animation-delay: 0.1s; }
 .manifesto-line:nth-child(2) { animation-delay: 0.2s; }
 .manifesto-line:nth-child(3) { animation-delay: 0.3s; }
@@ -221,46 +306,50 @@ export default {
 .manifesto-line:nth-child(14) { animation-delay: 1.4s; }
 .manifesto-line:nth-child(15) { animation-delay: 1.5s; }
 
-/* Responsive text sizes */
-@media (max-width: 640px) {
-  .manifesto-sections {
+/* Section styling */
+.manifesto-section {
+  scroll-margin-top: 2rem;
+}
+
+.section-header {
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .text-4xl {
+    font-size: 2.5rem;
+  }
+  
+  .text-2xl {
+    font-size: 1.5rem;
+  }
+  
+  .text-lg {
     font-size: 1rem;
   }
 }
 
-.download-btn {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.download-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.download-btn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* Add print styles to ensure proper PDF rendering */
-@media print {
-  .manifesto-container {
-    padding: 0;
-    margin: 0;
+@media (max-width: 640px) {
+  .text-4xl {
+    font-size: 2rem;
   }
+  
+  .p-8 {
+    padding: 1.5rem;
+  }
+}
 
+/* Print styles for PDF */
+@media print {
   .manifesto-content {
     box-shadow: none;
     border: none;
   }
-
-  .download-btn {
-    display: none;
-  }
 }
 
-/* Add specific styles for PDF content */
+/* PDF content styles */
 .pdf-content {
   position: absolute;
   left: -9999px;
