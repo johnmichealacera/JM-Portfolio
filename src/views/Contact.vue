@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-cream">
+  <div class="min-h-screen">
     <taskbar />
     <contact-info />
     <contact-form />
@@ -8,7 +8,6 @@
 </template>
 
 <script>
-
 import Taskbar from '../components/Taskbar.vue';
 import FooterBar from '../components/Footer.vue';
 import ContactInfo from '../components/ContactInfo.vue';

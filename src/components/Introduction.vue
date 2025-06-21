@@ -10,7 +10,7 @@
     <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-200 to-blue-200 rounded-full blur-2xl opacity-30"></div>
     
     <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-      <div v-if="!isLoading" class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div v-if="!isLoading" class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-8 items-center">
         <!-- Left: Content Section -->
         <div ref="leftContent" class="space-y-8">
           <!-- Greeting and Name -->
