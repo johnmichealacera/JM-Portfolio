@@ -13,26 +13,10 @@
 import axios from 'axios';
 import { reactive, ref } from '@vue/runtime-core';
 import { useRouter } from 'vue-router';
-import { useMetaTags } from '../utils/metaTags';
 
 export default {
   name: "Login",
   setup() {
-    // Login-specific meta tags
-    useMetaTags({
-      title: 'Login - John Micheal Acera',
-      description: 'Access the admin panel for John Micheal Acera\'s portfolio.',
-      keywords: 'login, admin, John Micheal Acera, portfolio management',
-      ogTitle: 'Login - John Micheal Acera',
-      ogDescription: 'Access the admin panel for John Micheal Acera\'s portfolio.',
-      ogImage: '/jm-bg.png',
-      ogUrl: 'https://johnmichealacera.com/login',
-      twitterTitle: 'Login - John Micheal Acera',
-      twitterDescription: 'Access the admin panel for John Micheal Acera\'s portfolio.',
-      twitterImage: '/jm-bg.png',
-      canonical: 'https://johnmichealacera.com/login'
-    });
-
     const isUserVerified = ref(false);
     const router = useRouter();
     const state = reactive({

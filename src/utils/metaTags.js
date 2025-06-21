@@ -29,6 +29,12 @@ export function useMetaTags(meta) {
         content: 'John Micheal Acera'
       },
       
+      // Facebook App ID (optional but recommended)
+      {
+        property: 'fb:app_id',
+        content: '123456789012345' // Replace with your actual Facebook App ID if you have one
+      },
+      
       // Open Graph meta tags (Facebook, LinkedIn)
       {
         property: 'og:title',
