@@ -31,9 +31,31 @@ html {
 
 <script setup>
 import { usePortfolioStore } from './store/pinia/portfolio';
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
+import { useRoute } from 'vue-router';
+import { useMetaTags } from './utils/metaTags';
 
 const portfolioStore = usePortfolioStore();
+const route = useRoute();
+
+// Function to update meta tags when route changes
+const updateMetaTags = () => {
+  if (route.meta) {
+    useMetaTags(route.meta);
+  }
+};
+
+// Update meta tags on initial load
+updateMetaTags();
+
+// Watch for route changes and update meta tags
+watch(
+  () => route.meta,
+  () => {
+    updateMetaTags();
+  },
+  { deep: true }
+);
 
 onMounted(() => {
   portfolioStore.fetchAllData();

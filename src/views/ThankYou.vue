@@ -13,15 +13,20 @@
 </style>
 
 <script setup>
-import { useHead } from '@vueuse/head';
+import { useMetaTags } from '../utils/metaTags';
 
-// Set the canonical URL for the homepage
-useHead({
-  link: [
-    {
-      rel: 'canonical',
-      href: 'https://johnmichealacera.com/thank-you',
-    },
-  ],
+// Thank you page-specific meta tags
+useMetaTags({
+  title: 'Thank You - John Micheal Acera',
+  description: 'Thank you for your message. I\'ll get back to you soon!',
+  keywords: 'thank you, contact, John Micheal Acera, message received',
+  ogTitle: 'Thank You - John Micheal Acera',
+  ogDescription: 'Thank you for your message. I\'ll get back to you soon!',
+  ogImage: '/jm-bg.png',
+  ogUrl: 'https://johnmichealacera.com/thank-you',
+  twitterTitle: 'Thank You - John Micheal Acera',
+  twitterDescription: 'Thank you for your message. I\'ll get back to you soon!',
+  twitterImage: '/jm-bg.png',
+  canonical: 'https://johnmichealacera.com/thank-you'
 });
 </script>
