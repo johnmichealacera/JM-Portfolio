@@ -15,7 +15,7 @@ import AboutMe from '../components/AboutMe.vue';
 import MyWhy from '../components/MyWhy.vue';
 import AboutSkill from '../components/AboutSkill.vue';
 import Footer from '../components/Footer.vue';
-import { useHead } from '@vueuse/head';
+import { useMetaTags } from '../utils/metaTags';
 import { usePortfolioStore } from '../store/pinia/portfolio';
 import { onMounted } from 'vue';
 
@@ -31,21 +31,27 @@ export default {
   setup() {
     const portfolioStore = usePortfolioStore();
 
+    // About-specific meta tags
+    useMetaTags({
+      title: 'About Me - John Micheal Acera',
+      description: 'Learn more about John Micheal Acera, a passionate software developer with expertise in modern web technologies and mobile development.',
+      keywords: 'about, John Micheal Acera, software developer, experience, skills, background, expertise',
+      ogTitle: 'About Me - John Micheal Acera',
+      ogDescription: 'Learn more about John Micheal Acera, a passionate software developer with expertise in modern web technologies and mobile development.',
+      ogImage: '/jm-bg.png',
+      ogUrl: 'https://johnmichealacera.com/about',
+      twitterTitle: 'About Me - John Micheal Acera',
+      twitterDescription: 'Learn more about John Micheal Acera, a passionate software developer with expertise in modern web technologies and mobile development.',
+      twitterImage: '/jm-bg.png',
+      canonical: 'https://johnmichealacera.com/about'
+    });
+
     onMounted(() => {
       // Only fetch if data isn't already loaded
       if (!portfolioStore.isInitialized) {
         portfolioStore.fetchAllData();
       }
     })
-    // Adding canonical link
-    useHead({
-      link: [
-        {
-          rel: 'canonical',
-          href: 'https://johnmichealacera.com/about',
-        },
-      ],
-    });
   },
 }
 </script>
