@@ -9,12 +9,12 @@
     <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full blur-3xl opacity-30"></div>
     <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-200 to-blue-200 rounded-full blur-2xl opacity-30"></div>
     
-    <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-      <div v-if="!isLoading" class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-8 items-center">
+    <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div v-if="!isLoading" class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-center">
         <!-- Left: Content Section -->
-        <div ref="leftContent" class="space-y-8">
+        <div ref="leftContent" class="space-y-6">
           <!-- Greeting and Name -->
-          <div class="space-y-4">
+          <div class="space-y-3">
             <div class="inline-flex items-center space-x-3 bg-white/70 backdrop-blur-sm rounded-2xl px-6 py-3 shadow-lg border border-white/50">
               <span class="text-2xl">👋</span>
               <span class="text-gray-600 font-medium">Hello, I'm</span>
@@ -27,46 +27,36 @@
           </div>
 
           <!-- Job Description -->
-          <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/50">
+          <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-xl border border-white/50">
             <p class="text-xl lg:text-2xl text-gray-700 leading-relaxed font-medium">
               {{ jobDescription }}
             </p>
           </div>
 
           <!-- Expertise Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div 
               v-for="(item, index) in introArrData" 
               :key="index"
-              class="group bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/50 hover:shadow-xl transition-all duration-300 hover:scale-105"
+              class="group bg-white/70 backdrop-blur-sm rounded-xl p-4 lg:p-6 shadow-lg border border-white/50 hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
-              <div class="flex items-center space-x-4">
-                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+              <div class="flex items-center space-x-3 lg:space-x-4">
+                <div class="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
                   <svg-icon 
                     :icon="item?.icon" 
-                    class="w-6 h-6 text-white"
+                    class="w-5 h-5 lg:w-6 lg:h-6 text-white"
                     @mouseover="onMouseOver" 
                     @mouseout="onMouseOut" 
                   />
                 </div>
                 <div>
-                  <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                  <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 text-sm lg:text-base">
                     {{ item?.title }}
                   </h3>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- Call to Action -->
-          <!-- <div class="flex flex-col sm:flex-row gap-4">
-            <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-4 rounded-xl hover:shadow-xl transition-all duration-300 hover:scale-105 shadow-lg">
-              View My Work
-            </button>
-            <button class="bg-white/70 backdrop-blur-sm text-gray-700 font-semibold px-8 py-4 rounded-xl border border-gray-200 hover:bg-white transition-all duration-300 hover:scale-105 shadow-lg">
-              Download CV
-            </button>
-          </div> -->
         </div>
 
         <!-- Right: Profile Image -->
@@ -78,12 +68,12 @@
                 ref="profileImage"
                 src="/jm-bg.png"
                 alt="John Micheal Acera"
-                class="w-80 h-80 lg:w-96 lg:h-96 rounded-3xl shadow-2xl object-cover border-4 border-white"
-                :style="{ height: imageHeight + 'px' }"
+                class="w-72 h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-3xl shadow-2xl object-cover border-4 border-white"
+                :style="imageHeightStyle"
               />
               <!-- Decorative Elements -->
-              <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg">
-                <span class="text-2xl">⭐</span>
+              <div class="absolute -bottom-3 -left-3 w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg">
+                <span class="text-lg lg:text-2xl">⭐</span>
               </div>
             </div>
             
@@ -114,22 +104,28 @@ export default {
   setup() {
     const imageHeight = ref(null);
     const leftContent = ref(null);
+    const windowWidth = ref(window.innerWidth);
 
     const setHeight = () => {
-      if (leftContent.value) {
+      if (leftContent.value && windowWidth.value >= 1024) {
         imageHeight.value = leftContent.value.offsetHeight;
       }
+    };
+
+    const handleResize = () => {
+      windowWidth.value = window.innerWidth;
+      setHeight();
     };
     
     onMounted(() => {
       nextTick(() => {
         setHeight();
-        window.addEventListener('resize', setHeight);
+        window.addEventListener('resize', handleResize);
       });
     });
     
     onUnmounted(() => {
-      window.removeEventListener('resize', setHeight);
+      window.removeEventListener('resize', handleResize);
     });
     
     const portfolioStore = usePortfolioStore();
@@ -141,6 +137,18 @@ export default {
     const jobDescription = computed(() => portfolioStore?.introductions?.jobDescription);
     const bgImage = computed(() => portfolioStore?.userInfoData?.bgUrl);
     const isLoading = computed(() => portfolioStore?.isLoading);
+    
+    // Computed for image height style
+    const imageHeightStyle = computed(() => {
+      if (windowWidth.value >= 1024) {
+        return { height: imageHeight.value + 'px' };
+      } else {
+        return { 
+          height: 'auto',
+          maxHeight: '280px'
+        };
+      }
+    });
     
     const onMouseOver = () => {
       isHover.value = true;
@@ -161,6 +169,7 @@ export default {
       onMouseOut,
       imageHeight,
       leftContent,
+      imageHeightStyle,
     }
   }
 }
