@@ -50,7 +50,7 @@
           >
             <!-- Disable captcha and set redirect -->
             <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://www.johnmichealacera.com/thank-you">
+            <input type="hidden" name="_next" value="https://johnmichealacera.com/thank-you">
 
             <!-- Name Field -->
             <div class="space-y-2">

@@ -12,6 +12,12 @@ export function useMetaTags(meta) {
     return `${baseUrl}${imagePath.startsWith('/') ? imagePath : `/${imagePath}`}`;
   };
   
+  // Ensure URL is absolute and uses www version
+  const getAbsoluteUrl = (url) => {
+    if (!url) return baseUrl;
+    return `${baseUrl}${url.startsWith('/') ? url : `/${url}`}`;
+  };
+  
   const headConfig = {
     title: meta.title || 'John Micheal Acera - Developer Portfolio',
     meta: [
@@ -35,7 +41,7 @@ export function useMetaTags(meta) {
         content: '123456789012345' // Replace with your actual Facebook App ID if you have one
       },
       
-      // Open Graph meta tags (Facebook, LinkedIn)
+      // Open Graph meta tags (Facebook, LinkedIn) - Fixed implementation
       {
         property: 'og:title',
         content: meta.ogTitle || meta.title || 'John Micheal Acera - Developer Portfolio'
@@ -66,7 +72,7 @@ export function useMetaTags(meta) {
       },
       {
         property: 'og:url',
-        content: meta.ogUrl || `${baseUrl}${meta.canonical?.replace(baseUrl, '') || '/'}`
+        content: getAbsoluteUrl(meta.ogUrl || meta.canonical)
       },
       {
         property: 'og:type',
@@ -112,7 +118,7 @@ export function useMetaTags(meta) {
       },
       {
         name: 'twitter:url',
-        content: meta.ogUrl || `${baseUrl}${meta.canonical?.replace(baseUrl, '') || '/'}`
+        content: getAbsoluteUrl(meta.ogUrl || meta.canonical)
       },
       
       // Additional meta tags
@@ -129,7 +135,7 @@ export function useMetaTags(meta) {
       // Canonical link
       {
         rel: 'canonical',
-        href: meta.canonical || `${baseUrl}${meta.ogUrl?.replace(baseUrl, '') || '/'}`
+        href: getAbsoluteUrl(meta.canonical || meta.ogUrl)
       },
       // Preload hero image for better performance
       {
