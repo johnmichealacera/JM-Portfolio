@@ -53,7 +53,7 @@ export default async function handler(req, res) {
   const { url } = req.query;
   const userAgent = req.headers['user-agent'] || '';
   
-  // If no URL provided, serve the normal page
+  // If no URL provided, return error
   if (!url) {
     return res.status(400).json({ error: 'URL parameter is required' });
   }
@@ -85,10 +85,7 @@ export default async function handler(req, res) {
     }
   }
 
-  // If not a crawler or prerender failed, serve the normal page
-  res.setHeader('X-Prerender', 'false');
-  
-  // For Vue.js on Vercel, we need to serve the static files
-  // This will serve your Vue app normally
-  return res.redirect(302, url);
+  // If not a crawler or prerender failed, return 404
+  // This allows the normal SPA routing to handle the request
+  return res.status(404).json({ error: 'Not found' });
 } 

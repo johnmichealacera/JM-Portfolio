@@ -1,13 +1,8 @@
 {
-  "functions": {
-    "api/prerender.js": {
-      "maxDuration": 30
-    }
-  },
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/api/prerender?url=$1"
+      "destination": "/index.html"
     }
   ]
 } 
