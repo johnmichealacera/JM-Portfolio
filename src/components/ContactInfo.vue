@@ -81,7 +81,7 @@
           <span class="text-white font-semibold text-lg">Currently Available for New Projects</span>
         </div>
         <p class="text-green-100 max-w-2xl mx-auto">
-          I'm actively seeking new opportunities and collaborations. Let's discuss how we can work together to bring your vision to life.
+          I'm actively seeking opportunities and collaborations. Let's discuss how we can work together to bring your vision to life.
         </p>
       </div>
     </div>

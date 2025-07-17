@@ -24,7 +24,7 @@
               Passionate software developer crafting digital experiences that make a difference. 
               Let's turn your ideas into reality.
             </p>
-            <div class="flex space-x-4">
+            <div class="flex flex-wrap gap-3">
               <a
                 v-for="(item, index) in socialMediaArrData"
                 :key="index"
@@ -32,13 +32,13 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 :aria-label="`${item?.type} Profile`"
-                class="group relative p-3 bg-gray-800/50 hover:bg-gray-700/70 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                class="group relative p-2.5 sm:p-3 bg-gray-800/50 hover:bg-gray-700/70 rounded-lg transition-all duration-300 hover:scale-110 hover:shadow-lg flex-shrink-0"
               >
                 <svg-icon 
                   :icon="item?.type" 
-                  :width="24" 
-                  :height="24"
-                  class="text-gray-300 group-hover:text-white transition-colors duration-300"
+                  :width="20" 
+                  :height="20"
+                  class="sm:w-6 sm:h-6 text-gray-300 group-hover:text-white transition-colors duration-300"
                 />
                 <span class="sr-only">{{ item?.type }} Profile</span>
               </a>

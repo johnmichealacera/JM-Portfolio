@@ -1,85 +1,158 @@
 <template>
-  <section class="relative min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 overflow-hidden">
-    <!-- Background Pattern -->
-    <div class="absolute inset-0 opacity-5">
-      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
+  <section class="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
+    <!-- Animated Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0 animate-pulse" style="background-image: radial-gradient(circle at 1px 1px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
     </div>
     
-    <!-- Decorative Elements -->
-    <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full blur-3xl opacity-30"></div>
-    <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-purple-200 to-blue-200 rounded-full blur-2xl opacity-30"></div>
+    <!-- Floating Decorative Elements -->
+    <div class="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full blur-3xl opacity-20 animate-bounce"></div>
+    <div class="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-tr from-purple-200 to-blue-200 rounded-full blur-2xl opacity-20 animate-pulse"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-indigo-200 to-blue-200 rounded-full blur-3xl opacity-10 animate-spin" style="animation-duration: 20s;"></div>
     
     <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-      <div v-if="!isLoading" class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-center">
+      <div v-if="!isLoading" class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh]">
         <!-- Left: Content Section -->
-        <div ref="leftContent" class="space-y-6">
-          <!-- Greeting and Name -->
-          <div class="space-y-3">
-            <div class="inline-flex items-center space-x-3 bg-white/70 backdrop-blur-sm rounded-2xl px-6 py-3 shadow-lg border border-white/50">
-              <span class="text-2xl">👋</span>
-              <span class="text-gray-600 font-medium">Hello, I'm</span>
-            </div>
-            <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-              <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                John Micheal Acera
-              </span>
-            </h1>
+        <div ref="leftContent" class="space-y-8">
+          <!-- Greeting Badge -->
+          <div class="inline-flex items-center space-x-3 bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-3 shadow-lg border border-white/50 animate-fade-in-up">
+            <span class="text-2xl animate-wave">👋</span>
+            <span class="text-gray-700 font-medium">Hello, I'm</span>
           </div>
 
-          <!-- Job Description -->
-          <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-xl border border-white/50">
-            <p class="text-xl lg:text-2xl text-gray-700 leading-relaxed font-medium">
-              {{ jobDescription }}
+          <!-- Main Headline -->
+          <div class="space-y-4 animate-fade-in-up" style="animation-delay: 0.2s;">
+            <h1 class="text-5xl lg:text-7xl xl:text-8xl font-bold text-gray-900 leading-tight">
+              <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                {{ fullName || 'John Micheal Acera' }}
+              </span>
+            </h1>
+            <div class="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+          </div>
+
+          <!-- Subheadline / Description -->
+          <div class="animate-fade-in-up" style="animation-delay: 0.4s;">
+            <p class="text-xl lg:text-2xl text-gray-700 leading-relaxed font-medium max-w-2xl">
+              {{ jobDescription || "I'm a purpose-driven fullstack developer with a strong passion for backend systems, mentoring others, and building software that matters." }}
             </p>
           </div>
 
-          <!-- Expertise Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- Call to Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style="animation-delay: 0.6s;">
+            <!-- Primary CTA -->
+            <button 
+              @click="scrollToContact"
+              class="group bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 transform hover:-translate-y-1"
+            >
+              <span class="flex items-center space-x-2">
+                <span>Start Your Project With Me</span>
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </span>
+            </button>
+            
+            <!-- Secondary CTA -->
+            <button 
+              @click="scrollToProjects"
+              class="group bg-white/80 backdrop-blur-sm text-gray-700 font-semibold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 transform hover:-translate-y-1 border border-gray-200/50"
+            >
+              <span class="flex items-center space-x-2">
+                <span>View My Work</span>
+                <svg class="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <!-- Expertise Highlights -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-fade-in-up" style="animation-delay: 0.8s;">
             <div 
               v-for="(item, index) in introArrData" 
               :key="index"
-              class="group bg-white/70 backdrop-blur-sm rounded-xl p-4 lg:p-6 shadow-lg border border-white/50 hover:shadow-xl transition-all duration-300 hover:scale-105"
+              class="group bg-white/70 backdrop-blur-sm rounded-xl p-4 lg:p-6 shadow-lg border border-white/50 hover:shadow-xl transition-all duration-300 hover:scale-105 hover:bg-white/90"
             >
-              <div class="flex items-center space-x-3 lg:space-x-4">
-                <div class="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+              <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
                   <svg-icon 
                     :icon="item?.icon" 
-                    class="w-5 h-5 lg:w-6 lg:h-6 text-white"
-                    @mouseover="onMouseOver" 
-                    @mouseout="onMouseOut" 
+                    class="w-6 h-6 text-white"
                   />
                 </div>
                 <div>
-                  <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 text-sm lg:text-base">
+                  <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
                     {{ item?.title }}
                   </h3>
                 </div>
               </div>
             </div>
           </div>
+
+          <!-- Social Proof / Stats -->
+          <div class="flex items-center space-x-6 pt-4 animate-fade-in-up" style="animation-delay: 1s;">
+            <div class="flex items-center space-x-2 text-gray-600">
+              <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span class="text-sm font-medium">Available for new projects</span>
+            </div>
+            <div class="flex items-center space-x-2 text-gray-600">
+              <span class="text-sm font-medium">📍 Remote & Worldwide</span>
+            </div>
+          </div>
         </div>
 
-        <!-- Right: Profile Image -->
-        <div class="flex justify-center lg:justify-end">
+        <!-- Right: Visual Section -->
+        <div class="flex justify-center lg:justify-end animate-fade-in-up" style="animation-delay: 0.3s;">
           <div class="relative">
-            <!-- Image Container -->
+            <!-- Main Profile Image -->
             <div class="relative">
               <img
                 ref="profileImage"
                 src="/jm-bg.png"
-                alt="John Micheal Acera"
-                class="w-72 h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-3xl shadow-2xl object-cover border-4 border-white"
+                alt="John Micheal Acera - Fullstack Developer"
+                class="w-80 h-80 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem] rounded-3xl shadow-2xl object-cover border-4 border-white/80 backdrop-blur-sm"
                 :style="imageHeightStyle"
               />
-              <!-- Decorative Elements -->
-              <div class="absolute -bottom-3 -left-3 w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg">
-                <span class="text-lg lg:text-2xl">⭐</span>
+              
+              <!-- Floating Elements -->
+              <div class="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg animate-bounce">
+                <span class="text-2xl">⭐</span>
+              </div>
+              
+              <div class="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg animate-pulse">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              
+              <!-- Code Snippet Overlay -->
+              <div class="absolute top-8 -left-8 bg-gray-900 text-green-400 p-4 rounded-lg shadow-xl max-w-xs opacity-90 backdrop-blur-sm border border-gray-700">
+                <div class="flex items-center space-x-2 mb-2">
+                  <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                </div>
+                <div class="text-xs font-mono">
+                  <div class="text-blue-400">const</div>
+                  <div class="text-yellow-400">developer</div>
+                  <div class="text-white">= {</div>
+                  <div class="text-green-400 ml-2">name: <span class="text-white">{{ `'${fullName}'` }}</span>,</div>
+                  <div class="text-green-400 ml-2">passion: <span class="text-white">'Building'</span></div>
+                  <div class="text-white">};</div>
+                </div>
               </div>
             </div>
             
-            <!-- Background Decoration -->
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-3xl blur-xl -z-10"></div>
+            <!-- Background Glow -->
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-3xl blur-2xl -z-10 animate-pulse"></div>
           </div>
+        </div>
+      </div>
+      
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+          <div class="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
       
@@ -117,6 +190,27 @@ export default {
       setHeight();
     };
     
+    // Smooth scroll functions
+    const scrollToProjects = () => {
+      const projectsSection = document.querySelector('#projects') || document.querySelector('.project-section');
+      if (projectsSection) {
+        projectsSection.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // Fallback to router navigation
+        window.location.href = '/portfolio';
+      }
+    };
+
+    const scrollToContact = () => {
+      const contactSection = document.querySelector('#contact') || document.querySelector('.contact-section');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // Fallback to router navigation
+        window.location.href = '/contact';
+      }
+    };
+    
     onMounted(() => {
       nextTick(() => {
         setHeight();
@@ -129,7 +223,6 @@ export default {
     });
     
     const portfolioStore = usePortfolioStore();
-    const isHover = ref(false);
     
     // Use computed properties that react to store changes
     const introArrData = computed(() => portfolioStore?.introductions?.expertise);
@@ -145,18 +238,10 @@ export default {
       } else {
         return { 
           height: 'auto',
-          maxHeight: '280px'
+          maxHeight: '320px'
         };
       }
     });
-    
-    const onMouseOver = () => {
-      isHover.value = true;
-    };
-    
-    const onMouseOut = () => {
-      isHover.value = false;
-    };
 
     return {
       introArrData,
@@ -164,18 +249,50 @@ export default {
       fullName,
       jobDescription,
       bgImage,
-      isHover,
-      onMouseOver,
-      onMouseOut,
       imageHeight,
       leftContent,
       imageHeightStyle,
+      scrollToProjects,
+      scrollToContact,
     }
   }
 }
 </script>
 
 <style scoped>
+/* Custom animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(20deg);
+  }
+  75% {
+    transform: rotate(-15deg);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-wave {
+  animation: wave 2s ease-in-out infinite;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -209,20 +326,6 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-/* Icon animations */
-.skill-icon:hover {
-  animation: pulse 1s ease-in-out infinite alternate;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.1);
-  }
-}
-
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   .container {
@@ -233,11 +336,17 @@ a:focus-visible {
 
 @media (max-width: 640px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
   
   .text-xl {
     font-size: 1.125rem;
   }
+}
+
+/* Glass morphism effect */
+.backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 </style>
