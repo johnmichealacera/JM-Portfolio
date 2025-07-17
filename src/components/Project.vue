@@ -1,5 +1,5 @@
 <template>
-  <section class="relative py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+  <section class="relative py-4 lg:py-8 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
     <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-5">
       <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, #8b5cf6 1px, transparent 0); background-size: 35px 35px;"></div>
@@ -11,7 +11,7 @@
     
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header Section -->
-      <div class="text-center mb-16">
+      <div class="text-center mb-4">
         <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl mb-6 shadow-lg">
           <span class="text-2xl">💼</span>
         </div>
@@ -82,7 +82,7 @@
       </div>
 
       <!-- Call to Action -->
-      <div class="mt-16 text-center">
+      <div class="mt-4 text-center">
         <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-8 shadow-xl">
           <h3 class="text-2xl font-bold text-white mb-4">
             Have a Project in Mind?

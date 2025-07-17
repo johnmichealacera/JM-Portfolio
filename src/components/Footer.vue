@@ -8,7 +8,7 @@
     <!-- Main Footer Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Top Section -->
-      <div class="py-16 border-b border-gray-700/50">
+      <div class="py-4 lg:py-8 border-b border-gray-700/50">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <!-- Brand Section -->
           <div class="lg:col-span-1">
@@ -114,7 +114,7 @@
       </div>
 
       <!-- Bottom Section -->
-      <div class="py-8">
+      <div class="py-4">
         <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <!-- Copyright -->
           <div class="text-gray-400 text-sm">

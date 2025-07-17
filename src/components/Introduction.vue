@@ -10,7 +10,7 @@
     <div class="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-tr from-purple-200 to-blue-200 rounded-full blur-2xl opacity-20 animate-pulse"></div>
     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-indigo-200 to-blue-200 rounded-full blur-3xl opacity-10 animate-spin" style="animation-duration: 20s;"></div>
     
-    <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+    <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-8">
       <div v-if="!isLoading" class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh]">
         <!-- Left: Content Section -->
         <div ref="leftContent" class="space-y-8">

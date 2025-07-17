@@ -1,5 +1,5 @@
 <template>
-  <section class="relative bg-gradient-to-br from-gray-50 to-white overflow-hidden mb-8">
+  <section class="relative bg-gradient-to-br from-gray-50 to-white overflow-hidden py-4 lg:py-8">
     <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-5">
       <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, #f59e0b 1px, transparent 0); background-size: 40px 40px;"></div>
