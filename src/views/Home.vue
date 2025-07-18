@@ -2,7 +2,7 @@
   <div class="bg-cream">
     <taskbar />
     <introduction />
-    <!-- <lead-magnet /> -->
+    <lead-magnet />
     <current-work />
     <skill />
     <project />
@@ -15,7 +15,7 @@
 
 import Taskbar from '../components/Taskbar.vue';
 import Introduction from '../components/Introduction.vue';
-// import LeadMagnet from '../components/LeadMagnet.vue';
+import LeadMagnet from '../components/LeadMagnet.vue';
 import Skill from '../components/Skill.vue';
 import Project from '../components/Project.vue';
 import CurrentWork from '../components/CurrentWork.vue';
@@ -29,7 +29,7 @@ export default {
   components: {
     Introduction,
     Taskbar,
-    // LeadMagnet,
+    LeadMagnet,
     Skill,
     Project,
     CurrentWork,

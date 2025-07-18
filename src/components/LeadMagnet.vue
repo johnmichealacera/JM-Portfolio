@@ -13,35 +13,35 @@
       <!-- Success State -->
       <div v-if="isSubmitted" class="text-center animate-fade-in-up">
         <div class="mb-8">
-          <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+          <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
             <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
           </div>
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Thanks! Your download is on its way
+            Thanks! Check your email 📧
           </h2>
           <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            I've sent the Dev Toolkit to your email. Check your inbox (and spam folder) for the download link.
+            I've received your request for "From Call Center to Code" and will send you the PDF shortly. Check your inbox (and spam folder)!
           </p>
           <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50 max-w-md mx-auto">
-            <h3 class="font-semibold text-gray-900 mb-2">What's included in your Dev Toolkit:</h3>
+            <h3 class="font-semibold text-gray-900 mb-2">What's included in your story:</h3>
             <ul class="text-sm text-gray-600 space-y-1">
               <li class="flex items-center">
-                <span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>
-                Essential development tools & extensions
+                <span class="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2"></span>
+                Chapter I: The Quiet Calling
               </li>
               <li class="flex items-center">
-                <span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>
-                Productivity-boosting workflows
+                <span class="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2"></span>
+                Chapter II: The Long Winter
               </li>
               <li class="flex items-center">
-                <span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>
-                Recommended learning resources
+                <span class="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2"></span>
+                Chapter III: The Light Begins to Rise
               </li>
               <li class="flex items-center">
-                <span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>
-                Best practices & tips
+                <span class="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2"></span>
+                Chapter IV: This Is for You
               </li>
             </ul>
           </div>
@@ -58,55 +58,47 @@
       <div v-else class="text-center">
         <!-- Icon -->
         <div class="mb-8">
-          <div class="w-24 h-24 bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl flex items-center justify-center mx-auto shadow-xl">
-            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-            </svg>
+          <div class="w-24 h-24 bg-gradient-to-br from-orange-600 to-yellow-600 rounded-3xl flex items-center justify-center mx-auto shadow-xl">
+            <span class="text-4xl">📖</span>
           </div>
         </div>
 
         <!-- Headline -->
         <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-          Get My Dev Toolkit – 
-          <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Free</span>
+          🌱 From Call Center to Code —
+          <span class="bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent">My Story</span>
         </h2>
 
         <!-- Subheadline -->
         <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-          Download a curated list of the tools and services I use to build fast, clean, and scalable web applications. 
-          Plus get exclusive tips and workflows that have helped me deliver projects 3x faster.
+          Discover how I transformed from a call center employee to a successful software developer. 
+          Learn the real challenges, the breakthrough moments, and the lessons that can help you on your own career journey.
         </p>
 
         <!-- Value Props -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <div class="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/50">
-            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center mb-4 mx-auto">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
+            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-lg flex items-center justify-center mb-4 mx-auto">
+              <span class="text-white text-xl">💼</span>
             </div>
-            <h3 class="font-semibold text-gray-900 mb-2">Save Hours</h3>
-            <p class="text-sm text-gray-600">Skip the trial and error with proven tools that work</p>
+            <h3 class="font-semibold text-gray-900 mb-2">Career Transition</h3>
+            <p class="text-sm text-gray-600">Real insights from someone who's been there</p>
           </div>
           
           <div class="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/50">
             <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center mb-4 mx-auto">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
+              <span class="text-white text-xl">🎯</span>
             </div>
-            <h3 class="font-semibold text-gray-900 mb-2">Proven Stack</h3>
-            <p class="text-sm text-gray-600">Tools I've used in production for years</p>
+            <h3 class="font-semibold text-gray-900 mb-2">Practical Steps</h3>
+            <p class="text-sm text-gray-600">Actionable advice for your own journey</p>
           </div>
           
           <div class="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/50">
             <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mb-4 mx-auto">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-              </svg>
+              <span class="text-white text-xl">💪</span>
             </div>
-            <h3 class="font-semibold text-gray-900 mb-2">Best Practices</h3>
-            <p class="text-sm text-gray-600">Learn from my mistakes and successes</p>
+            <h3 class="font-semibold text-gray-900 mb-2">Motivation</h3>
+            <p class="text-sm text-gray-600">Inspiration to keep going when it gets tough</p>
           </div>
         </div>
 
@@ -132,13 +124,13 @@
             <button
               type="submit"
               :disabled="isSubmitting"
-              class="w-full group bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              class="w-full group bg-gradient-to-r from-orange-600 to-yellow-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
               <span v-if="!isSubmitting" class="flex items-center justify-center space-x-2">
                 <svg class="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
-                <span>Download Now</span>
+                <span>Get My Story</span>
               </span>
               <span v-else class="flex items-center justify-center space-x-2">
                 <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
@@ -158,22 +150,22 @@
         <!-- Social Proof -->
         <div class="mt-8 flex items-center justify-center space-x-6 text-sm text-gray-500">
           <div class="flex items-center space-x-2">
-            <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <span>Free forever</span>
+            <span>Free PDF download</span>
           </div>
           <div class="flex items-center space-x-2">
-            <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <span>Instant download</span>
+            <span>📖 4 inspiring chapters</span>
           </div>
           <div class="flex items-center space-x-2">
-            <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <span>No credit card</span>
+            <span>💡 Real career insights</span>
           </div>
         </div>
       </div>
@@ -214,19 +206,57 @@ export default {
 
       isSubmitting.value = true;
 
-      try {
-        // Simulate API call - replace with your actual form submission
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        // For now, we'll just show success
-        // In production, you'd send this to Formspree, your backend, etc.
-        console.log('Email submitted:', email.value);
-        
-        // Show success state
-        isSubmitted.value = true;
-        
-        // Optional: Send to analytics or tracking service
-        // gtag('event', 'lead_magnet_download', { email: email.value });
+              try {
+          // Send notification to you about the new subscriber
+          const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              access_key: '125c0549-5a3c-40bf-9503-69ee60b9b8f0',
+              subject: `New Lead Magnet Request: ${email.value}`,
+              message: `
+Someone requested your "From Call Center to Code" story!
+
+Email: ${email.value}
+Date: ${new Date().toLocaleString()}
+User Agent: ${navigator.userAgent}
+IP: [Web3Forms will include this]
+
+Please send them the PDF manually.
+              `,
+              botcheck: '',
+            })
+          });
+
+          if (response.ok) {
+            const result = await response.json();
+            console.log('Web3Forms response:', result);
+            
+            if (!result.success) {
+              throw new Error('Web3Forms submission failed: ' + result.message);
+            }
+          } else {
+            const errorText = await response.text();
+            console.error('Web3Forms error response:', errorText);
+            throw new Error('Form submission failed: ' + response.status);
+          }
+
+          // Show success state
+          isSubmitted.value = true;
+          
+          // Optional: Send to analytics
+          if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'lead_magnet_download', { 
+              email: email.value,
+              content_type: 'story',
+              content_title: 'From Call Center to Code'
+            });
+          }
+          
+          // Clear the form
+          email.value = '';
         
       } catch (error) {
         console.error('Error submitting form:', error);

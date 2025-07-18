@@ -27,19 +27,67 @@
         <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mt-8"></div>
       </div>
 
-      <!-- Download Button -->
-      <div class="flex justify-center mb-12">
-        <button 
-          @click="downloadPDF"
-          class="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-4 rounded-xl hover:shadow-xl transition-all duration-300 hover:scale-105 shadow-lg flex items-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed"
-          :disabled="isGeneratingPDF"
-        >
-          <svg v-if="!isGeneratingPDF" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
-          <div v-if="isGeneratingPDF" class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-          <span>{{ isGeneratingPDF ? 'Generating PDF...' : 'Download Manifesto' }}</span>
-        </button>
+      <!-- Download Section -->
+      <div class="flex flex-col items-center mb-12 space-y-6">
+        <!-- Email Collection Form -->
+        <div v-if="!emailSubmitted" class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-white/50 max-w-md w-full">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4 text-center">Get Your Copy</h3>
+          <form @submit.prevent="submitEmail" class="space-y-4">
+            <div>
+              <label for="manifesto-email" class="block text-sm font-medium text-gray-700 mb-2">
+                Your Email Address
+              </label>
+              <input
+                id="manifesto-email"
+                v-model="email"
+                type="email"
+                required
+                placeholder="you@example.com"
+                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm"
+                :class="{ 'border-red-500 focus:ring-red-500': emailError }"
+              />
+              <p v-if="emailError" class="text-red-500 text-sm mt-1">{{ emailError }}</p>
+            </div>
+            
+            <button
+              type="submit"
+              :disabled="isSubmitting"
+              class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <span v-if="!isSubmitting" class="flex items-center justify-center space-x-2">
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+                <span>Get Manifesto PDF</span>
+              </span>
+              <span v-else class="flex items-center justify-center space-x-2">
+                <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                <span>Processing...</span>
+              </span>
+            </button>
+          </form>
+          
+          <p class="text-xs text-gray-500 mt-4 text-center">
+            No spam, ever. Your email is safe with me.
+          </p>
+        </div>
+
+        <!-- Success Message -->
+        <div v-if="emailSubmitted" class="bg-green-50 border border-green-200 rounded-2xl p-6 max-w-md w-full text-center">
+          <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-green-900 mb-2">Thanks! Check Your Email 📧</h3>
+          <p class="text-green-700 mb-4">I've received your request and will send you the Developer Manifesto PDF shortly.</p>
+          <button 
+            @click="emailSubmitted = false; email = ''"
+            class="bg-green-600 text-white font-semibold px-6 py-2 rounded-lg hover:bg-green-700 transition-all duration-300"
+          >
+            Request Another Copy
+          </button>
+        </div>
       </div>
 
       <!-- Manifesto Content -->
@@ -152,6 +200,10 @@ export default {
   setup() {
     const manifestoContent = ref(null);
     const isGeneratingPDF = ref(false);
+    const email = ref('');
+    const emailError = ref('');
+    const isSubmitting = ref(false);
+    const emailSubmitted = ref(false);
     const portfolioStore = usePortfolioStore();
     const firstSection = computed(() => portfolioStore.firstSection);
     const secondSection = computed(() => portfolioStore.secondSection);
@@ -186,6 +238,79 @@ export default {
       `;
     };
     
+    const validateEmail = (email) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    };
+
+    const submitEmail = async () => {
+      // Reset error
+      emailError.value = '';
+      
+      // Validate email
+      if (!email.value) {
+        emailError.value = 'Please enter your email address';
+        return;
+      }
+      
+      if (!validateEmail(email.value)) {
+        emailError.value = 'Please enter a valid email address';
+        return;
+      }
+
+      isSubmitting.value = true;
+
+      try {
+        // Submit to Web3Forms for notification
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            access_key: '125c0549-5a3c-40bf-9503-69ee60b9b8f0',
+            subject: `New Manifesto Request: ${email.value}`,
+            message: `
+Someone requested your Developer Manifesto PDF!
+
+Email: ${email.value}
+Date: ${new Date().toLocaleString()}
+User Agent: ${navigator.userAgent}
+IP: [Web3Forms will include this]
+
+Please send them the PDF manually.
+            `,
+            botcheck: '', // Anti-bot protection
+          })
+        });
+
+        if (response.ok) {
+          // Show success state
+          emailSubmitted.value = true;
+          
+          // Optional: Send to analytics
+          if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'manifesto_download', { 
+              email: email.value,
+              content_type: 'manifesto',
+              content_title: 'Developer Manifesto'
+            });
+          }
+          
+          // Clear the form
+          email.value = '';
+        } else {
+          throw new Error('Form submission failed');
+        }
+        
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        emailError.value = 'Something went wrong. Please try again.';
+      } finally {
+        isSubmitting.value = false;
+      }
+    };
+
     const downloadPDF = async () => {
       isGeneratingPDF.value = true;
       let pdfContent = null;
@@ -227,6 +352,11 @@ export default {
 
     return {
       manifestoContent,
+      email,
+      emailError,
+      isSubmitting,
+      emailSubmitted,
+      submitEmail,
       isGeneratingPDF,
       firstSection,
       secondSection,
