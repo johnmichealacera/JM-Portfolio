@@ -89,6 +89,16 @@
                   Developer Manifesto
                 </router-link>
               </li>
+              <li>
+                <router-link 
+                  to="/blog" 
+                  class="text-gray-300 hover:text-white transition-colors duration-200 flex items-center group"
+                  @click="scrollToTop"
+                >
+                  <span class="w-2 h-2 bg-indigo-500 rounded-full mr-3 group-hover:scale-150 transition-transform duration-200"></span>
+                  Blog
+                </router-link>
+              </li>
             </ul>
           </div>
 
