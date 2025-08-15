@@ -3,6 +3,7 @@
 
 ## **Features**
 - Showcase personal information, skills, life story and projects
+- Blog system with newsletter subscription functionality
 - Responsive design for mobile and desktop
 
 ## Installation
@@ -34,6 +35,29 @@ Create a `.env` file in the root directory of the project with the keys above th
 3. Make changes and commit: `git commit -m 'Add some feature'`
 4. Push to the branch: `git push origin feature-name`
 5. Submit a pull request
+## Changelog
+
+### [1.4.0] - 2025-01-XX
+#### Added
+- **Blog System**: New blog functionality with dedicated pages
+  - Blog index page (`/blog`) with post listings
+  - Individual blog post page (`/blog/my-founder-journey`)
+  - Newsletter subscription system with email collection
+- **Navigation Updates**: Added blog links to main menu and footer
+- **SEO Enhancement**: Comprehensive meta tags for blog routes
+- **Content Management**: Structured blog content with semantic HTML
+
+#### Technical
+- New Vue.js components: `Blog.vue`, `BlogPost.vue`
+- Router configuration for blog routes
+- Web3Forms integration for newsletter subscriptions
+- TODO comments for future backend integration
+
+### [1.3.0] - Previous Release
+- Portfolio showcase and project management
+- Contact forms and lead generation
+- Responsive design implementation
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](https://opensource.org/license/mit/) file for details.
 
