@@ -7,6 +7,8 @@ const ContactComponent = () => import('../views/Contact.vue');
 const ManifestoComponent = () => import('../views/Manifesto.vue');
 const PortfolioComponent = () => import('../views/Portfolio.vue');
 const LoginComponent = () => import('../views/Login.vue');
+const BlogPostComponent = () => import('../views/BlogPost.vue');
+const BlogComponent = () => import('../views/Blog.vue');
 
 const routes = [
   {
@@ -133,6 +135,42 @@ const routes = [
       twitterDescription: 'Get in touch with John Micheal Acera. Let\'s discuss your project or collaboration opportunities.',
       twitterImage: '/jm-bg.png',
       canonical: 'https://johnmichealacera.com/contact'
+    },
+  },
+  {
+    path: '/blog',
+    name: 'Blog',
+    component: BlogComponent,
+    meta: { 
+      title: 'Blog - John Micheal Acera',
+      description: 'Thoughts, learnings, and reflections from my journey as a developer and entrepreneur.',
+      keywords: 'blog, thoughts, learnings, reflections, John Micheal Acera, developer journey',
+      ogTitle: 'Blog - John Micheal Acera',
+      ogDescription: 'Thoughts, learnings, and reflections from my journey as a developer and entrepreneur.',
+      ogImage: '/jm-bg.png',
+      ogUrl: 'https://johnmichealacera.com/blog',
+      twitterTitle: 'Blog - John Micheal Acera',
+      twitterDescription: 'Thoughts, learnings, and reflections from my journey as a developer and entrepreneur.',
+      twitterImage: '/jm-bg.png',
+      canonical: 'https://johnmichealacera.com/blog'
+    },
+  },
+  {
+    path: '/blog/my-founder-journey',
+    name: 'BlogPost',
+    component: BlogPostComponent,
+    meta: { 
+      title: 'My Founder Journey | John Micheal Acera',
+      description: 'Lessons and reflections from the early days of my founder path.',
+      keywords: 'founder journey, entrepreneurship, lessons learned, John Micheal Acera, startup experience',
+      ogTitle: 'My Founder Journey | John Micheal Acera',
+      ogDescription: 'Lessons and reflections from the early days of my founder path.',
+      ogImage: '/jm-bg.png',
+      ogUrl: 'https://johnmichealacera.com/blog/my-founder-journey',
+      twitterTitle: 'My Founder Journey | John Micheal Acera',
+      twitterDescription: 'Lessons and reflections from the early days of my founder path.',
+      twitterImage: '/jm-bg.png',
+      canonical: 'https://johnmichealacera.com/blog/my-founder-journey'
     },
   }
 ];
