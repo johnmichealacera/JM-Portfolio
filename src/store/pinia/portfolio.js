@@ -13,6 +13,8 @@ export const usePortfolioStore = defineStore({
     softSkills: [],
     manifestos: [],
     currentWork: null,
+    blogPosts: [], // Array of all blog posts
+    currentBlogPost: null, // Currently viewed blog post
     isLoading: false,
     isInitialized: false, // Track if data has been loaded
     lastFetchTime: null,
@@ -64,6 +66,26 @@ export const usePortfolioStore = defineStore({
     
     finalSection() {
       return this.getManifestoSection('finalSection');
+    },
+
+    // Blog-related getters
+    getPublishedBlogPosts() {
+      // TODO: Add filtering by status (published vs draft)
+      return this.blogPosts.filter(post => post.status === 'published');
+    },
+
+    getBlogPostBySlug() {
+      return (slug) => {
+        return this.blogPosts.find(post => post.slug === slug);
+      };
+    },
+
+    getBlogPostsByTag() {
+      return (tag) => {
+        return this.blogPosts.filter(post => 
+          post.tags && post.tags.includes(tag)
+        );
+      };
     },
   },
   actions: {
@@ -126,6 +148,18 @@ export const usePortfolioStore = defineStore({
               description
               tags
             }
+            blogPosts {
+              title
+              slug
+              author
+              date
+              contentBlocks { # Full structure with type
+                blockType
+                value
+              }
+              tags
+              status
+            }
           }
         `;
 
@@ -150,6 +184,7 @@ export const usePortfolioStore = defineStore({
         this.processProjectsData(data);
         this.processSoftSkillsData(data);
         this.processCurrentWorkData(data);
+        this.processBlogData(data);
         
         this.isInitialized = true;
         
@@ -227,6 +262,23 @@ export const usePortfolioStore = defineStore({
     processCurrentWorkData(data) {
       this.currentWork = data.currentWork?.[0] || null;
     },
+
+    processBlogData(data) {
+      const rawBlogData = data.blogPosts || [];
+      this.blogPosts = rawBlogData.map(post => ({
+        title: post.title,
+        slug: post.slug,
+        author: post.author,
+        date: new Date(post.date), // Convert to Date object
+        content: post.contentBlocks || [], // Array of content block objects
+        tags: post.tags || [],
+        status: post.status,
+      }));
+    },
+
+    // TODO: Add pagination support for blog posts
+    // TODO: Add search functionality for blog posts
+    // TODO: Add error handling for when the GraphQL service is down
 
     // Individual fetch methods for specific updates (optional)
     // async refreshSpecificData(dataType) {

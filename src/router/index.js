@@ -156,21 +156,22 @@ const routes = [
     },
   },
   {
-    path: '/blog/my-founder-journey',
+    path: '/blog/:slug',
     name: 'BlogPost',
     component: BlogPostComponent,
+    props: true,
     meta: { 
-      title: 'My Founder Journey | John Micheal Acera',
-      description: 'Lessons and reflections from the early days of my founder path.',
-      keywords: 'founder journey, entrepreneurship, lessons learned, John Micheal Acera, startup experience',
-      ogTitle: 'My Founder Journey | John Micheal Acera',
-      ogDescription: 'Lessons and reflections from the early days of my founder path.',
+      title: 'Blog Post | John Micheal Acera',
+      description: 'Read insights and reflections from my journey as a developer and entrepreneur.',
+      keywords: 'blog, insights, reflections, John Micheal Acera, developer journey',
+      ogTitle: 'Blog Post | John Micheal Acera',
+      ogDescription: 'Read insights and reflections from my journey as a developer and entrepreneur.',
       ogImage: '/jm-bg.png',
-      ogUrl: 'https://johnmichealacera.com/blog/my-founder-journey',
-      twitterTitle: 'My Founder Journey | John Micheal Acera',
-      twitterDescription: 'Lessons and reflections from the early days of my founder path.',
+      ogUrl: 'https://johnmichealacera.com/blog',
+      twitterTitle: 'Blog Post | John Micheal Acera',
+      twitterDescription: 'Read insights and reflections from my journey as a developer and entrepreneur.',
       twitterImage: '/jm-bg.png',
-      canonical: 'https://johnmichealacera.com/blog/my-founder-journey'
+      canonical: 'https://johnmichealacera.com/blog'
     },
   }
 ];

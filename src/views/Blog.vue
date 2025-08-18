@@ -14,27 +14,41 @@
         </div>
 
         <!-- Blog Posts Grid -->
-        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <!-- Founder Journey Post -->
-          <article class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+        <div v-if="!isLoading && publishedPosts.length > 0" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <article 
+            v-for="post in publishedPosts" 
+            :key="post.slug"
+            class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+          >
             <div class="p-6">
               <div class="flex items-center space-x-2 text-sm text-gray-500 mb-3">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
                 </svg>
-                <time datetime="2025-08-14">August 14, 2025</time>
+                <time :datetime="post.date.toISOString()">{{ formatDate(post.date) }}</time>
               </div>
               
               <h2 class="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
-                My Learnings and Failures in My Founder Journey
+                {{ post.title }}
               </h2>
               
               <p class="text-gray-600 mb-4 line-clamp-3">
-                Lessons and reflections from the early days of my founder path. Exploring the challenges, failures, and key insights gained along the way.
+                {{ getPostExcerpt(post) }}
               </p>
+
+              <!-- Tags -->
+              <div v-if="post.tags && post.tags.length > 0" class="flex flex-wrap gap-2 mb-4">
+                <span 
+                  v-for="tag in post.tags.slice(0, 3)" 
+                  :key="tag"
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                >
+                  {{ tag }}
+                </span>
+              </div>
               
               <router-link 
-                to="/blog/my-founder-journey"
+                :to="`/blog/${post.slug}`"
                 class="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200 group"
               >
                 <span>Read More</span>
@@ -44,25 +58,23 @@
               </router-link>
             </div>
           </article>
+        </div>
 
-          <!-- Coming Soon Posts -->
-          <article class="bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300 p-6 flex items-center justify-center">
-            <div class="text-center text-gray-500">
-              <svg class="w-12 h-12 mx-auto mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              <p class="text-sm">More posts coming soon...</p>
-            </div>
-          </article>
+        <!-- Loading State -->
+        <div v-if="isLoading" class="text-center py-12">
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p class="text-gray-600">Loading blog posts...</p>
+        </div>
 
-          <article class="bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300 p-6 flex items-center justify-center">
-            <div class="text-center text-gray-500">
-              <svg class="w-12 h-12 mx-auto mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              <p class="text-sm">More posts coming soon...</p>
-            </div>
-          </article>
+        <!-- No Posts State -->
+        <div v-if="!isLoading && publishedPosts.length === 0" class="text-center py-12">
+          <div class="bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300 p-12">
+            <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            <h3 class="text-xl font-semibold text-gray-600 mb-2">No blog posts yet</h3>
+            <p class="text-gray-500">Check back soon for new insights and reflections!</p>
+          </div>
         </div>
 
         <!-- Newsletter Signup -->
@@ -134,7 +146,7 @@
 import Taskbar from '../components/Taskbar.vue';
 import Footer from '../components/Footer.vue';
 import { usePortfolioStore } from '../store/pinia/portfolio';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 
 export default {
   name: 'Blog',
@@ -149,9 +161,42 @@ export default {
     const isSubmitting = ref(false);
     const isSubmitted = ref(false);
 
+    // Computed properties for blog data
+    const publishedPosts = computed(() => portfolioStore.getPublishedBlogPosts);
+    const isLoading = computed(() => portfolioStore.isLoading);
+
     const validateEmail = (email) => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email);
+    };
+
+    // Helper methods for blog display
+    const formatDate = (date) => {
+      if (!date) return '';
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    };
+
+    const getPostExcerpt = (post) => {
+      if (!post.content || !Array.isArray(post.content)) return '';
+      
+      // Get the first paragraph content from contentBlocks
+      const firstBlock = post.content[0];
+      if (!firstBlock || firstBlock.blockType !== 'paragraph') {
+        // Try to find first paragraph block
+        const paragraphBlock = post.content.find(block => block.blockType === 'paragraph');
+        if (!paragraphBlock) return '';
+        return paragraphBlock.value || '';
+      }
+      
+      const textContent = firstBlock.value || '';
+      
+      // Limit to ~150 characters
+      if (textContent.length <= 150) return textContent;
+      return textContent.substring(0, 150).trim() + '...';
     };
 
     const handleSubmit = async () => {
@@ -253,6 +298,10 @@ Please add them to your newsletter list.
       emailError,
       isSubmitting,
       isSubmitted,
+      publishedPosts,
+      isLoading,
+      formatDate,
+      getPostExcerpt,
       handleSubmit,
       resetForm,
     };

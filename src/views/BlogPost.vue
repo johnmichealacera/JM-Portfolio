@@ -4,72 +4,93 @@
     <div class="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       <!-- Blog Post Header -->
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-        <div class="text-center mb-12">
+        <!-- Loading State -->
+        <div v-if="isLoading" class="text-center py-12">
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p class="text-gray-600">Loading blog post...</p>
+        </div>
+
+        <!-- Blog Post Content -->
+        <div v-else-if="blogPost" class="text-center mb-12">
           <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-            My Learnings and Failures in My Founder Journey
+            {{ blogPost.title }}
           </h1>
-          <div class="flex items-center justify-center space-x-2 text-gray-600">
+          <div class="flex items-center justify-center space-x-2 text-gray-600 mb-4">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
             </svg>
-            <time datetime="2025-08-14" class="text-lg font-medium">August 14, 2025</time>
+            <time :datetime="blogPost.date.toISOString()" class="text-lg font-medium">{{ formatDate(blogPost.date) }}</time>
+          </div>
+
+          <!-- Author -->
+          <div class="text-gray-600 mb-4">
+            <span class="font-medium">By {{ blogPost.author }}</span>
+          </div>
+
+          <!-- Tags -->
+          <div v-if="blogPost.tags && blogPost.tags.length > 0" class="flex flex-wrap justify-center gap-2 mb-6">
+            <span 
+              v-for="tag in blogPost.tags" 
+              :key="tag"
+              class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full"
+            >
+              {{ tag }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Not Found State -->
+        <div v-else class="text-center py-12">
+          <div class="bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300 p-12">
+            <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            <h3 class="text-xl font-semibold text-gray-600 mb-2">Blog post not found</h3>
+            <p class="text-gray-500">The blog post you're looking for doesn't exist or has been removed.</p>
+            <router-link 
+              to="/blog" 
+              class="inline-flex items-center space-x-2 px-4 py-2 mt-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200"
+            >
+              <span>Back to Blog</span>
+            </router-link>
           </div>
         </div>
 
         <!-- Blog Content -->
-        <article class="prose prose-lg prose-gray max-w-none">
-          <!-- TODO: Backend Integration - This content should be fetched from a database/CMS
-               - Blog posts should be stored in a database with fields: title, content, date, slug, meta_description, etc.
-               - Content should be markdown/rich text that gets rendered to HTML
-               - Add support for blog categories, tags, and search functionality
-               - Implement pagination for multiple blog posts
-               - Add reading time estimation and view count tracking
-               - Consider adding comments system and social sharing
-          -->
+        <article v-if="blogPost" class="prose prose-lg prose-gray max-w-none">
           <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 border border-gray-100">
-            <h3 class="text-2xl font-semibold text-gray-900 mb-6">
-              My learnings and failures in my founder journey
-            </h3>
-
-            <p class="text-gray-700 leading-relaxed mb-6">
-              Recently, I have been grinding my way out into creating something that I would call my own — something my passion can speak to and could solve a pain point in the world.
-            </p>
-
-            <p class="text-gray-700 leading-relaxed mb-6">
-              I have read and watched a lot of founder mindset content over the past months, and first it talked about solving a problem that is a personal pain point on my side. I tried that, invested energy, effort, time, and a little bit of cash to create apps and websites for it.
-            </p>
-
-            <p class="text-gray-700 leading-relaxed mb-6">
-              But you know what?
-            </p>
-
-            <p class="text-gray-700 leading-relaxed mb-6">
-              Since that is personally my pain point, I thought others could also resonate. But sadly, the place where I live, the people who are here are stuck in a traditional mindset. Even if it is given for free, they have not embraced the app. Even if it does not work how they loved it, I always tell them to let me know how we can modify or evolve it into something of their own. But still, I was met with just some shallow approval but they did not use the app — just some respectful denial, and sadly indifference or what we call being ghosted.
-            </p>
-
-            <p class="text-gray-700 leading-relaxed mb-6">
-              And that is fine since I know being a founder is much more than this experience. Compared to astronomical experiences others do, like mortgaging their properties, eating ramen, sleeping 4 to 5 hours daily, divorcing their spouses — and the list can go on.
-            </p>
-
-            <p class="text-gray-700 leading-relaxed mb-6">
-              I am still living a full life: sleeping at least 6 to 7 hours, having my family with me even if most of the time I am misunderstood, still having my home, eating properly on what I truly want. But still, the ache inside me is fully waking me up early in the mornings and so on.
-            </p>
-
-            <p class="text-gray-700 leading-relaxed mb-6">
-              I like to ship something, and I realize something I know I have already watched in some videos that I tried to reject: it is solving expensive problems — and that is something of a mindset shift I will try later on. Instead of focusing on my personal pain point where users are local here in the country and do not even understand it yet.
-            </p>
-
-            <p class="text-gray-700 leading-relaxed mb-6">
-              They might think I will be the one benefiting from it more, even though it is mostly free and I am thinking for the long game. I want it to be a win/win solution, not just for me but for them importantly. Money is just a tool, a purpose-driven life is something I am striving for.
-            </p>
-
-            <p class="text-gray-700 leading-relaxed mb-6">
-              Otherwise, I am just sharing it here for some memories to look back on in the future.
-            </p>
-
-            <p class="text-gray-700 leading-relaxed mb-6">
-              Let us see how this founder journey goes on. Ciao!
-            </p>
+            <!-- Render blog content blocks -->
+            <div v-for="(contentBlock, index) in blogPost.content" :key="index" class="mb-6">
+              <!-- Validate content block structure -->
+              <div v-if="!contentBlock || typeof contentBlock !== 'object' || !contentBlock.blockType || !contentBlock.value" class="text-red-500 text-sm">
+                Invalid content block structure
+              </div>
+              
+              <!-- Handle different block types -->
+              <div v-else-if="contentBlock.blockType === 'paragraph'" class="text-gray-700 leading-relaxed">
+                {{ contentBlock.value }}
+              </div>
+              
+              <!-- TODO: Add support for other block types like headings, lists, etc. -->
+              <!-- 
+              <div v-else-if="contentBlock.blockType === 'heading'" class="text-2xl font-semibold text-gray-900 mb-4">
+                {{ contentBlock.value }}
+              </div>
+              <div v-else-if="contentBlock.blockType === 'list'" class="list-disc list-inside text-gray-700 leading-relaxed">
+                <ul>
+                  <li v-for="item in contentBlock.value.split('\n')" :key="item">{{ item }}</li>
+                </ul>
+              </div>
+              <div v-else-if="contentBlock.blockType === 'quote'" class="border-l-4 border-blue-500 pl-4 italic text-gray-600">
+                "{{ contentBlock.value }}"
+              </div>
+              -->
+              
+              <!-- Fallback for unknown block types -->
+              <div v-else class="text-gray-700 leading-relaxed">
+                {{ contentBlock.value }}
+              </div>
+            </div>
           </div>
         </article>
 
@@ -95,7 +116,8 @@
 import Taskbar from '../components/Taskbar.vue';
 import Footer from '../components/Footer.vue';
 import { usePortfolioStore } from '../store/pinia/portfolio';
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
+import { useRoute } from 'vue-router';
 
 export default {
   name: 'BlogPost',
@@ -103,15 +125,45 @@ export default {
     Taskbar,
     Footer,
   },
-  setup() {
+  props: {
+    slug: {
+      type: String,
+      required: true
+    }
+  },
+  setup(props) {
     const portfolioStore = usePortfolioStore();
+    const route = useRoute();
+
+    // Get the slug from props or route params
+    const postSlug = computed(() => props.slug || route.params.slug);
+
+    // Get blog post data from store
+    const blogPost = computed(() => portfolioStore.getBlogPostBySlug(postSlug.value));
+    const isLoading = computed(() => portfolioStore.isLoading);
+
+    // Helper method for date formatting
+    const formatDate = (date) => {
+      if (!date) return '';
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    };
 
     onMounted(() => {
       // Only fetch if data isn't already loaded
       if (!portfolioStore.isInitialized) {
         portfolioStore.fetchAllData();
       }
-    })
+    });
+
+    return {
+      blogPost,
+      isLoading,
+      formatDate,
+    };
   },
 }
 </script>
