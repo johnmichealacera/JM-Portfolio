@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="bg-cream">
     <taskbar />
     <about-me />
     <my-why />
@@ -10,11 +10,13 @@
 
 <script>
 
-import Taskbar from '@/components/Taskbar.vue';
-import AboutMe from '@/components/AboutMe.vue';
-import MyWhy from '@/components/MyWhy.vue';
-import AboutSkill from '@/components/AboutSkill.vue';
-import Footer from '@/components/Footer.vue';
+import Taskbar from '../components/Taskbar.vue';
+import AboutMe from '../components/AboutMe.vue';
+import MyWhy from '../components/MyWhy.vue';
+import AboutSkill from '../components/AboutSkill.vue';
+import Footer from '../components/Footer.vue';
+import { usePortfolioStore } from '../store/pinia/portfolio';
+import { onMounted } from 'vue';
 
 export default {
   name: 'About',
@@ -24,6 +26,16 @@ export default {
     MyWhy,
     AboutSkill,
     Footer,
-  }
+  },
+  setup() {
+    const portfolioStore = usePortfolioStore();
+
+    onMounted(() => {
+      // Only fetch if data isn't already loaded
+      if (!portfolioStore.isInitialized) {
+        portfolioStore.fetchAllData();
+      }
+    })
+  },
 }
 </script>

@@ -1,36 +1,61 @@
 {
   "name": "personal-portfolio",
-  "version": "0.1.0",
+  "version": "1.4.0",
   "license": "MIT",
   "author": "John Micheal Acera",
-  "keywords": ["portfolio", "personal", "software developer", "johnmichealacera", "john micheal acera", "full stack developer"],
+  "keywords": [
+    "portfolio",
+    "personal",
+    "software developer",
+    "johnmichealacera",
+    "john micheal acera",
+    "full stack developer"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build-old": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "vue-cli-service serve"
+    "start": "vue-cli-service serve",
+    "dev": "webpack-dev-server --open --mode development",
+    "build": "webpack --config webpack.config.js"
   },
   "dependencies": {
-    "axios": "^1.2.6",
-    "core-js": "^3.6.5",
+    "@vueuse/head": "^2.0.0",
+    "aos": "^2.3.4",
+    "axios": "^0.24.0",
+    "compression-webpack-plugin": "^11.1.0",
+    "core-js": "^3.18.3",
+    "css-minimizer-webpack-plugin": "^7.0.0",
+    "dotenv-webpack": "^7.0.3",
+    "filemanager-webpack-plugin": "^8.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "html2pdf.js": "^0.10.3",
+    "mini-css-extract-plugin": "^2.3.0",
     "pinia": "^2.0.30",
-    "vue": "^3.0.0",
+    "style-loader": "^3.2.1",
+    "terser-webpack-plugin": "^5.3.0",
+    "vue": "^3.2.0",
+    "vue-loader": "^17.0.0",
     "vue-router": "^4.0.0-0",
-    "webpack": "^5.76.0"
+    "webpack": "^5.68.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/preset-env": "^7.16.11",
     "@tailwindcss/postcss7-compat": "^2.0.3",
     "@vue/cli-plugin-babel": "~5.0.8",
     "@vue/cli-plugin-eslint": "~5.0.8",
     "@vue/cli-plugin-router": "~5.0.8",
     "@vue/cli-service": "~5.0.8",
     "@vue/compiler-sfc": "^3.0.0",
-    "autoprefixer": "^9.8.6",
+    "autoprefixer": "^10.4.2",
     "babel-eslint": "^10.1.0",
+    "copy-webpack-plugin": "^13.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^7.0.0-0",
-    "postcss": "^7.0.36",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.6",
+    "webpack-cli": "^4.9.2"
   },
   "eslintConfig": {
     "root": true,

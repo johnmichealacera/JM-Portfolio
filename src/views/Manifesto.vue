@@ -1,26 +1,24 @@
 <template>
-  <div class="min-h-screen">
+  <div class="bg-cream">
     <taskbar />
-    <contact-info />
-    <contact-form />
+    <dev-manifesto />
     <footer-bar />
   </div>
 </template>
 
 <script>
+
 import Taskbar from '../components/Taskbar.vue';
 import FooterBar from '../components/Footer.vue';
-import ContactInfo from '../components/ContactInfo.vue';
-import ContactForm from '../components/ContactForm.vue';
+import DevManifesto from '../components/DevManifesto.vue';
 import { usePortfolioStore } from '../store/pinia/portfolio';
 import { onMounted } from 'vue';
 
 export default {
-  name: 'Contact',
+  name: 'Manifesto',
   components: {
     Taskbar,
-    ContactInfo,
-    ContactForm,
+    DevManifesto,
     FooterBar
   },
   setup() {

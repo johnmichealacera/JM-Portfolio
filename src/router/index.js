@@ -1,51 +1,211 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+
+const HomeComponent = () => import('../views/Home.vue');
+const ThankYouComponent = () => import('../views/ThankYou.vue');
+const AboutComponent = () => import('../views/About.vue');
+const ContactComponent = () => import('../views/Contact.vue');
+const ManifestoComponent = () => import('../views/Manifesto.vue');
+const PortfolioComponent = () => import('../views/Portfolio.vue');
+const LoginComponent = () => import('../views/Login.vue');
+const BlogPostComponent = () => import('../views/BlogPost.vue');
+const BlogComponent = () => import('../views/Blog.vue');
 
 const routes = [
   {
-    path: '/thank-you',
-    name: 'ThankYou',
-    component: () => import('@/views/ThankYou.vue'),
-    meta: {
-      title: 'Thank You Page',
-    },
-  },
-  {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/Home.vue'),
-    meta: {
-      title: 'Home Page',
-    },
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import('@/views/About.vue'),
-    meta: {
-      title: 'About Me',
+    component: HomeComponent,
+    meta: { 
+      title: 'John Micheal Acera - Developer Portfolio',
+      description: 'Explore the portfolio of John Micheal Acera, showcasing projects, skills, and achievements in software development.',
+      keywords: 'John Micheal Acera, portfolio, software developer, programming, projects',
+      ogTitle: 'John Micheal Acera - Developer Portfolio',
+      ogDescription: 'Explore the portfolio of John Micheal Acera, showcasing projects, skills, and achievements in software development.',
+      ogImage: '/jm-bg.png',
+      ogUrl: 'https://johnmichealacera.com/',
+      twitterTitle: 'John Micheal Acera - Developer Portfolio',
+      twitterDescription: 'Explore the portfolio of John Micheal Acera, showcasing projects, skills, and achievements in software development.',
+      twitterImage: '/jm-bg.png',
+      canonical: 'https://johnmichealacera.com/'
     },
   },
   {
     path: '/portfolio',
     name: 'Portfolio',
-    component: () => import('@/views/Portfolio.vue'),
-    meta: {
-      title: 'Portfolio',
+    component: PortfolioComponent,
+    meta: { 
+      title: 'Portfolio - John Micheal Acera',
+      description: 'View my latest projects and technical achievements. Explore web applications, mobile apps, and software solutions I\'ve developed.',
+      keywords: 'portfolio, projects, web development, mobile apps, software solutions, John Micheal Acera',
+      ogTitle: 'Portfolio - John Micheal Acera',
+      ogDescription: 'View my latest projects and technical achievements. Explore web applications, mobile apps, and software solutions I\'ve developed.',
+      ogImage: '/jm-bg.png',
+      ogUrl: 'https://johnmichealacera.com/portfolio',
+      twitterTitle: 'Portfolio - John Micheal Acera',
+      twitterDescription: 'View my latest projects and technical achievements. Explore web applications, mobile apps, and software solutions I\'ve developed.',
+      twitterImage: '/jm-bg.png',
+      canonical: 'https://johnmichealacera.com/portfolio'
+    },
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: LoginComponent,
+    meta: { 
+      title: 'Login - John Micheal Acera',
+      description: 'Access the admin panel for John Micheal Acera\'s portfolio.',
+      keywords: 'login, admin, John Micheal Acera, portfolio management',
+      ogTitle: 'Login - John Micheal Acera',
+      ogDescription: 'Access the admin panel for John Micheal Acera\'s portfolio.',
+      ogImage: '/jm-bg.png',
+      ogUrl: 'https://johnmichealacera.com/login',
+      twitterTitle: 'Login - John Micheal Acera',
+      twitterDescription: 'Access the admin panel for John Micheal Acera\'s portfolio.',
+      twitterImage: '/jm-bg.png',
+      canonical: 'https://johnmichealacera.com/login'
+    },
+  },
+  {
+    path: '/thank-you',
+    name: 'ThankYou',
+    component: ThankYouComponent,
+    meta: { 
+      title: 'Thank You - John Micheal Acera',
+      description: 'Thank you for your message. I\'ll get back to you soon!',
+      keywords: 'thank you, contact, John Micheal Acera',
+      ogTitle: 'Thank You - John Micheal Acera',
+      ogDescription: 'Thank you for your message. I\'ll get back to you soon!',
+      ogImage: '/jm-bg.png',
+      ogUrl: 'https://johnmichealacera.com/thank-you',
+      twitterTitle: 'Thank You - John Micheal Acera',
+      twitterDescription: 'Thank you for your message. I\'ll get back to you soon!',
+      twitterImage: '/jm-bg.png',
+      canonical: 'https://johnmichealacera.com/thank-you'
+    },
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: AboutComponent,
+    meta: { 
+      title: 'About Me - John Micheal Acera',
+      description: 'Learn more about John Micheal Acera, a passionate software developer with expertise in modern web technologies and mobile development.',
+      keywords: 'about, John Micheal Acera, software developer, experience, skills',
+      ogTitle: 'About Me - John Micheal Acera',
+      ogDescription: 'Learn more about John Micheal Acera, a passionate software developer with expertise in modern web technologies and mobile development.',
+      ogImage: '/jm-bg.png',
+      ogUrl: 'https://johnmichealacera.com/about',
+      twitterTitle: 'About Me - John Micheal Acera',
+      twitterDescription: 'Learn more about John Micheal Acera, a passionate software developer with expertise in modern web technologies and mobile development.',
+      twitterImage: '/jm-bg.png',
+      canonical: 'https://johnmichealacera.com/about'
+    },
+  },
+  {
+    path: '/manifesto',
+    name: 'Manifesto',
+    component: ManifestoComponent,
+    meta: { 
+      title: 'Developer Manifesto - John Micheal Acera',
+      description: 'My development philosophy and principles. Learn about my approach to software development and the values that drive my work.',
+      keywords: 'manifesto, development philosophy, principles, John Micheal Acera',
+      ogTitle: 'Developer Manifesto - John Micheal Acera',
+      ogDescription: 'My development philosophy and principles. Learn about my approach to software development and the values that drive my work.',
+      ogImage: '/jm-bg.png',
+      ogUrl: 'https://johnmichealacera.com/manifesto',
+      twitterTitle: 'Developer Manifesto - John Micheal Acera',
+      twitterDescription: 'My development philosophy and principles. Learn about my approach to software development and the values that drive my work.',
+      twitterImage: '/jm-bg.png',
+      canonical: 'https://johnmichealacera.com/manifesto'
     },
   },
   {
     path: '/contact',
     name: 'Contact',
-    component: () => import('@/views/Contact.vue'),
-    meta: {
-      title: 'Contact',
+    component: ContactComponent,
+    meta: { 
+      title: 'Contact - John Micheal Acera',
+      description: 'Get in touch with John Micheal Acera. Let\'s discuss your project or collaboration opportunities.',
+      keywords: 'contact, John Micheal Acera, collaboration, project inquiry',
+      ogTitle: 'Contact - John Micheal Acera',
+      ogDescription: 'Get in touch with John Micheal Acera. Let\'s discuss your project or collaboration opportunities.',
+      ogImage: '/jm-bg.png',
+      ogUrl: 'https://johnmichealacera.com/contact',
+      twitterTitle: 'Contact - John Micheal Acera',
+      twitterDescription: 'Get in touch with John Micheal Acera. Let\'s discuss your project or collaboration opportunities.',
+      twitterImage: '/jm-bg.png',
+      canonical: 'https://johnmichealacera.com/contact'
+    },
+  },
+  {
+    path: '/blog',
+    name: 'Blog',
+    component: BlogComponent,
+    meta: { 
+      title: 'Blog - John Micheal Acera',
+      description: 'Thoughts, learnings, and reflections from my journey as a developer and becoming.',
+      keywords: 'blog, thoughts, learnings, reflections, John Micheal Acera, developer journey',
+      ogTitle: 'Blog - John Micheal Acera',
+      ogDescription: 'Thoughts, learnings, and reflections from my journey as a developer and becoming.',
+      ogImage: '/jm-bg.png',
+      ogUrl: 'https://johnmichealacera.com/blog',
+      twitterTitle: 'Blog - John Micheal Acera',
+      twitterDescription: 'Thoughts, learnings, and reflections from my journey as a developer and becoming.',
+      twitterImage: '/jm-bg.png',
+      canonical: 'https://johnmichealacera.com/blog'
+    },
+  },
+  {
+    path: '/blog/:slug',
+    name: 'BlogPost',
+    component: BlogPostComponent,
+    props: true,
+    meta: { 
+      title: 'Blog Post | John Micheal Acera',
+      description: 'Read insights and reflections from my journey as a developer and becoming.',
+      keywords: 'blog, insights, reflections, John Micheal Acera, developer journey',
+      ogTitle: 'Blog Post | John Micheal Acera',
+      ogDescription: 'Read insights and reflections from my journey as a developer and becoming.',
+      ogImage: '/jm-bg.png',
+      ogUrl: 'https://johnmichealacera.com/blog',
+      twitterTitle: 'Blog Post | John Micheal Acera',
+      twitterDescription: 'Read insights and reflections from my journey as a developer and becoming.',
+      twitterImage: '/jm-bg.png',
+      canonical: 'https://johnmichealacera.com/blog'
+    },
+  },
+  // Catch-all route for handling direct access to dynamic routes
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('../views/NotFound.vue'),
+    meta: { 
+      title: 'Page Not Found - John Micheal Acera',
+      description: 'The page you are looking for could not be found.',
+      keywords: '404, not found, John Micheal Acera',
+      ogTitle: 'Page Not Found - John Micheal Acera',
+      ogDescription: 'The page you are looking for could not be found.',
+      ogImage: '/jm-bg.png',
+      ogUrl: 'https://johnmichealacera.com/404',
+      twitterTitle: 'Page Not Found - John Micheal Acera',
+      twitterDescription: 'The page you are looking for could not be found.',
+      twitterImage: '/jm-bg.png',
+      canonical: 'https://johnmichealacera.com/404'
     },
   }
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+  history: createWebHistory(),
+  routes,
+  // Add scroll behavior for better UX
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  }
 });
 
 export default router;

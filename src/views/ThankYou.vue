@@ -11,3 +11,7 @@
   background-color: #01a2a6;
 }
 </style>
+
+<script setup>
+// Meta tags are handled by App.vue using router meta
+</script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="bg-cream">
     <taskbar />
     <project />
     <Footer />
@@ -7,10 +7,9 @@
 </template>
 
 <script>
-
-import Taskbar from '@/components/Taskbar.vue';
-import Project from '@/components/Project.vue';
-import Footer from '@/components/Footer.vue';
+import Taskbar from '../components/Taskbar.vue';
+import Project from '../components/Project.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   name: 'Portfolio',
@@ -18,6 +17,6 @@ export default {
     Taskbar,
     Project,
     Footer,
-  }
+  },
 }
 </script>
