@@ -9,15 +9,19 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = {
-  // content: ['./public/**/*.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-  entry: './src/main.js',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[contenthash].js',
-    clean: true,
-  },
-  mode: 'production',
+module.exports = (env, argv) => {
+  const isProduction = argv.mode === 'production';
+  
+  return {
+    // content: ['./public/**/*.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+    entry: './src/main.js',
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].[contenthash].js',
+      clean: true,
+      publicPath: '/',
+    },
+    mode: isProduction ? 'production' : 'development',
   devtool: 'source-map',
   module: {
     rules: [
@@ -104,5 +108,10 @@ module.exports = {
     hot: true,
     historyApiFallback: true,
     liveReload: true,
+    allowedHosts: 'all',
+    devMiddleware: {
+      publicPath: '/',
+    },
   },
-};
+  };
+}

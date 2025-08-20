@@ -1,1 +1,8 @@
-/*    /index.html   200 
+# Handle all routes for client-side routing
+/*    /index.html   200
+
+# Specific blog post routes
+/blog/*    /index.html   200
+
+# Ensure all dynamic routes are handled
+/:slug    /index.html   200 

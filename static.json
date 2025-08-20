@@ -4,6 +4,7 @@
   "routes": {
       "/**": "index.html"
   },
+  "error_page": "index.html",
   "headers": {
     "/**": {
       "Cache-Control": "public, max-age=0, must-revalidate"

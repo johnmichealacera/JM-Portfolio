@@ -143,14 +143,14 @@ const routes = [
     component: BlogComponent,
     meta: { 
       title: 'Blog - John Micheal Acera',
-      description: 'Thoughts, learnings, and reflections from my journey as a developer and entrepreneur.',
+      description: 'Thoughts, learnings, and reflections from my journey as a developer and becoming.',
       keywords: 'blog, thoughts, learnings, reflections, John Micheal Acera, developer journey',
       ogTitle: 'Blog - John Micheal Acera',
-      ogDescription: 'Thoughts, learnings, and reflections from my journey as a developer and entrepreneur.',
+      ogDescription: 'Thoughts, learnings, and reflections from my journey as a developer and becoming.',
       ogImage: '/jm-bg.png',
       ogUrl: 'https://johnmichealacera.com/blog',
       twitterTitle: 'Blog - John Micheal Acera',
-      twitterDescription: 'Thoughts, learnings, and reflections from my journey as a developer and entrepreneur.',
+      twitterDescription: 'Thoughts, learnings, and reflections from my journey as a developer and becoming.',
       twitterImage: '/jm-bg.png',
       canonical: 'https://johnmichealacera.com/blog'
     },
@@ -162,23 +162,50 @@ const routes = [
     props: true,
     meta: { 
       title: 'Blog Post | John Micheal Acera',
-      description: 'Read insights and reflections from my journey as a developer and entrepreneur.',
+      description: 'Read insights and reflections from my journey as a developer and becoming.',
       keywords: 'blog, insights, reflections, John Micheal Acera, developer journey',
       ogTitle: 'Blog Post | John Micheal Acera',
-      ogDescription: 'Read insights and reflections from my journey as a developer and entrepreneur.',
+      ogDescription: 'Read insights and reflections from my journey as a developer and becoming.',
       ogImage: '/jm-bg.png',
       ogUrl: 'https://johnmichealacera.com/blog',
       twitterTitle: 'Blog Post | John Micheal Acera',
-      twitterDescription: 'Read insights and reflections from my journey as a developer and entrepreneur.',
+      twitterDescription: 'Read insights and reflections from my journey as a developer and becoming.',
       twitterImage: '/jm-bg.png',
       canonical: 'https://johnmichealacera.com/blog'
+    },
+  },
+  // Catch-all route for handling direct access to dynamic routes
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('../views/NotFound.vue'),
+    meta: { 
+      title: 'Page Not Found - John Micheal Acera',
+      description: 'The page you are looking for could not be found.',
+      keywords: '404, not found, John Micheal Acera',
+      ogTitle: 'Page Not Found - John Micheal Acera',
+      ogDescription: 'The page you are looking for could not be found.',
+      ogImage: '/jm-bg.png',
+      ogUrl: 'https://johnmichealacera.com/404',
+      twitterTitle: 'Page Not Found - John Micheal Acera',
+      twitterDescription: 'The page you are looking for could not be found.',
+      twitterImage: '/jm-bg.png',
+      canonical: 'https://johnmichealacera.com/404'
     },
   }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  // Add scroll behavior for better UX
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  }
 });
 
 export default router;

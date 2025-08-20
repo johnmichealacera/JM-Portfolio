@@ -116,7 +116,7 @@
 import Taskbar from '../components/Taskbar.vue';
 import Footer from '../components/Footer.vue';
 import { usePortfolioStore } from '../store/pinia/portfolio';
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 export default {
@@ -139,7 +139,13 @@ export default {
     const postSlug = computed(() => props.slug || route.params.slug);
 
     // Get blog post data from store
-    const blogPost = computed(() => portfolioStore.getBlogPostBySlug(postSlug.value));
+    const blogPost = computed(() => {
+      const post = portfolioStore.getBlogPostBySlug(postSlug.value);
+      console.log('Looking for blog post with slug:', postSlug.value);
+      console.log('Available blog posts:', portfolioStore.blogPosts);
+      console.log('Found blog post:', post);
+      return post;
+    });
     const isLoading = computed(() => portfolioStore.isLoading);
 
     // Helper method for date formatting
@@ -152,10 +158,28 @@ export default {
       });
     };
 
-    onMounted(() => {
-      // Only fetch if data isn't already loaded
-      if (!portfolioStore.isInitialized) {
-        portfolioStore.fetchAllData();
+    onMounted(async () => {
+      // Always ensure data is loaded when component mounts
+      if (!portfolioStore.isInitialized || portfolioStore.blogPosts.length === 0) {
+        await portfolioStore.fetchAllData();
+      }
+      
+      // If still no blog post found after fetching, try to fetch again
+      if (!blogPost.value && postSlug.value) {
+        console.log('Blog post not found, attempting to fetch data again...');
+        await portfolioStore.fetchAllData(true); // Force refresh
+      }
+    });
+
+    // Watch for route changes to handle navigation between blog posts
+    watch(() => route.params.slug, async (newSlug, oldSlug) => {
+      if (newSlug && newSlug !== oldSlug) {
+        console.log('Route changed, checking if blog post exists...');
+        // If the blog post doesn't exist in the current data, fetch again
+        if (!portfolioStore.getBlogPostBySlug(newSlug)) {
+          console.log('Blog post not found in current data, fetching...');
+          await portfolioStore.fetchAllData(true);
+        }
       }
     });
 

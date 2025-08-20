@@ -9,7 +9,7 @@
             Blog
           </h1>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Thoughts, learnings, and reflections from my journey as a developer and entrepreneur.
+            Thoughts, learnings, and reflections from my journey as a developer and becoming.
           </p>
         </div>
 
@@ -82,7 +82,7 @@
           <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
             <h3 class="text-2xl font-bold mb-3">Stay Updated</h3>
             <p class="text-blue-100 mb-6 max-w-2xl mx-auto">
-              Get notified when I publish new insights about development, entrepreneurship, and my journey.
+              Get notified when I publish new insights about development, becoming, and my journey.
             </p>
             
             <!-- Email Form -->
