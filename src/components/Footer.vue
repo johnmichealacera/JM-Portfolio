@@ -131,17 +131,33 @@
             <p>&copy; {{ currentYear }} John Micheal Acera. All rights reserved.</p>
           </div>
 
-          <!-- Back to Top Button -->
-          <button
-            @click="scrollToTop"
-            class="group flex items-center space-x-2 px-4 py-2 bg-gray-800/50 hover:bg-gray-700/70 rounded-lg transition-all duration-300 hover:scale-105"
-            aria-label="Back to top"
-          >
-            <svg class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-            </svg>
-            <span class="text-gray-400 group-hover:text-white transition-colors duration-200 text-sm">Back to Top</span>
-          </button>
+          <!-- Authentic Self Link -->
+          <div class="flex items-center space-x-4">
+            <a
+              href="https://whoami-henna.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-center space-x-2 px-3 py-2 bg-gradient-to-r from-gray-800/30 to-gray-700/30 hover:from-gray-700/50 hover:to-gray-600/50 rounded-lg transition-all duration-500 hover:scale-105 border border-gray-600/20 hover:border-gray-500/40"
+              aria-label="Authentic self"
+            >
+              <svg class="w-4 h-4 text-gray-400 group-hover:text-amber-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+              <span class="text-gray-400 group-hover:text-amber-300 transition-colors duration-300 text-xs font-medium tracking-wide">Too dull? This is me behind this</span>
+            </a>
+            
+            <!-- Back to Top Button -->
+            <button
+              @click="scrollToTop"
+              class="group flex items-center space-x-2 px-4 py-2 bg-gray-800/50 hover:bg-gray-700/70 rounded-lg transition-all duration-300 hover:scale-105"
+              aria-label="Back to top"
+            >
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+              </svg>
+              <span class="text-gray-400 group-hover:text-white transition-colors duration-200 text-sm">Back to Top</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
