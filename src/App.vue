@@ -1,5 +1,6 @@
 <template>
   <router-view/>
+  <floating-chat-widget />
 </template>
 
 <style>
@@ -34,6 +35,7 @@ import { usePortfolioStore } from './store/pinia/portfolio';
 import { onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useMetaTags } from './utils/metaTags';
+import FloatingChatWidget from './components/FloatingChatWidget.vue';
 
 const portfolioStore = usePortfolioStore();
 const route = useRoute();
