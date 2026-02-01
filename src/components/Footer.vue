@@ -128,7 +128,7 @@
         <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <!-- Copyright -->
           <div class="text-gray-400 text-sm">
-            <p>&copy; 2025 - {{ currentYear }} John Micheal Acera. All rights reserved.</p>
+            <p>&copy; 2024 - {{ currentYear }} John Micheal Acera. All rights reserved.</p>
           </div>
 
           <!-- Authentic Self Link -->
